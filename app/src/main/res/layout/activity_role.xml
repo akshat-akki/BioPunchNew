@@ -25,14 +25,13 @@
         android:id="@+id/ownerButton"
         android:layout_width="369dp"
         android:layout_height="62dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="76dp"
         android:background="@drawable/border"
         android:fontFamily="@font/abril_fatface"
         android:text="I am a Business Owner/Admin/HR"
         android:textColor="#333F8E"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/role" />
 
@@ -51,5 +50,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ownerButton"
-        app:layout_constraintVertical_bias="0.132" />
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
