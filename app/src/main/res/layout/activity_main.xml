@@ -16,6 +16,7 @@
         android:layout_marginBottom="160dp"
         android:background="@drawable/custom_dialog"
         android:fontFamily="@font/abril_fatface"
+        android:onClick="getstart"
         android:text="GET STARTED!!"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
