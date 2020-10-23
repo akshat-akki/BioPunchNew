@@ -8,16 +8,16 @@
 
     <TextView
         android:id="@+id/role"
-        android:layout_width="248dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="216dp"
+        android:layout_width="265dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="136dp"
         android:fontFamily="@font/abril_fatface"
-        android:text="Select Your Role"
+        android:text="Select Your Role !!"
         android:textColor="#090606"
         android:textColorHighlight="#CF4545"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,7 +49,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ownerButton" />
+        app:layout_constraintTop_toBottomOf="@+id/ownerButton"
+        app:layout_constraintVertical_bias="0.132" />
 </androidx.constraintlayout.widget.ConstraintLayout>
