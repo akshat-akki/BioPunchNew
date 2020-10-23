@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RoleActivity">
+
+    <TextView
+        android:id="@+id/role"
+        android:layout_width="248dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="216dp"
+        android:fontFamily="@font/abril_fatface"
+        android:text="Select Your Role"
+        android:textColor="#090606"
+        android:textColorHighlight="#CF4545"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/ownerButton"
+        android:layout_width="369dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/border"
+        android:fontFamily="@font/abril_fatface"
+        android:text="I am a Business Owner/Admin/HR"
+        android:textColor="#333F8E"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/role" />
+
+    <Button
+        android:id="@+id/employeeButton"
+        android:layout_width="369dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginBottom="255dp"
+        android:background="@drawable/border"
+        android:fontFamily="@font/abril_fatface"
+        android:text="I am an Employee"
+        android:textColor="#333F8E"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ownerButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>
