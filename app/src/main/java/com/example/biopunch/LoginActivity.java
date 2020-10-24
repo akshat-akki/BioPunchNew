@@ -54,15 +54,10 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String mobile = intent.getStringExtra("mobile");
         sendVerificationCodeToUser(mobile);
-
-
-
-
     }
     public void clicked (View view) {
         try {
-
-            String code = editTextCode.addTextChangedListener(new TextWatcher() {
+            editTextCode.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -70,24 +65,23 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                String code=s.toString();
+                    if (code != null)
+                        if (code.isEmpty() || code.length() < 6) {
+                            editTextCode.setError("Wrong OTP...");
+                            editTextCode.requestFocus();
+                            return;
+                        }
+                    Log.i("hello", "after if");
+                    progressBar.setVisibility(View.VISIBLE);
+                    verifyCode(code);
                 }
 
                 @Override
                 public void afterTextChanged(Editable s) {
 
                 }
-            })
-            if (code != null)
-                if (code.isEmpty() || code.length() < 6) {
-                    editTextCode.setError("Wrong OTP...");
-                    editTextCode.requestFocus();
-                    return;
-                }
-            Log.i("hello", "after if");
-            progressBar.setVisibility(View.VISIBLE);
-            verifyCode(code);
-
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
