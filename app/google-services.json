@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "507036803807-385roajrfbeqj0rlg23vthij9v86l3np.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.biopunch",
+            "certificate_hash": "cea2a12f5d69531c449b42637e58fd65b0fe227e"
+          }
+        },
+        {
           "client_id": "507036803807-gb358flh0gh14rqmtd8okhmkt5bkssma.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
