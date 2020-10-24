@@ -20,8 +20,10 @@ import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
@@ -34,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     Button button;
     //firebase auth object
     private FirebaseAuth mAuth;
-
+    String mobile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         //getting mobile number from the previous activity
         //and sending the verification code to the number
         Intent intent = getIntent();
-        String mobile = intent.getStringExtra("mobile");
+        mobile = intent.getStringExtra("mobile");
         sendVerificationCodeToUser(mobile);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +110,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
     private void signInTheUserByCredentials(PhoneAuthCredential credential) {
         FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
         firebaseAuth.signInWithCredential(credential)
@@ -116,6 +119,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
+                            //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            FirebaseDatabase.getInstance().getReference().child("users").child(task.getResult().getUser().getUid()).child("phone").setValue(mobile);
                             Intent intent=new Intent(getApplicationContext(),ProfileActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
