@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,21 +54,43 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String mobile = intent.getStringExtra("mobile");
         sendVerificationCodeToUser(mobile);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String code=editTextCode.getText().toString();
-                if(code.isEmpty()||code.length()<6||code==null)
-                {
+
+
+
+
+    }
+    public void clicked (View view) {
+        try {
+
+            String code = editTextCode.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            })
+            if (code != null)
+                if (code.isEmpty() || code.length() < 6) {
                     editTextCode.setError("Wrong OTP...");
                     editTextCode.requestFocus();
                     return;
                 }
-                progressBar.setVisibility(View.VISIBLE);
-                verifyCode(code);
-            }
-        });
+            Log.i("hello", "after if");
+            progressBar.setVisibility(View.VISIBLE);
+            verifyCode(code);
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void sendVerificationCodeToUser(String mobile) {
