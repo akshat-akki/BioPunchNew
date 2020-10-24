@@ -43,15 +43,28 @@ public class LoginActivity extends AppCompatActivity {
         //initializing objects
         mAuth = FirebaseAuth.getInstance();
         editTextCode = findViewById(R.id.editTextPhone);
-        editTextCode = findViewById(R.id.editTextPhone);
         progressBar = findViewById(R.id.progressbar);
         button = findViewById(R.id.button);
+        progressBar.setVisibility(View.GONE);
         //getting mobile number from the previous activity
         //and sending the verification code to the number
         Intent intent = getIntent();
         String mobile = intent.getStringExtra("mobile");
         sendVerificationCodeToUser(mobile);
-
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String code=editTextCode.getText().toString();
+                if(code.isEmpty()||code.length()<6||code==null)
+                {
+                    editTextCode.setError("Wrong OTP...");
+                    editTextCode.requestFocus();
+                    return;
+                }
+                progressBar.setVisibility(View.VISIBLE);
+                verifyCode(code);
+            }
+        });
 
     }
 
