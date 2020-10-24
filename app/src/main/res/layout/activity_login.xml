@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/verifyback"
     tools:context=".LoginActivity">
 
 
@@ -12,12 +13,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="186dp"
+        android:layout_marginTop="28dp"
         android:text="Wait for the code I sent You"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,11 +30,16 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="19dp"
         android:layout_marginBottom="20dp"
+        android:background="@color/cardview_light_background"
+        android:backgroundTint="@color/common_google_signin_btn_text_dark_default"
+        android:foregroundTint="@color/colorPrimaryDark"
+        android:progressTint="@color/design_default_color_primary_dark"
         app:layout_constraintBottom_toTopOf="@+id/editTextCode"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.018" />
 
     <EditText
         android:id="@+id/editTextCode"
@@ -41,8 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/progressbar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="320dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="148dp"
+        android:layout_marginBottom="13dp"
         android:digits="0123456789"
         android:drawablePadding="10dp"
         android:hint="enter verification code"
@@ -50,7 +56,7 @@
         android:maxLength="10"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.549"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,14 +66,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextCode"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="172dp"
+        android:layout_marginBottom="348dp"
         android:background="@color/colorPrimaryDark"
         android:text="Sign In"
         android:textAllCaps="false"
         android:textColor="#cdd8f1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.916"
         app:layout_constraintStart_toStartOf="parent" />
 
 

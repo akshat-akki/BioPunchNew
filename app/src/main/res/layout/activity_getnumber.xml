@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".GetnumberActivity">
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="129dp"
-            android:layout_marginTop="154dp"
-            android:layout_marginEnd="194dp"
-            android:layout_marginBottom="81dp"
-            android:text="Button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
-
         <TextView
             android:id="@+id/textView2"
             android:layout_width="367dp"
@@ -71,6 +57,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <Button
+            android:id="@+id/button2"
             android:layout_width="85dp"
             android:layout_height="42dp"
             android:layout_marginTop="58dp"
