@@ -6,71 +6,69 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="352dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="87dp"
-        android:fontFamily="@font/abril_fatface"
-        android:text="What's your mobile number?"
-        android:textColor="#100E0E"
-        android:textSize="27sp"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="186dp"
+        android:text="Wait for the code I sent You"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="373dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="29dp"
-        android:text="Enter your mobile number to start                                                          "
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <TextView
-        android:id="@+id/textView4"
+    <ProgressBar
+        android:id="@+id/progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:text="using BioPunch."
-        android:textSize="24sp"
+        android:layout_below="@id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextCode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editTextPhone"
-        android:layout_width="348dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="36dp"
-        android:drawableLeft="@android:drawable/sym_action_call"
-        android:ems="10"
+        android:id="@+id/editTextCode"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progressbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="320dp"
+        android:layout_marginBottom="32dp"
+        android:digits="0123456789"
+        android:drawablePadding="10dp"
+        android:hint="enter verification code"
         android:inputType="phone"
+        android:maxLength="10"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.549"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="85dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="58dp"
-        android:background="@drawable/custom_dialog"
-        android:backgroundTint="#4659B8"
-        android:drawableLeft="@android:drawable/checkbox_on_background"
-        android:text="Next"
-        android:textColor="#FDF2F2"
-        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextCode"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="172dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Sign In"
+        android:textAllCaps="false"
+        android:textColor="#cdd8f1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.873"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

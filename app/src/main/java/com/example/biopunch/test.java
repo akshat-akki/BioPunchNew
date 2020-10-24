@@ -15,7 +15,7 @@ public class test extends AppCompatActivity {
     }
     public void login(View view)
     {
-        Intent intent=new Intent(getApplicationContext(),LoginActivity.class);
+        Intent intent=new Intent(getApplicationContext(),GetnumberActivity.class);
         startActivity(intent);
     }
 }

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "507036803807",
+    "firebase_url": "https://biopunch-258c8.firebaseio.com",
+    "project_id": "biopunch-258c8",
+    "storage_bucket": "biopunch-258c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507036803807:android:8ada80405a67e27ebcff6a",
+        "android_client_info": {
+          "package_name": "com.example.biopunch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507036803807-gb358flh0gh14rqmtd8okhmkt5bkssma.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.biopunch",
+            "certificate_hash": "44351ffc06b0aa8203e3910498ad5dbbc4ab134c"
+          }
+        },
+        {
+          "client_id": "507036803807-ael2473kg814cnkq35biptghildekjje.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNDUq8F0dUUiXojgyXysUWbNe8MYLM2LA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507036803807-ael2473kg814cnkq35biptghildekjje.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
