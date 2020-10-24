@@ -6,17 +6,236 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="202dp"
-        android:layout_marginTop="132dp"
-        android:layout_marginEnd="121dp"
-        android:layout_marginBottom="423dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="278dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/abril_fatface"
+        android:text="Fill out your details."
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="35dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/custom_dialog"
+        android:backgroundTint="#F5F5F8"
+        android:text="1"
+        android:textColor="#0B0A0A"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="156dp"
+        android:fontFamily="@font/abril_fatface"
+        android:text="Company Name"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button1"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="221dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Enter your company name."
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/next1"
+        android:layout_width="75dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/custom_dialog"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:onClick="onClick"
+        android:tag="1"
+        android:text="Next"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="35dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="28dp"
+        android:textColor="#0B0A0A"
+        android:background="@drawable/custom_dialog"
+        android:text="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="220dp"
+        android:fontFamily="@font/abril_fatface"
+        android:text="Password"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="279dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Enter your admin login password"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/next2"
+        android:layout_width="75dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/custom_dialog"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:onClick="onClick"
+        android:tag="2"
+        android:text="Next"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/next1" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="35dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="23dp"
+        android:textColor="#0B0A0A"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/custom_dialog"
+        android:text="3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName3"
+        android:layout_width="221dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Enter your company email address"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+    <Button
+        android:id="@+id/next3"
+        android:layout_width="75dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/custom_dialog"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:onClick="onClick"
+        android:tag="3"
+        android:text="Next"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/next2" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="35dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/custom_dialog"
+        android:text="4"
+        android:textColor="#0B0A0A"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="283dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="26dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="167dp"
+        android:fontFamily="@font/abril_fatface"
+        android:text="Company Email Address"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.016"
+        app:layout_constraintStart_toEndOf="@+id/button3"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="164dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:fontFamily="@font/abril_fatface"
+        android:text="Contact Person Name"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName5"
+        android:layout_width="221dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="23dp"
+        android:ems="10"
+        android:hint="Enter contact person's name"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
+
+    <Button
+        android:id="@+id/next4"
+        android:layout_width="75dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/custom_dialog"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:onClick="onClick"
+        android:tag="4"
+        android:text="Done"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/next3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,7 +16,7 @@
         android:layout_marginTop="28dp"
         android:text="Wait for the code I sent You"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="17dp"
         android:layout_marginBottom="20dp"
         android:background="@color/cardview_light_background"
         android:backgroundTint="@color/common_google_signin_btn_text_dark_default"
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/progressbar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="140dp"
         android:layout_marginBottom="13dp"
         android:digits="0123456789"
         android:drawablePadding="10dp"
@@ -56,25 +56,29 @@
         android:maxLength="10"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="61dp"
         android:layout_below="@id/editTextCode"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="348dp"
-        android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="344dp"
+        android:background="@drawable/custom_dialog"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:text="Sign In"
         android:textAllCaps="false"
         android:textColor="#cdd8f1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.916"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

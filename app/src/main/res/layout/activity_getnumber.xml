@@ -62,7 +62,7 @@
             android:layout_height="42dp"
             android:layout_marginTop="58dp"
             android:background="@drawable/custom_dialog"
-            android:backgroundTint="#4659B8"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:drawableLeft="@android:drawable/checkbox_on_background"
             android:text="Next"
             android:textColor="#FDF2F2"

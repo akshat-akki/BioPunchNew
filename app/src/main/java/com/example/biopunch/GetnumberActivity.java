@@ -14,15 +14,10 @@ public class GetnumberActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_getnumber);
         editTextMobile = findViewById(R.id.editTextPhone);
-
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
                 String mobile = editTextMobile.getText().toString().trim();
-
                 if(mobile.isEmpty() || mobile.length() < 10){
                     editTextMobile.setError("Enter a valid mobile");
                     editTextMobile.requestFocus();
