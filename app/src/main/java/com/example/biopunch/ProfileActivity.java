@@ -99,7 +99,7 @@ public class ProfileActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-             if(s!=null && s.length()>5)
+             if(s!=null && s.length()>1)
              next1.setVisibility(View.VISIBLE);
             }
 
@@ -121,6 +121,8 @@ public class ProfileActivity extends AppCompatActivity {
        password.setVisibility(View.VISIBLE);
        passwordEditText.setVisibility(View.VISIBLE);
        passwordEditText.requestFocus();
+       final TextView errorMessage=findViewById(R.id.errorText);
+       errorMessage.setVisibility(View.VISIBLE);
        forceShow(ProfileActivity.this);
        //next2 button
        final Button next2=findViewById(R.id.next2);
@@ -133,7 +135,15 @@ public class ProfileActivity extends AppCompatActivity {
            @Override
            public void onTextChanged(CharSequence s, int start, int before, int count) {
                if(s!=null && s.length()>=6)
+               {
+                   errorMessage.setVisibility(View.INVISIBLE);
                    next2.setVisibility(View.VISIBLE);
+               }
+               if(s!=null && s.length()<6)
+               {
+                   errorMessage.setVisibility(View.VISIBLE);
+                   next2.setVisibility(View.INVISIBLE);
+               }
            }
 
            @Override
@@ -162,8 +172,10 @@ public class ProfileActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s!=null && s.length()>=10)
+                if(s!=null && s.length()>=7)
                     next3.setVisibility(View.VISIBLE);
+                if(s!=null && s.length()<7)
+                    next3.setVisibility(View.INVISIBLE);
             }
 
             @Override
