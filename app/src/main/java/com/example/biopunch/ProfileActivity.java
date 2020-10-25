@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -17,6 +18,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.FirebaseDatabase;
 
 public class ProfileActivity extends AppCompatActivity {
     //serial number vise buttons
@@ -30,6 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
     EditText companyEmailAddress;
     EditText contactPerson;
     InputMethodManager inputMethodManager;
+    String UID;
     /**
      * Force show softKeyboard.
      */
@@ -72,9 +76,13 @@ public class ProfileActivity extends AppCompatActivity {
         inputMethodManager=(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         //inputMethodManager.showSoftInput(companyName, InputMethodManager.SHOW_IMPLICIT);
         forceShow(ProfileActivity.this);
+        Intent intent=getIntent();
+        UID=intent.getStringExtra("uid");
+
     }
-   public void next1clicked(View view)
+    public void next1clicked(View view)
    {
+       FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("CompanyName").setValue(companyName.getText().toString());
        //when companyName field is completed
        serial1.setBackground(ContextCompat.getDrawable(ProfileActivity.this,R.color.colorPrimaryDark));
        serial1.setTextColor(Color.parseColor("#ffffffff"));
@@ -85,6 +93,7 @@ public class ProfileActivity extends AppCompatActivity {
     public void next2clicked(View view)
     {
         //when password field is completed
+        FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("Password").setValue(password.getText().toString());
         serial2.setBackground(ContextCompat.getDrawable(ProfileActivity.this,R.color.colorPrimaryDark));
         serial2.setTextColor(Color.parseColor("#ffffffff"));
         companyEmailAddress.requestFocus();
@@ -94,6 +103,7 @@ public class ProfileActivity extends AppCompatActivity {
     public void next3clicked(View view)
     {
         //when companyEmailAddress field is completed
+        FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("Email").setValue(companyEmailAddress.getText().toString());
         serial3.setBackground(ContextCompat.getDrawable(ProfileActivity.this,R.color.colorPrimaryDark));
         serial3.setTextColor(Color.parseColor("#ffffffff"));
         contactPerson.requestFocus();
@@ -103,6 +113,7 @@ public class ProfileActivity extends AppCompatActivity {
     public void next4clicked(View view)
     {
         //when contactPerson field is completed
+        FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("ContactPerson").setValue(contactPerson.getText().toString());
         serial4.setBackground(ContextCompat.getDrawable(ProfileActivity.this,R.color.colorPrimaryDark));
         serial4.setTextColor(Color.parseColor("#ffffffff"));
         forceHide(ProfileActivity.this,contactPerson);
