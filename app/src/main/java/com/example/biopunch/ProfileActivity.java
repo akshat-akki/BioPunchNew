@@ -1,43 +1,112 @@
 package com.example.biopunch;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class ProfileActivity extends AppCompatActivity {
-    Button b1;
-    Button b2;
-    Button b3;
-    Button b4;
+    //serial number vise buttons
+    Button serial1;
+    Button serial2;
+    Button serial3;
+    Button serial4;
+    Button next1;
+    EditText companyName;
+    EditText password;
+    EditText companyEmailAddress;
+    EditText contactPerson;
+    InputMethodManager inputMethodManager;
+    /**
+     * Force show softKeyboard.
+     */
+    public static void forceShow(@NonNull Context context) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+    }
+
+    /**
+     * Force hide softKeyboard.
+     */
+    public static void forceHide(@NonNull Activity activity, @NonNull EditText editText) {
+        if (activity.getCurrentFocus() == null || !(activity.getCurrentFocus() instanceof EditText)) {
+            editText.requestFocus();
+        }
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+        activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        //not calling super ,disables back button
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        b1=findViewById(R.id.button1);
-        b2=findViewById(R.id.button2);
-        b3=findViewById(R.id.button3);
-        b4=findViewById(R.id.button4);
+        serial1=findViewById(R.id.sn1);
+        serial2=findViewById(R.id.sn2);
+        serial3=findViewById(R.id.sn3);
+        serial4=findViewById(R.id.sn4);
+        next1=findViewById(R.id.next1);
+        companyName=(EditText)findViewById(R.id.companyNameEditText);
+        password=(EditText)findViewById(R.id.passwordEditText);
+        companyEmailAddress=(EditText)findViewById(R.id.companyEmailEditText);
+        contactPerson=(EditText)findViewById(R.id.contactPersonEditText);
+        companyName.requestFocus();
+        inputMethodManager=(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        //inputMethodManager.showSoftInput(companyName, InputMethodManager.SHOW_IMPLICIT);
+        forceShow(ProfileActivity.this);
     }
-    public void onClick(View view)
+   public void next1clicked(View view)
+   {
+       //when companyName field is completed
+       serial1.setBackground(ContextCompat.getDrawable(ProfileActivity.this,R.color.colorPrimaryDark));
+       serial1.setTextColor(Color.parseColor("#ffffffff"));
+       password.requestFocus();
+       forceShow(ProfileActivity.this);
+      // inputMethodManager.showSoftInput(password, InputMethodManager.SHOW_IMPLICIT);
+   }
+    public void next2clicked(View view)
     {
-        String a=view.getTag().toString();
-        if(a=="1")
-        {
-           b1.setBackgroundColor(272777);
-        }
-        if(a=="2")
-        {
-            b2.setBackgroundColor(272777);
-        }
-        if(a=="3")
-        {
-            b3.setBackgroundColor(272777);
-        }
-        if(a=="4")
-        {
-            b4.setBackgroundColor(272777);
-        }
+        //when password field is completed
+        serial2.setBackground(ContextCompat.getDrawable(ProfileActivity.this,R.color.colorPrimaryDark));
+        serial2.setTextColor(Color.parseColor("#ffffffff"));
+        companyEmailAddress.requestFocus();
+        forceShow(ProfileActivity.this);
+        // inputMethodManager.showSoftInput(companyEmailAddress, InputMethodManager.SHOW_IMPLICIT);
+    }
+    public void next3clicked(View view)
+    {
+        //when companyEmailAddress field is completed
+        serial3.setBackground(ContextCompat.getDrawable(ProfileActivity.this,R.color.colorPrimaryDark));
+        serial3.setTextColor(Color.parseColor("#ffffffff"));
+        contactPerson.requestFocus();
+        forceShow(ProfileActivity.this);
+        // inputMethodManager.showSoftInput(contactPerson, InputMethodManager.SHOW_IMPLICIT);
+    }
+    public void next4clicked(View view)
+    {
+        //when contactPerson field is completed
+        serial4.setBackground(ContextCompat.getDrawable(ProfileActivity.this,R.color.colorPrimaryDark));
+        serial4.setTextColor(Color.parseColor("#ffffffff"));
+        forceHide(ProfileActivity.this,contactPerson);
+        Toast.makeText(ProfileActivity.this, "Profile completed!!", Toast.LENGTH_SHORT).show();
+
     }
 }

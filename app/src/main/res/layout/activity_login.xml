@@ -54,7 +54,7 @@
         android:hint="enter verification code"
         android:inputType="phone"
         android:maxLength="10"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/signinbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +62,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/signinbutton"
         android:layout_width="110dp"
         android:layout_height="61dp"
         android:layout_below="@id/editTextCode"
