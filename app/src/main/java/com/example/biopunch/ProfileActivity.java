@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -27,11 +29,16 @@ public class ProfileActivity extends AppCompatActivity {
     Button serial2;
     Button serial3;
     Button serial4;
-    Button next1;
-    EditText companyName;
-    EditText password;
-    EditText companyEmailAddress;
-    EditText contactPerson;
+    //TextViews
+    TextView companyName;
+    TextView password;
+    TextView companyEmailAddress;
+    TextView contactPerson;
+    //EditTexts
+    EditText companyNameEditText;
+    EditText passwordEditText;
+    EditText companyEmailAddressEditText;
+    EditText contactPersonEditText;
     InputMethodManager inputMethodManager;
     String UID;
     /**
@@ -63,22 +70,46 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        //buttons
         serial1=findViewById(R.id.sn1);
         serial2=findViewById(R.id.sn2);
         serial3=findViewById(R.id.sn3);
         serial4=findViewById(R.id.sn4);
-        next1=findViewById(R.id.next1);
-        companyName=(EditText)findViewById(R.id.companyNameEditText);
-        password=(EditText)findViewById(R.id.passwordEditText);
-        companyEmailAddress=(EditText)findViewById(R.id.companyEmailEditText);
-        contactPerson=(EditText)findViewById(R.id.contactPersonEditText);
-        companyName.requestFocus();
+        //TextViews
+        companyName=findViewById(R.id.companyNameText);
+        password=findViewById(R.id.passwordText);
+        companyEmailAddress=findViewById(R.id.companyEmailText);
+        contactPerson=findViewById(R.id.contactPersonText);
+       //EditTexts
+        companyNameEditText=(EditText)findViewById(R.id.companyNameEditText);
+        passwordEditText=(EditText)findViewById(R.id.passwordEditText);
+        companyEmailAddressEditText=(EditText)findViewById(R.id.companyEmailEditText);
+        contactPersonEditText=(EditText)findViewById(R.id.contactPersonEditText);
+
+        companyNameEditText.requestFocus();
         inputMethodManager=(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        //inputMethodManager.showSoftInput(companyName, InputMethodManager.SHOW_IMPLICIT);
         forceShow(ProfileActivity.this);
+        //next1 button
+        final Button next1=findViewById(R.id.next1);
+        companyNameEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+             if(s!=null && s.length()>5)
+             next1.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         Intent intent=getIntent();
         UID=intent.getStringExtra("uid");
-
     }
     public void next1clicked(View view)
    {
@@ -86,9 +117,29 @@ public class ProfileActivity extends AppCompatActivity {
        //when companyName field is completed
        serial1.setBackground(ContextCompat.getDrawable(ProfileActivity.this,R.color.colorPrimaryDark));
        serial1.setTextColor(Color.parseColor("#ffffffff"));
-       password.requestFocus();
+       serial2.setVisibility(View.VISIBLE);
+       password.setVisibility(View.VISIBLE);
+       passwordEditText.setVisibility(View.VISIBLE);
+       passwordEditText.requestFocus();
        forceShow(ProfileActivity.this);
-      // inputMethodManager.showSoftInput(password, InputMethodManager.SHOW_IMPLICIT);
+       //next2 button
+       final Button next2=findViewById(R.id.next2);
+       passwordEditText.addTextChangedListener(new TextWatcher() {
+           @Override
+           public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+           }
+
+           @Override
+           public void onTextChanged(CharSequence s, int start, int before, int count) {
+               if(s!=null && s.length()>=6)
+                   next2.setVisibility(View.VISIBLE);
+           }
+
+           @Override
+           public void afterTextChanged(Editable s) {
+           }
+       });
    }
     public void next2clicked(View view)
     {
@@ -96,9 +147,30 @@ public class ProfileActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("Password").setValue(password.getText().toString());
         serial2.setBackground(ContextCompat.getDrawable(ProfileActivity.this,R.color.colorPrimaryDark));
         serial2.setTextColor(Color.parseColor("#ffffffff"));
-        companyEmailAddress.requestFocus();
+        serial3.setVisibility(View.VISIBLE);
+        companyEmailAddress.setVisibility(View.VISIBLE);
+        companyEmailAddressEditText.setVisibility(View.VISIBLE);
+        companyEmailAddressEditText.requestFocus();
         forceShow(ProfileActivity.this);
-        // inputMethodManager.showSoftInput(companyEmailAddress, InputMethodManager.SHOW_IMPLICIT);
+        //next3 button
+        final Button next3=findViewById(R.id.next3);
+        companyEmailAddressEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s!=null && s.length()>=10)
+                    next3.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
     public void next3clicked(View view)
     {
@@ -106,9 +178,30 @@ public class ProfileActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("Email").setValue(companyEmailAddress.getText().toString());
         serial3.setBackground(ContextCompat.getDrawable(ProfileActivity.this,R.color.colorPrimaryDark));
         serial3.setTextColor(Color.parseColor("#ffffffff"));
-        contactPerson.requestFocus();
+        serial4.setVisibility(View.VISIBLE);
+        contactPerson.setVisibility(View.VISIBLE);
+        contactPersonEditText.setVisibility(View.VISIBLE);
+        contactPersonEditText.requestFocus();
         forceShow(ProfileActivity.this);
-        // inputMethodManager.showSoftInput(contactPerson, InputMethodManager.SHOW_IMPLICIT);
+        //next4 button
+        final Button next4=findViewById(R.id.next4);
+        contactPersonEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s!=null && s.length()>=3)
+                    next4.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
     public void next4clicked(View view)
     {
@@ -116,8 +209,7 @@ public class ProfileActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("ContactPerson").setValue(contactPerson.getText().toString());
         serial4.setBackground(ContextCompat.getDrawable(ProfileActivity.this,R.color.colorPrimaryDark));
         serial4.setTextColor(Color.parseColor("#ffffffff"));
-        forceHide(ProfileActivity.this,contactPerson);
+        forceHide(ProfileActivity.this,contactPersonEditText);
         Toast.makeText(ProfileActivity.this, "Profile completed!!", Toast.LENGTH_SHORT).show();
-
     }
 }
