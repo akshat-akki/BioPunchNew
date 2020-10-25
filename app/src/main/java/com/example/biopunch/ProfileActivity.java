@@ -109,11 +109,11 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
         Intent intent=getIntent();
-        UID=intent.getStringExtra("uid");
+        UID=intent.getStringExtra("phone");
     }
     public void next1clicked(View view)
    {
-       FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("CompanyName").setValue(companyName.getText().toString());
+       FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("CompanyName").setValue(companyNameEditText.getText().toString());
        //when companyName field is completed
        serial1.setBackground(ContextCompat.getDrawable(ProfileActivity.this,R.color.colorPrimaryDark));
        serial1.setTextColor(Color.parseColor("#ffffffff"));
@@ -144,7 +144,7 @@ public class ProfileActivity extends AppCompatActivity {
     public void next2clicked(View view)
     {
         //when password field is completed
-        FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("Password").setValue(password.getText().toString());
+        FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("Password").setValue(passwordEditText.getText().toString());
         serial2.setBackground(ContextCompat.getDrawable(ProfileActivity.this,R.color.colorPrimaryDark));
         serial2.setTextColor(Color.parseColor("#ffffffff"));
         serial3.setVisibility(View.VISIBLE);
@@ -175,7 +175,7 @@ public class ProfileActivity extends AppCompatActivity {
     public void next3clicked(View view)
     {
         //when companyEmailAddress field is completed
-        FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("Email").setValue(companyEmailAddress.getText().toString());
+        FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("Email").setValue(companyEmailAddressEditText.getText().toString());
         serial3.setBackground(ContextCompat.getDrawable(ProfileActivity.this,R.color.colorPrimaryDark));
         serial3.setTextColor(Color.parseColor("#ffffffff"));
         serial4.setVisibility(View.VISIBLE);
@@ -206,7 +206,7 @@ public class ProfileActivity extends AppCompatActivity {
     public void next4clicked(View view)
     {
         //when contactPerson field is completed
-        FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("ContactPerson").setValue(contactPerson.getText().toString());
+        FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("ContactPerson").setValue(contactPersonEditText.getText().toString());
         serial4.setBackground(ContextCompat.getDrawable(ProfileActivity.this,R.color.colorPrimaryDark));
         serial4.setTextColor(Color.parseColor("#ffffffff"));
         forceHide(ProfileActivity.this,contactPersonEditText);

@@ -116,10 +116,10 @@ public class LoginActivity extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            FirebaseDatabase.getInstance().getReference().child("users").child(task.getResult().getUser().getUid()).child("phone").setValue(mobile);
-                            String UID=task.getResult().getUser().getUid().toString();
+                            FirebaseDatabase.getInstance().getReference().child("users").child(mobile).child("phone").setValue(mobile);
+                            String UID=mobile;
                             Intent intent=new Intent(getApplicationContext(),ProfileActivity.class);
-                            intent.putExtra("uid",UID);
+                            intent.putExtra("phone",UID);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                         }

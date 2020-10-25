@@ -55,7 +55,8 @@ public class GetnumberActivity extends AppCompatActivity {
                                 //Log.i(Constants.TAG, "dataSnapshot value = " + dataSnapshot.getValue());
 
                                 if (dataSnapshot.exists()) {
-                                    Intent intent = new Intent(getApplicationContext(), DashBoardHR.class);
+                                    Intent intent = new Intent(getApplicationContext(),PasswordActivity.class);
+                                    intent.putExtra("phone",mobile);
                                     startActivity(intent);
                                     // User Exists
                                     // Do your stuff here if user already exist
