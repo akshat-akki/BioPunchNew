@@ -31,7 +31,7 @@ public class PasswordActivity extends AppCompatActivity {
         Loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseDatabase.getInstance().getReference().child("users").orderByChild("Password").equalTo(editTextEnterPassword.getText().toString()).addListenerForSingleValueEvent(
+                FirebaseDatabase.getInstance().getReference().child("users").orderByChild("Password").equalTo(editTextEnterPassword.getText().toString(),phone1).addListenerForSingleValueEvent(
                         new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
