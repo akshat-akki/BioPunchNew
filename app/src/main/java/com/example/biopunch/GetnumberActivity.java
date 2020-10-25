@@ -29,18 +29,20 @@ public class GetnumberActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_getnumber);
         editTextMobile = findViewById(R.id.editTextPhone);
-
-        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+        progressBar=findViewById(R.id.progressBar1);
+        progressBar.setVisibility(View.INVISIBLE);
+        findViewById(R.id.buttonnext).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((InputMethodManager) getSystemService(GetnumberActivity.INPUT_METHOD_SERVICE))
                         .toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
                 progressBar.setVisibility(View.VISIBLE);
-                findViewById(R.id.button2).setVisibility(View.INVISIBLE); mobile = editTextMobile.getText().toString().trim();
+                findViewById(R.id.buttonnext).setVisibility(View.INVISIBLE); mobile = editTextMobile.getText().toString().trim();
                 if(mobile.isEmpty() || mobile.length() < 10){
                     editTextMobile.setError("Enter a valid mobile");
                     editTextMobile.requestFocus();
                     return;
+                    //
                 }
                 mobile="+91"+mobile;
                 final String userName =mobile;
