@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,9 +25,13 @@ public class WorkTiming extends AppCompatActivity {
     RadioButton time4;
     Button addWorkTime;
     Button nextTime;
+    EditText timeOutEditText;
     Button addNow;
+    ImageButton crossButton;
     //textViews
     TextView time4in;
+    EditText timeInEditText;
+    TextView customTime;
     TextView time4out;
     TextView workTiming;
     TextView time1in;
@@ -48,6 +53,7 @@ public class WorkTiming extends AppCompatActivity {
         time3in=findViewById(R.id.time3in);
         time1=findViewById(R.id.time1);
         time2=findViewById(R.id.time2);
+        customTime= findViewById(R.id.customTime);
         time3=findViewById(R.id.time3);
         addNow=findViewById(R.id.addButton);
         addWorkTime=findViewById(R.id.addWorkTiming);
@@ -55,6 +61,9 @@ public class WorkTiming extends AppCompatActivity {
         time1out=findViewById(R.id.time1out);
         time2out=findViewById(R.id.time2out);
         time3out=findViewById(R.id.time3out);
+        timeInEditText=(EditText)findViewById(R.id.time4inEditText);
+        timeOutEditText=(EditText)findViewById(R.id.time4outEditText);
+        crossButton=findViewById(R.id.crossButton);
         //time4
         time4=findViewById(R.id.time4);
         time4in=findViewById(R.id.time4in);
@@ -124,11 +133,35 @@ public class WorkTiming extends AppCompatActivity {
         Intent intent=new Intent(getApplicationContext(),DashBoardHR.class);
         startActivity(intent);
     }
+    public void crossClicked(View view)
+    {
+        addNow.setVisibility(View.GONE);
+        customTime.setVisibility(View.GONE);
+        timeInEditText.setVisibility(View.GONE);
+        timeOutEditText.setVisibility(View.GONE);
+        crossButton.setVisibility(View.GONE);
+        time1.setClickable(true);
+        time2.setClickable(true);
+        time3.setClickable(true);
+        workTiming.setAlpha(1);
+        time1.setAlpha(1);
+        time2.setAlpha(1);
+        time3.setAlpha(1);
+        time1in.setAlpha(1);
+        time1out.setAlpha(1);
+        time2in.setAlpha(1);
+        time2out.setAlpha(1);
+        time3in.setAlpha(1);
+        time3out.setAlpha(1);
+        addWorkTime.setAlpha(1);
+        addWorkTime.setClickable(true);
+    }
     public void addWorkTimingClicked(View view)
     {
         time1.setAlpha((float)0.05);
         time2.setAlpha((float)0.05);
         time3.setAlpha((float)0.05);
+        crossButton.setVisibility(View.VISIBLE);
         time1.setClickable(false);
         time2.setClickable(false);
         time3.setClickable(false);
@@ -143,13 +176,10 @@ public class WorkTiming extends AppCompatActivity {
         time3in.setAlpha((float)0.05);
         time3out.setAlpha((float)0.05);
         workTiming.setAlpha((float)0.05);
-       final TextView customTime= findViewById(R.id.customTime);
                 customTime.setVisibility(View.VISIBLE);
                 customTime.setAlpha(1);
                 addNow.setVisibility(View.VISIBLE);
                 addNow.setClickable(true);
-        final EditText timeInEditText=(EditText)findViewById(R.id.time4inEditText);
-        final EditText timeOutEditText=(EditText)findViewById(R.id.time4outEditText);
         timeInEditText.setClickable(true);
         timeOutEditText.setClickable(true);
         timeInEditText.setVisibility(View.VISIBLE);
@@ -201,6 +231,7 @@ public class WorkTiming extends AppCompatActivity {
                     customTime.setVisibility(View.GONE);
                     timeInEditText.setVisibility(View.GONE);
                     timeOutEditText.setVisibility(View.GONE);
+                    crossButton.setVisibility(View.GONE);
                     int a=Integer.parseInt(in);
                     int b=Integer.parseInt(out);
                     String a1="";
