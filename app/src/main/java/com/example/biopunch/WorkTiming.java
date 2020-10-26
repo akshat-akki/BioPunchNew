@@ -3,6 +3,7 @@ package com.example.biopunch;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -117,6 +118,11 @@ public class WorkTiming extends AppCompatActivity {
                 time3.setButtonTintList(ColorStateList.valueOf(greyColor));
             selected=4;
         }
+    }
+    public void nextClicked(View view)
+    {
+        Intent intent=new Intent(getApplicationContext(),DashBoardHR.class);
+        startActivity(intent);
     }
     public void addWorkTimingClicked(View view)
     {
