@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/workTimingLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WorkTiming">
@@ -46,7 +47,7 @@
         android:layout_height="45dp"
         android:layout_marginStart="33dp"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/ic_baseline_arrow_forward_24"
+        android:drawableStart="@drawable/ic_baseline_arrow_forward_24"
         android:drawableTint="#46E412"
         android:drawableTintMode="src_atop"
         android:text="IN 09:00"
@@ -135,6 +136,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time2in" />
 
+    <RadioButton
+        android:id="@+id/time4"
+        android:layout_width="345dp"
+        android:layout_height="61dp"
+        android:background="@android:color/transparent"
+        android:button="@android:drawable/radiobutton_off_background"
+        android:buttonTint="@android:color/darker_gray"
+        android:buttonTintMode="src_in"
+        android:clickable="false"
+        android:onClick="time4clicked"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time3in" />
     <TextView
         android:id="@+id/time3in"
         android:layout_width="143dp"
@@ -149,6 +166,20 @@
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time3" />
+    <TextView
+        android:id="@+id/time4in"
+        android:layout_width="143dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="33dp"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/ic_baseline_arrow_forward_24"
+        android:drawableTint="#46E412"
+        android:drawableTintMode="src_atop"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time4"
+        android:visibility="invisible"/>
 
     <TextView
         android:id="@+id/time3out"
@@ -166,6 +197,25 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/time2in"
         app:layout_constraintTop_toBottomOf="@+id/time3" />
+
+    <TextView
+        android:id="@+id/time4out"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginEnd="93dp"
+        android:background="@android:color/transparent"
+        android:drawableLeft="?attr/homeAsUpIndicator"
+        android:drawableTint="#FD0909"
+        android:drawableTintMode="src_atop"
+        android:text="OUT 15:00"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="24sp"
+
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/time3in"
+        app:layout_constraintTop_toBottomOf="@+id/time4" />
 
     <Button
         android:id="@+id/WorkTimingDone"
@@ -193,9 +243,74 @@
         android:drawableLeft="@android:drawable/ic_input_add"
         android:drawableTint="#FDF2F2"
         android:drawableTintMode="src_atop"
+        android:onClick="addWorkTimingClicked"
         android:text="ADD WORK TIMING"
         android:textColor="#FDF2F2"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time3in" />
+
+    <TextView
+        android:id="@+id/customTime"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="1dp"
+        android:text="    Enter your working time in 24 hr format"
+        android:textColor="#004aad"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time1in" />
+
+    <EditText
+        android:id="@+id/time4outEditText"
+        android:layout_width="160dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="34dp"
+        android:clickable="false"
+        android:ems="10"
+        android:hint="Enter OUT time"
+        android:inputType="time"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time2out" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="88dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="172dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/custom_dialog"
+        android:backgroundTint="#004aad"
+        android:clickable="false"
+        android:drawableLeft="@android:drawable/checkbox_on_background"
+        android:text="ADD"
+        android:textColor="#FDF2F2"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/time4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time3in"
+        app:layout_constraintVertical_bias="0.147" />
+
+    <EditText
+        android:id="@+id/time4inEditText"
+        android:layout_width="160dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="9dp"
+        android:clickable="false"
+        android:ems="10"
+        android:hint="Enter IN time"
+        android:inputType="time"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time2in" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
