@@ -4,4 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DashBoardHR" />
+    tools:context=".DashBoardHR">
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/EmployeeTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Employee (1)" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/PunchedTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Punched (1)" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/NotPunchedTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NotPunched (0)" />
+        </com.google.android.material.tabs.TabLayout>
+
+    </androidx.viewpager.widget.ViewPager>
+</androidx.constraintlayout.widget.ConstraintLayout>
