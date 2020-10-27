@@ -24,7 +24,7 @@ public class WorkTiming extends AppCompatActivity {
     RadioButton time3;
     RadioButton time4;
     Button addWorkTime;
-    Button nextTime;
+    Button nextTime;//next activity button
     EditText timeOutEditText;
     Button addNow;
     ImageButton crossButton;
@@ -339,7 +339,7 @@ public class WorkTiming extends AppCompatActivity {
                 }
                 else
                 {
-                    customTime.setText("    Enter your working time in 24 hr format");
+                    customTime.setText("    Enter your working time in 24 hr format(hh:mm)");
                     int redColor=Color.parseColor("#FD0909");
                     customTime.setTextColor(redColor);
                 }
