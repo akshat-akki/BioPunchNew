@@ -17,33 +17,37 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 public class WorkTiming extends AppCompatActivity {
     //button to select
-    RadioButton time1;
-    RadioButton time2;
-    RadioButton time3;
-    RadioButton time4;
-    Button addWorkTime;
-    Button nextTime;//next activity button
-    EditText timeOutEditText;
-    Button addNow;
-    ImageButton crossButton;
-    ImageButton crossButtonTime4;
+    private RadioButton time1;
+    private RadioButton time2;
+    private RadioButton time3;
+    private RadioButton time4;
+    private Button addWorkTime;
+    private Button nextTime;
+    private EditText timeOutEditText;
+    private Button addNow;
+    private ImageButton crossButton;
+    private ImageButton crossButtonTime4;
     //textViews
-    TextView time4in;
-    EditText timeInEditText;
-    TextView customTime;
-    TextView time4out;
-    TextView workTiming;
-    TextView time1in;
-    TextView time1out;
-    TextView time2in;
-    TextView time2out;
-    TextView time3in;
-    TextView time3out;
-    int selected=1;
-    int greenColor;
-    int greyColor;
+    private TextView time4in;
+    private EditText timeInEditText;
+    private TextView customTime;
+    private TextView time4out;
+    private TextView workTiming;
+    private TextView time1in;
+    private TextView time1out;
+    private TextView time2in;
+    private TextView time2out;
+    private TextView time3in;
+    private TextView time3out;
+    private int selected=1;
+    private int greenColor;
+    private int greyColor;
+    private int 
+    private String phoneno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +77,17 @@ public class WorkTiming extends AppCompatActivity {
         //color
         greenColor = Color.parseColor("#46E412");
         greyColor = Color.parseColor("#837F7F");
+        phoneno=getIntent().getStringExtra("mobile");
+    }
+    public void getInTime(int selected)
+    {
+
+    }
+    public void nextClicked(View view)
+    {
+        FirebaseDatabase.getInstance().getReference().child("users").child(phoneno).child("WorkTiming").setValue(.getText().toString());
+        Intent intent=new Intent(getApplicationContext(),DashBoardHR.class);
+        startActivity(intent);
     }
     public void time1clicked(View view)
     {
@@ -130,11 +145,7 @@ public class WorkTiming extends AppCompatActivity {
             selected=4;
         }
     }
-    public void nextClicked(View view)
-    {
-        Intent intent=new Intent(getApplicationContext(),DashBoardHR.class);
-        startActivity(intent);
-    }
+
     public void crossTime4clicked(View view)
     {
         time4.setVisibility(View.GONE);
@@ -339,7 +350,7 @@ public class WorkTiming extends AppCompatActivity {
                 }
                 else
                 {
-                    customTime.setText("    Enter your working time in 24 hr format(hh:mm)");
+                    customTime.setText("    Enter your working time in 24 hr format");
                     int redColor=Color.parseColor("#FD0909");
                     customTime.setTextColor(redColor);
                 }

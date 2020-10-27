@@ -225,6 +225,7 @@ public class ProfileActivity extends AppCompatActivity {
         forceHide(ProfileActivity.this,contactPersonEditText);
         Toast.makeText(ProfileActivity.this, "Profile completed!!", Toast.LENGTH_SHORT).show();
         Intent intent2=new Intent(getApplicationContext(),WorkTiming.class);
+        intent2.putExtra("mobile",UID);
         startActivity(intent2);
     }
 }
