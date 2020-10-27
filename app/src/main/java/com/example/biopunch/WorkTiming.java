@@ -175,6 +175,8 @@ public class WorkTiming extends AppCompatActivity {
     }
     public void crossClicked(View view)
     {
+        nextTime.setClickable(true);
+        nextTime.setAlpha(1);
         time4in.setText("");
         time4out.setText("");
         time4.setText("");
