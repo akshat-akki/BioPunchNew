@@ -80,14 +80,11 @@ public class WorkTiming extends AppCompatActivity {
         greyColor = Color.parseColor("#837F7F");
         phoneno=getIntent().getStringExtra("mobile");
     }
-    public void getInTime(int selected)
-    {
 
-    }
     public void nextClicked(View view)
     {
         FirebaseDatabase.getInstance().getReference().child("users").child(phoneno).child("WorkTimeIn").setValue(inTime);
-        FirebaseDatabase.getInstance().getReference().child("users").child(phoneno).child("WorkTimeIn").setValue(outTime);
+        FirebaseDatabase.getInstance().getReference().child("users").child(phoneno).child("WorkTimeOut").setValue(outTime);
         Intent intent=new Intent(getApplicationContext(),DashBoardHR.class);
         startActivity(intent);
     }
@@ -200,6 +197,8 @@ public class WorkTiming extends AppCompatActivity {
         time3out.setAlpha(1);
         addWorkTime.setAlpha(1);
         addWorkTime.setClickable(true);
+        nextTime.setAlpha(1);
+        nextTime.setClickable(true);
     }
     public void addWorkTimingClicked(View view)
     {
