@@ -49,7 +49,6 @@ public class WorkTiming extends AppCompatActivity {
     private String inTime;
     private String outTime;
     private String phoneno;
-    public String workTimeArray[];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,15 +79,10 @@ public class WorkTiming extends AppCompatActivity {
         greenColor = Color.parseColor("#46E412");
         greyColor = Color.parseColor("#837F7F");
         phoneno=getIntent().getStringExtra("mobile");
-        workTimeArray=new String[4];
-        workTimeArray[0]="9 TO 6";
-        workTimeArray[1]="8 TO 5";
-        workTimeArray[2]="10 TO 7";
     }
 
     public void nextClicked(View view)
     {
-        //workTimeArray[3]=inTime+
         FirebaseDatabase.getInstance().getReference().child("users").child(phoneno).child("WorkTimeIn").setValue(inTime);
         FirebaseDatabase.getInstance().getReference().child("users").child(phoneno).child("WorkTimeOut").setValue(outTime);
         Intent intent=new Intent(getApplicationContext(),DashBoardHR.class);

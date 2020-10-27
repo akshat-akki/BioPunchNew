@@ -110,25 +110,129 @@
         android:id="@+id/clockImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="100dp"
-        android:backgroundTint="#918787"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="127dp"
+        android:background="@android:color/transparent"
+        android:backgroundTint="#706A6A"
+        android:backgroundTintMode="src_atop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/inHrSpinner"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmployeePhoneEditText"
+        app:layout_constraintTop_toBottomOf="@+id/EmployeeWorkTimeTextView"
         app:srcCompat="@android:drawable/ic_menu_recent_history" />
 
     <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="131dp"
+        android:id="@+id/inHrSpinner"
+        android:layout_width="wrap_content"
         android:layout_height="32dp"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="453dp" />
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="127dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Colon1"
+        app:layout_constraintStart_toEndOf="@+id/clockImage"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInTime" />
+
+    <Spinner
+        android:id="@+id/inMinSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="127dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/outHrSpinner"
+        app:layout_constraintStart_toEndOf="@+id/Colon1"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInTime" />
+
+    <Spinner
+        android:id="@+id/outHrSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="127dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Colon2"
+        app:layout_constraintStart_toEndOf="@+id/inMinSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOutTime" />
+
+    <Spinner
+        android:id="@+id/outMinSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="57dp"
+        app:layout_constraintBottom_toTopOf="@+id/NextActivityButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        app:layout_constraintStart_toEndOf="@+id/Colon2"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOutTime" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textViewInTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ENTER IN TIME"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="420dp" />
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="12dp"
+        android:text="Enter IN time"
+        android:textColor="#004aad"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EmployeeWorkTimeTextView" />
+
+    <TextView
+        android:id="@+id/textViewOutTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="40dp"
+        android:text="Enter OUT time"
+        android:textColor="#004aad"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EmployeeWorkTimeTextView" />
+
+    <TextView
+        android:id="@+id/Colon2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="57dp"
+        android:text=" : "
+        android:textColor="#0B0A0A"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/NextActivityButton"
+        app:layout_constraintEnd_toStartOf="@+id/outMinSpinner"
+        app:layout_constraintStart_toEndOf="@+id/outHrSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOutTime" />
+
+    <TextView
+        android:id="@+id/Colon1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="127dp"
+        android:text=" : "
+        android:textColor="#0B0A0A"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/inMinSpinner"
+        app:layout_constraintStart_toEndOf="@+id/inHrSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInTime" />
 </androidx.constraintlayout.widget.ConstraintLayout>
