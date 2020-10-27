@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
+        android:fontFamily="@font/abril_fatface"
         android:text="BASIC DETAILS"
         android:textColor="#004aad"
         android:textSize="30sp"
@@ -23,22 +24,23 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
         android:drawableStart="@drawable/ic_sharp_perm_contact_calendar_24"
         android:ems="10"
         android:hint="EMPLOYEE NAME"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BasicDetailsTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/EmployeeNameTextView" />
 
     <EditText
         android:id="@+id/EmployeePhoneEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
         android:drawableStart="@android:drawable/stat_sys_phone_call"
         android:drawableTint="#918787"
@@ -46,14 +48,14 @@
         android:hint="MOBILE NUMBER"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmployeeNameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/EmployeeMobileTextView" />
 
     <Button
         android:id="@+id/NextActivityButton"
         android:layout_width="88dp"
         android:layout_height="44dp"
-        android:layout_marginTop="166dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="25dp"
         android:background="@drawable/custom_dialog"
@@ -66,18 +68,67 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.966"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="342dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+    <TextView
+        android:id="@+id/EmployeeNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="25dp"
+        android:text="ENTER EMPLOYEE NAME"
+        android:textColor="#004aad"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BasicDetailsTextView" />
+
+    <TextView
+        android:id="@+id/EmployeeMobileTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="20dp"
+        android:text="ENTER MOBILE NUMBER"
+        android:textColor="#004aad"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EmployeeNameEditText" />
+
+    <TextView
+        android:id="@+id/EmployeeWorkTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="20dp"
+        android:text="ENTER WORK TIMING"
+        android:textColor="#004aad"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EmployeePhoneEditText" />
+
+    <ImageView
+        android:id="@+id/clockImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="#918787"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EmployeePhoneEditText"
+        app:srcCompat="@android:drawable/ic_menu_recent_history" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="131dp"
+        android:layout_height="32dp"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="453dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ENTER IN TIME"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="420dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
