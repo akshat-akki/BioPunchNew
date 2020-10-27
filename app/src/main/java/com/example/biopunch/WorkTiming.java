@@ -28,6 +28,7 @@ public class WorkTiming extends AppCompatActivity {
     EditText timeOutEditText;
     Button addNow;
     ImageButton crossButton;
+    ImageButton crossButtonTime4;
     //textViews
     TextView time4in;
     EditText timeInEditText;
@@ -64,6 +65,7 @@ public class WorkTiming extends AppCompatActivity {
         timeInEditText=(EditText)findViewById(R.id.time4inEditText);
         timeOutEditText=(EditText)findViewById(R.id.time4outEditText);
         crossButton=findViewById(R.id.crossButton);
+        crossButtonTime4=findViewById(R.id.crossButtonTime4);
         //time4
         time4=findViewById(R.id.time4);
         time4in=findViewById(R.id.time4in);
@@ -133,8 +135,29 @@ public class WorkTiming extends AppCompatActivity {
         Intent intent=new Intent(getApplicationContext(),DashBoardHR.class);
         startActivity(intent);
     }
+    public void crossTime4clicked(View view)
+    {
+        time4.setVisibility(View.GONE);
+        time4in.setVisibility(View.GONE);
+        time4out.setVisibility(View.GONE);
+        crossButtonTime4.setVisibility(View.GONE);
+        addWorkTime.setClickable(true);
+        addWorkTime.setVisibility(View.VISIBLE);
+        addWorkTime.setAlpha(1);
+        time1clicked(time1);
+        timeInEditText.setText("");
+        timeOutEditText.setText("");
+        time4in.setText("");
+        time4out.setText("");
+        time4.setText("");
+    }
     public void crossClicked(View view)
     {
+        time4in.setText("");
+        time4out.setText("");
+        time4.setText("");
+        timeInEditText.setText("");
+        timeOutEditText.setText("");
         addNow.setVisibility(View.GONE);
         customTime.setVisibility(View.GONE);
         timeInEditText.setVisibility(View.GONE);
@@ -232,7 +255,9 @@ public class WorkTiming extends AppCompatActivity {
                     timeInEditText.setVisibility(View.GONE);
                     timeOutEditText.setVisibility(View.GONE);
                     crossButton.setVisibility(View.GONE);
-                    int a=Integer.parseInt(in);
+                    crossButtonTime4.setVisibility(View.VISIBLE);
+                    if(in.length()<=2&&out.length()<=2)
+                    {int a=Integer.parseInt(in);
                     int b=Integer.parseInt(out);
                     String a1="";
                     String a2="";
@@ -257,7 +282,32 @@ public class WorkTiming extends AppCompatActivity {
                     if(out.length()==1)
                         out="0"+out+":00";
                     if(out.length()==2)
-                        out=out+":00";
+                        out=out+":00";}
+                    else if(in.length()<=5&&out.length()<=5)
+                    {
+                        int a=Integer.parseInt(in.substring(0,in.indexOf(":")));
+                        int b=Integer.parseInt(out.substring(0,out.indexOf(":")));
+                        String a1="";
+                        String a2="";
+                        if(a1.length()==1)
+                            in="0"+in;
+                        if(a2.length()==1)
+                            out="0"+out;
+                        if(a>12)
+                            a1=String.valueOf(a-12);
+                        else
+                            a1=String.valueOf(a);
+                        if(b>12)
+                            a2=String.valueOf(b-12);
+                        else
+                            a2=String.valueOf(b);
+                        String x=a1+":"+in.substring(in.indexOf(":")+1)+" TO "+a2+":"+out.substring(out.indexOf(":")+1);
+                        if(a>12 && b>12)
+                        {
+                            x+=" (NIGHT SHIFT)";
+                        }
+                        time4.setText(x);
+                    }
                     in="IN "+in;
                     out="OUT "+out;
                     addNow.setVisibility(View.GONE);

@@ -138,20 +138,37 @@
 
     <RadioButton
         android:id="@+id/time4"
-        android:layout_width="345dp"
-        android:layout_height="61dp"
+        android:layout_width="312dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="25dp"
         android:background="@android:color/transparent"
         android:button="@android:drawable/radiobutton_off_background"
         android:buttonTint="@android:color/darker_gray"
         android:buttonTintMode="src_in"
         android:clickable="false"
         android:onClick="time4clicked"
+        android:text="10 to 8"
+        android:textColor="@android:color/background_dark"
         android:textSize="24sp"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time3in" />
+
+    <ImageButton
+        android:id="@+id/crossButtonTime4"
+        android:layout_width="37dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="333dp"
+        android:background="@android:drawable/screen_background_light_transparent"
+        android:onClick="crossTime4clicked"
+        android:tint="#F41717"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/time4"
+        app:layout_constraintTop_toBottomOf="@+id/WorkTimingTextView"
+        app:srcCompat="@android:drawable/ic_delete" />
+
     <TextView
         android:id="@+id/time3in"
         android:layout_width="143dp"
@@ -166,6 +183,7 @@
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time3" />
+
     <TextView
         android:id="@+id/time4in"
         android:layout_width="143dp"
@@ -177,9 +195,9 @@
         android:drawableTintMode="src_atop"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="24sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time4"
-        android:visibility="invisible"/>
+        app:layout_constraintTop_toBottomOf="@+id/time4" />
 
     <TextView
         android:id="@+id/time3out"
@@ -194,7 +212,6 @@
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/time2in"
         app:layout_constraintTop_toBottomOf="@+id/time3" />
 
@@ -225,10 +242,10 @@
         android:background="@drawable/custom_dialog"
         android:backgroundTint="#004aad"
         android:drawableLeft="@android:drawable/checkbox_on_background"
+        android:onClick="nextClicked"
         android:text="Next"
         android:textColor="#FDF2F2"
         android:textSize="24sp"
-        android:onClick="nextClicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.966"
@@ -248,19 +265,19 @@
         android:text="ADD WORK TIMING"
         android:textColor="#FDF2F2"
         android:textSize="24sp"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time3in" />
 
     <TextView
         android:id="@+id/customTime"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginStart="1dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="1dp"
-        android:text="    Enter your working time in 24 hr format"
+        android:layout_marginEnd="10dp"
+        android:text="Enter your working time in 24 hr format"
         android:textColor="#004aad"
-        android:textSize="20sp"
+        android:textSize="19sp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -313,5 +330,19 @@
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time2in" />
+
+    <ImageButton
+        android:id="@+id/crossButton"
+        android:layout_width="37dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="1dp"
+        android:background="@android:drawable/screen_background_light_transparent"
+        android:onClick="crossClicked"
+        android:tint="#F41717"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time1"
+        app:srcCompat="@android:drawable/ic_delete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
