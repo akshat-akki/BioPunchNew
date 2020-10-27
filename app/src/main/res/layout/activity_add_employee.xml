@@ -7,9 +7,77 @@
     tools:context=".AddEmployee">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/BasicDetailsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="175dp"
-        tools:layout_editor_absoluteY="79dp" />
+        android:layout_marginTop="64dp"
+        android:text="BASIC DETAILS"
+        android:textColor="#004aad"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/EmployeeNameEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="40dp"
+        android:drawableStart="@drawable/ic_sharp_perm_contact_calendar_24"
+        android:ems="10"
+        android:hint="EMPLOYEE NAME"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BasicDetailsTextView" />
+
+    <EditText
+        android:id="@+id/EmployeePhoneEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="40dp"
+        android:drawableStart="@android:drawable/stat_sys_phone_call"
+        android:drawableTint="#918787"
+        android:ems="10"
+        android:hint="MOBILE NUMBER"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EmployeeNameEditText" />
+
+    <Button
+        android:id="@+id/NextActivityButton"
+        android:layout_width="88dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="166dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/custom_dialog"
+        android:backgroundTint="#004aad"
+        android:drawableLeft="@drawable/ic_baseline_check_24"
+        android:drawableTint="@android:color/white"
+        android:text="Next"
+        android:textColor="#FDF2F2"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.966"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="342dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EmployeePhoneEditText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
