@@ -46,7 +46,8 @@ public class WorkTiming extends AppCompatActivity {
     private int selected=1;
     private int greenColor;
     private int greyColor;
-    private int 
+    private String inTime;
+    private String outTime;
     private String phoneno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +86,8 @@ public class WorkTiming extends AppCompatActivity {
     }
     public void nextClicked(View view)
     {
-        FirebaseDatabase.getInstance().getReference().child("users").child(phoneno).child("WorkTiming").setValue(.getText().toString());
+        FirebaseDatabase.getInstance().getReference().child("users").child(phoneno).child("WorkTimeIn").setValue(inTime);
+        FirebaseDatabase.getInstance().getReference().child("users").child(phoneno).child("WorkTimeIn").setValue(outTime);
         Intent intent=new Intent(getApplicationContext(),DashBoardHR.class);
         startActivity(intent);
     }
@@ -101,6 +103,8 @@ public class WorkTiming extends AppCompatActivity {
             if(selected==4)
                 time4.setButtonTintList(ColorStateList.valueOf(greyColor));
             selected=1;
+            inTime="09:00";
+            outTime="18:00";
         }
     }
     public void time2clicked(View view)
@@ -115,6 +119,8 @@ public class WorkTiming extends AppCompatActivity {
             if(selected==4)
                 time4.setButtonTintList(ColorStateList.valueOf(greyColor));
             selected=2;
+            inTime="08:00";
+            outTime="17:00";
         }
     }
     public void time3clicked(View view)
@@ -129,6 +135,8 @@ public class WorkTiming extends AppCompatActivity {
             if(selected==4)
                 time4.setButtonTintList(ColorStateList.valueOf(greyColor));
             selected=3;
+            inTime="10:00";
+            outTime="19:00";
         }
     }
     public void time4clicked(View view)
@@ -143,6 +151,9 @@ public class WorkTiming extends AppCompatActivity {
             if(selected==3)
                 time3.setButtonTintList(ColorStateList.valueOf(greyColor));
             selected=4;
+            inTime=timeInEditText.getText().toString();
+            outTime=timeOutEditText.getText().toString();
+
         }
     }
 
