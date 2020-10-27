@@ -85,15 +85,12 @@ public class WorkTiming extends AppCompatActivity {
         workTimeArray[1]="8 TO 5";
         workTimeArray[2]="10 TO 7";
     }
-    public void getInTime(int selected)
-    {
 
-    }
     public void nextClicked(View view)
     {
         //workTimeArray[3]=inTime+
         FirebaseDatabase.getInstance().getReference().child("users").child(phoneno).child("WorkTimeIn").setValue(inTime);
-        FirebaseDatabase.getInstance().getReference().child("users").child(phoneno).child("WorkTimeIn").setValue(outTime);
+        FirebaseDatabase.getInstance().getReference().child("users").child(phoneno).child("WorkTimeOut").setValue(outTime);
         Intent intent=new Intent(getApplicationContext(),DashBoardHR.class);
         startActivity(intent);
     }
@@ -208,6 +205,8 @@ public class WorkTiming extends AppCompatActivity {
         time3out.setAlpha(1);
         addWorkTime.setAlpha(1);
         addWorkTime.setClickable(true);
+        nextTime.setAlpha(1);
+        nextTime.setClickable(true);
     }
     public void addWorkTimingClicked(View view)
     {
