@@ -19,7 +19,7 @@ public class PasswordActivity extends AppCompatActivity {
 
     private EditText editTextEnterPassword;
     Button Loginbutton;
-    private String phone1;
+    public String phone1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +36,9 @@ public class PasswordActivity extends AppCompatActivity {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (dataSnapshot.exists()) {
-                                    Intent intent = new Intent(getApplicationContext(),DashBoardHR.class);
-
-                                    startActivity(intent);
+                                    Intent intent1 = new Intent(getApplicationContext(),DashBoardHR.class);
+                                    intent1.putExtra("phoneNumber",phone1);
+                                    startActivity(intent1);
                                     // User Exists
                                     // Do your stuff here if user already exist
                                 }

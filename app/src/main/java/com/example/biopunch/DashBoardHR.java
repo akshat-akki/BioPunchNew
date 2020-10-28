@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -27,6 +29,9 @@ public class DashBoardHR extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         setPagerAdapter();
         setTabLayout();
+        Intent i=getIntent();
+        String phn=i.getStringExtra("phoneNumber");
+        Toast.makeText(DashBoardHR.this, phn, Toast.LENGTH_SHORT).show();
     }
 
     private void setTabLayout() {
