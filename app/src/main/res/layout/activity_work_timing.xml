@@ -84,6 +84,7 @@
         android:onClick="time2clicked"
         android:text="8 TO 5                                        "
         android:textSize="24sp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,6 +102,7 @@
         android:text="IN 08:00"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="24sp"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time2" />
 
@@ -116,6 +118,7 @@
         android:text=" OUT 17:00"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="24sp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/time2in"
         app:layout_constraintTop_toBottomOf="@+id/time2" />
@@ -131,6 +134,7 @@
         android:onClick="time3clicked"
         android:text="10 TO 7                                        "
         android:textSize="24sp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -140,8 +144,7 @@
         android:id="@+id/time4"
         android:layout_width="312dp"
         android:layout_height="57dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="476dp"
+        android:layout_marginStart="25dp"
         android:background="@android:color/transparent"
         android:button="@android:drawable/radiobutton_off_background"
         android:buttonTint="@android:color/darker_gray"
@@ -151,7 +154,7 @@
         android:text="10 to 8"
         android:textColor="@android:color/background_dark"
         android:textSize="24sp"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time3in" />
 
@@ -159,6 +162,7 @@
         android:id="@+id/crossButtonTime4"
         android:layout_width="37dp"
         android:layout_height="43dp"
+        android:clickable="false"
         android:layout_marginStart="1dp"
         android:layout_marginTop="333dp"
         android:background="@android:drawable/screen_background_light_transparent"
@@ -182,6 +186,7 @@
         android:text="IN 10:00"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="24sp"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time3" />
 
@@ -190,6 +195,7 @@
         android:layout_width="143dp"
         android:layout_height="45dp"
         android:layout_marginStart="33dp"
+        android:layout_marginBottom="37dp"
         android:background="@android:color/transparent"
         android:drawableLeft="@drawable/ic_baseline_arrow_forward_24"
         android:drawableTint="#46E412"
@@ -197,6 +203,8 @@
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="24sp"
         android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/addButton"
+        app:layout_constraintEnd_toStartOf="@+id/time4out"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time4" />
 
@@ -212,6 +220,7 @@
         android:text=" OUT 19:00"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="24sp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/time2in"
         app:layout_constraintTop_toBottomOf="@+id/time3" />
@@ -220,7 +229,8 @@
         android:id="@+id/time4out"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:layout_marginEnd="93dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="11dp"
         android:background="@android:color/transparent"
         android:drawableLeft="?attr/homeAsUpIndicator"
         android:drawableTint="#FD0909"
@@ -228,11 +238,8 @@
         android:text="OUT 15:00"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="24sp"
-
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/time3in"
+        app:layout_constraintStart_toEndOf="@+id/time4in"
         app:layout_constraintTop_toBottomOf="@+id/time4" />
 
     <Button
@@ -258,6 +265,7 @@
         android:layout_width="267dp"
         android:layout_height="47dp"
         android:layout_marginStart="33dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/custom_dialog"
         android:backgroundTint="#004aad"
         android:drawableLeft="@android:drawable/ic_input_add"
@@ -267,7 +275,8 @@
         android:text="ADD WORK TIMING"
         android:textColor="#FDF2F2"
         android:textSize="24sp"
-        android:visibility="gone"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/time4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time3in" />
 
@@ -281,20 +290,25 @@
         android:textColor="#004aad"
         android:textSize="24sp"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time1in" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.352" />
 
     <TextView
-        android:id="@+id/time4outEditText"
+        android:id="@+id/time4outTextView"
         android:layout_width="170dp"
         android:layout_height="30dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="34dp"
-        android:textSize="24sp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="230dp"
         android:text="Enter OUT time"
         android:textColor="#004aad"
-        android:visibility="visible"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/WorkTimingDone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time2out" />
 
@@ -302,28 +316,38 @@
         android:id="@+id/addButton"
         android:layout_width="88dp"
         android:layout_height="44dp"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="268dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="109dp"
         android:background="@drawable/custom_dialog"
         android:backgroundTint="#004aad"
-        android:clickable="false"
         android:drawableLeft="@drawable/ic_baseline_check_24"
         android:drawableTint="@android:color/white"
         android:text="ADD"
+        android:clickable="false"
+
         android:textColor="#FDF2F2"
         android:textSize="24sp"
         android:visibility="invisible"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="460dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time3" />
 
     <TextView
-        android:id="@+id/time4inEditText"
+        android:id="@+id/time4inTextView"
         android:layout_width="160dp"
         android:layout_height="30dp"
-        android:textSize="24sp"
-        android:textColor="#004aad"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="291dp"
         android:text="Enter IN time"
-        android:visibility="visible"
+        android:textColor="#004aad"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time2in" />
 
@@ -331,74 +355,120 @@
         android:id="@+id/crossButton"
         android:layout_width="37dp"
         android:layout_height="43dp"
-        android:layout_marginTop="68dp"
         android:layout_marginEnd="1dp"
+        android:layout_marginBottom="170dp"
         android:background="@android:drawable/screen_background_light_transparent"
         android:onClick="crossClicked"
         android:tint="#F41717"
-        android:visibility="gone"
+        android:visibility="invisible"
+        android:clickable="false"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/customTime"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_delete" />
 
     <Spinner
-        android:id="@+id/time4inHr"
+        android:id="@+id/time4outMin"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="640dp"
+        android:layout_marginEnd="87dp"
         android:background="@android:drawable/editbox_dropdown_light_frame"
         android:spinnerMode="dropdown"
+        android:visibility="invisible"
+        android:clickable="false"
+        app:layout_constraintBottom_toTopOf="@+id/time3out"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Colon2Work"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.41000003" />
 
-        tools:layout_editor_absoluteX="89dp"
-        tools:layout_editor_absoluteY="410dp" />
+    <Spinner
+        android:id="@+id/time4inHr"
+        android:layout_width="35dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="209dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:visibility="invisible"
+        android:clickable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Colon1Work"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time3"
+        app:layout_constraintVertical_bias="0.41000003" />
+
+    <Spinner
+        android:id="@+id/time4outHr"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginStart="230dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="209dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:visibility="invisible"
+        android:clickable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Colon2Work"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time3"
+        app:layout_constraintVertical_bias="0.41000003" />
 
     <Spinner
         android:id="@+id/time4inMin"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="127dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginBottom="209dp"
         android:background="@android:drawable/editbox_dropdown_light_frame"
-       />
-
-    <Spinner
-        android:id="@+id/outHrSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:background="@android:drawable/editbox_dropdown_light_frame"
-        tools:layout_editor_absoluteY="410dp" />
-
-    <Spinner
-        android:id="@+id/outMinSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="57dp"
-        android:background="@android:drawable/editbox_dropdown_light_frame" />
-    <TextView
-        android:id="@+id/Colon2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="57dp"
-        android:text=" : "
-        android:textColor="#0B0A0A"
-        android:textSize="20sp" />
+        android:visibility="invisible"
+        android:clickable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Colon1Work"
+        app:layout_constraintTop_toBottomOf="@+id/time3"
+        app:layout_constraintVertical_bias="0.41000003" />
 
     <TextView
-        android:id="@+id/Colon1"
+        android:id="@+id/Colon1Work"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="127dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="226dp"
         android:text=" : "
         android:textColor="#0B0A0A"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/time4inMin"
+        app:layout_constraintStart_toEndOf="@+id/time4inHr"
+        app:layout_constraintTop_toBottomOf="@+id/time3"
+        app:layout_constraintVertical_bias="0.41000003" />
+
+    <TextView
+        android:id="@+id/Colon2Work"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="214dp"
+        android:text=" : "
+        android:textColor="#0B0A0A"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/time4outMin"
+        app:layout_constraintStart_toEndOf="@+id/time4outHr"
+        app:layout_constraintTop_toBottomOf="@+id/time3"
+        app:layout_constraintVertical_bias="0.41000003" />
 </androidx.constraintlayout.widget.ConstraintLayout>

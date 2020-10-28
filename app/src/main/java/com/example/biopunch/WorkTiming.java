@@ -10,16 +10,29 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.FirebaseDatabase;
 
-public class WorkTiming extends AppCompatActivity {
+public class WorkTiming extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+  private  String time4hr[];
+    private  String time4min[];
+   private ArrayAdapter arrayAdapterTime4InHr;
+    private ArrayAdapter arrayAdapterTime4InMin;
+    private ArrayAdapter arrayAdapterTime4OutHr;
+    private  ArrayAdapter arrayAdapterTime4OutMin;
+    private Spinner time4inHr;
+    private Spinner time4inMin;
+    private Spinner time4outHr;
+    private Spinner time4outMin;
     //button to select
     private RadioButton time1;
     private RadioButton time2;
@@ -27,16 +40,14 @@ public class WorkTiming extends AppCompatActivity {
     private RadioButton time4;
     private Button addWorkTime;
     private Button nextTime;
-    private EditText timeOutEditText;
+    private TextView timeOutTextView;
+    private TextView timeInTextView;
     private Button addNow;
     private ImageButton crossButton;
     private ImageButton crossButtonTime4;
     //textViews
     private TextView time4in;
-    private EditText timeInEditText;
-    private TextView customTime;
     private TextView time4out;
-    private TextView workTiming;
     private TextView time1in;
     private TextView time1out;
     private TextView time2in;
@@ -53,13 +64,11 @@ public class WorkTiming extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_timing);
-        workTiming=findViewById(R.id.WorkTimingTextView);
         time1in=findViewById(R.id.time1in);
         time2in=findViewById(R.id.time2in);
         time3in=findViewById(R.id.time3in);
         time1=findViewById(R.id.time1);
         time2=findViewById(R.id.time2);
-        customTime= findViewById(R.id.customTime);
         time3=findViewById(R.id.time3);
         addNow=findViewById(R.id.addButton);
         addWorkTime=findViewById(R.id.addWorkTiming);
@@ -67,8 +76,8 @@ public class WorkTiming extends AppCompatActivity {
         time1out=findViewById(R.id.time1out);
         time2out=findViewById(R.id.time2out);
         time3out=findViewById(R.id.time3out);
-        timeInEditText=(EditText)findViewById(R.id.time4inEditText);
-        timeOutEditText=(EditText)findViewById(R.id.time4outEditText);
+        timeInTextView=findViewById(R.id.time4inTextView);
+        timeOutTextView=findViewById(R.id.time4outTextView);
         crossButton=findViewById(R.id.crossButton);
         crossButtonTime4=findViewById(R.id.crossButtonTime4);
         //time4
@@ -79,6 +88,41 @@ public class WorkTiming extends AppCompatActivity {
         greenColor = Color.parseColor("#46E412");
         greyColor = Color.parseColor("#837F7F");
         phoneno=getIntent().getStringExtra("mobile");
+        //initialising the arrays
+        time4hr = new String[24];
+        time4min = new String[60];
+        for (int i = 0; i < 60; i++) {
+            String a = String.valueOf(i);
+            if (i < 10)
+                a = "0" + a;
+            if (i < 24)
+                time4hr[i] = a;
+            time4min[i] = a;
+        }
+        //in: hour
+        time4inHr = findViewById(R.id.time4inHr);
+        time4inHr.setOnItemSelectedListener(this);
+        arrayAdapterTime4InHr = new ArrayAdapter(WorkTiming.this, android.R.layout.simple_spinner_item, time4hr);
+        arrayAdapterTime4InHr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        time4inHr.setAdapter(arrayAdapterTime4InHr);
+        //in: min
+        time4inMin = findViewById(R.id.time4inMin);
+        time4inMin.setOnItemSelectedListener(this);
+        arrayAdapterTime4InMin = new ArrayAdapter(WorkTiming.this, android.R.layout.simple_spinner_item, time4min);
+        arrayAdapterTime4InMin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        time4inMin.setAdapter(arrayAdapterTime4InMin);
+        //out: hour
+        time4outHr = findViewById(R.id.time4outHr);
+        time4outHr.setOnItemSelectedListener(this);
+        arrayAdapterTime4OutHr = new ArrayAdapter(WorkTiming.this, android.R.layout.simple_spinner_item, time4hr);
+        arrayAdapterTime4OutHr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        time4outHr.setAdapter(arrayAdapterTime4OutHr);
+        //out: min
+        time4outMin = findViewById(R.id.time4outMin);
+        time4outMin.setOnItemSelectedListener(this);
+        arrayAdapterTime4OutMin = new ArrayAdapter(WorkTiming.this, android.R.layout.simple_spinner_item, time4min);
+        arrayAdapterTime4OutMin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        time4outMin.setAdapter(arrayAdapterTime4OutMin);
     }
 
     public void nextClicked(View view)
@@ -148,8 +192,8 @@ public class WorkTiming extends AppCompatActivity {
             if(selected==3)
                 time3.setButtonTintList(ColorStateList.valueOf(greyColor));
             selected=4;
-            inTime=timeInEditText.getText().toString();
-            outTime=timeOutEditText.getText().toString();
+            inTime=time4in.getText().toString().substring(3);
+            outTime=time4out.getText().toString().substring(4);
 
         }
     }
@@ -164,30 +208,30 @@ public class WorkTiming extends AppCompatActivity {
         addWorkTime.setVisibility(View.VISIBLE);
         addWorkTime.setAlpha(1);
         time1clicked(time1);
-        timeInEditText.setText("");
-        timeOutEditText.setText("");
         time4in.setText("");
         time4out.setText("");
         time4.setText("");
     }
     public void crossClicked(View view)
     {
+        //didn't choose any time
+         time4inHr.setVisibility(View.GONE);
+         time4inMin.setVisibility(View.GONE);
+         time4outHr.setVisibility(View.GONE);
+         time4outMin.setVisibility(View.GONE);
+        findViewById(R.id.Colon1Work).setVisibility(View.GONE);
+        findViewById(R.id.Colon2Work).setVisibility(View.GONE);
         nextTime.setClickable(true);
         nextTime.setAlpha(1);
-        time4in.setText("");
-        time4out.setText("");
-        time4.setText("");
-        timeInEditText.setText("");
-        timeOutEditText.setText("");
         addNow.setVisibility(View.GONE);
-        customTime.setVisibility(View.GONE);
-        timeInEditText.setVisibility(View.GONE);
-        timeOutEditText.setVisibility(View.GONE);
+        findViewById(R.id.customTime).setVisibility(View.GONE);
+        timeInTextView.setVisibility(View.GONE);
+        timeOutTextView.setVisibility(View.GONE);
         crossButton.setVisibility(View.GONE);
         time1.setClickable(true);
         time2.setClickable(true);
         time3.setClickable(true);
-        workTiming.setAlpha(1);
+        findViewById(R.id.WorkTimingTextView).setAlpha(1);
         time1.setAlpha(1);
         time2.setAlpha(1);
         time3.setAlpha(1);
@@ -199,8 +243,6 @@ public class WorkTiming extends AppCompatActivity {
         time3out.setAlpha(1);
         addWorkTime.setAlpha(1);
         addWorkTime.setClickable(true);
-        nextTime.setAlpha(1);
-        nextTime.setClickable(true);
     }
     public void addWorkTimingClicked(View view)
     {
@@ -208,6 +250,7 @@ public class WorkTiming extends AppCompatActivity {
         time2.setAlpha((float)0.05);
         time3.setAlpha((float)0.05);
         crossButton.setVisibility(View.VISIBLE);
+        crossButton.setClickable(true);
         time1.setClickable(false);
         time2.setClickable(false);
         time3.setClickable(false);
@@ -221,118 +264,38 @@ public class WorkTiming extends AppCompatActivity {
         time2out.setAlpha((float)0.05);
         time3in.setAlpha((float)0.05);
         time3out.setAlpha((float)0.05);
-        workTiming.setAlpha((float)0.05);
-                customTime.setVisibility(View.VISIBLE);
-                customTime.setAlpha(1);
+        findViewById(R.id.WorkTimingTextView).setAlpha((float)0.05);
+        findViewById(R.id.customTime).setVisibility(View.VISIBLE);
                 addNow.setVisibility(View.VISIBLE);
                 addNow.setClickable(true);
-        timeInEditText.setClickable(true);
-        timeOutEditText.setClickable(true);
-        timeInEditText.setVisibility(View.VISIBLE);
-        timeOutEditText.setVisibility(View.VISIBLE);
-        timeInEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s!=null&& s.length()>0)
-                {
-                    time4in.setText(s.toString());
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-        timeOutEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s!=null&& s.length()>0)
-                {
-                    time4out.setText(s.toString());
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+        timeInTextView.setVisibility(View.VISIBLE);
+        timeOutTextView.setVisibility(View.VISIBLE);
+        time4outHr.setVisibility(View.VISIBLE);
+        time4outMin.setVisibility(View.VISIBLE);
+        time4inHr.setVisibility(View.VISIBLE);
+        time4inMin.setVisibility(View.VISIBLE);
+        time4outHr.setClickable(true);
+        time4outMin.setClickable(true);
+        time4inHr.setClickable(true);
+        time4inMin.setClickable(true);
+        findViewById(R.id.Colon1Work).setVisibility(View.VISIBLE);
+        findViewById(R.id.Colon2Work).setVisibility(View.VISIBLE);
         addNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String in=time4in.getText().toString();
-                String out=time4out.getText().toString();
-                if(in!=null&&in.length()>=1&&out!=null&&out.length()>=1)
+                String inHr=time4inHr.getSelectedItem().toString();
+                String inMin=time4inMin.getSelectedItem().toString();
+                String outHr=time4outHr.getSelectedItem().toString();
+                String outMin=time4outMin.getSelectedItem().toString();
+                if(inHr!=null&&inMin!=null&&outHr!=null&&outMin!=null)
                 {
-                    customTime.setVisibility(View.GONE);
-                    timeInEditText.setVisibility(View.GONE);
-                    timeOutEditText.setVisibility(View.GONE);
+                    findViewById(R.id.customTime).setVisibility(View.GONE);
+                    timeInTextView.setVisibility(View.GONE);
+                    timeOutTextView.setVisibility(View.GONE);
                     crossButton.setVisibility(View.GONE);
                     crossButtonTime4.setVisibility(View.VISIBLE);
-                    if(in.length()<=2&&out.length()<=2)
-                    {int a=Integer.parseInt(in);
-                    int b=Integer.parseInt(out);
-                    String a1="";
-                    String a2="";
-                    if(a>12)
-                        a1=String.valueOf(a-12);
-                    else
-                        a1=String.valueOf(a);
-                    if(b>12)
-                        a2=String.valueOf(b-12);
-                    else
-                        a2=String.valueOf(b);
-                    String x=a1+" TO "+a2;
-                    if(a>12 && b>12)
-                    {
-                      x+=" (NIGHT SHIFT)";
-                    }
+                    String x=inHr+":"+inMin+" TO "+outHr+":"+outMin;
                     time4.setText(x);
-                    if(in.length()==1)
-                        in="0"+in+":00";
-                    if(in.length()==2)
-                        in=in+":00";
-                    if(out.length()==1)
-                        out="0"+out+":00";
-                    if(out.length()==2)
-                        out=out+":00";}
-                    else if(in.length()<=5&&out.length()<=5)
-                    {
-                        int a=Integer.parseInt(in.substring(0,in.indexOf(":")));
-                        int b=Integer.parseInt(out.substring(0,out.indexOf(":")));
-                        String a1="";
-                        String a2="";
-                        if(a1.length()==1)
-                            in="0"+in;
-                        if(a2.length()==1)
-                            out="0"+out;
-                        if(a>12)
-                            a1=String.valueOf(a-12);
-                        else
-                            a1=String.valueOf(a);
-                        if(b>12)
-                            a2=String.valueOf(b-12);
-                        else
-                            a2=String.valueOf(b);
-                        String x=a1+":"+in.substring(in.indexOf(":")+1)+" TO "+a2+":"+out.substring(out.indexOf(":")+1);
-                        if(a>12 && b>12)
-                        {
-                            x+=" (NIGHT SHIFT)";
-                        }
-                        time4.setText(x);
-                    }
-                    in="IN "+in;
-                    out="OUT "+out;
                     addNow.setVisibility(View.GONE);
                     time4.setAlpha(1);
                     time4.setVisibility(View.VISIBLE);
@@ -342,7 +305,7 @@ public class WorkTiming extends AppCompatActivity {
                     time1.setClickable(true);
                     time2.setClickable(true);
                     time3.setClickable(true);
-                    workTiming.setAlpha(1);
+                    findViewById(R.id.WorkTimingTextView).setAlpha(1);
                     time1.setAlpha(1);
                     time2.setAlpha(1);
                     time3.setAlpha(1);
@@ -352,22 +315,42 @@ public class WorkTiming extends AppCompatActivity {
                     time2out.setAlpha(1);
                     time3in.setAlpha(1);
                     time3out.setAlpha(1);
+                    String in="IN "+inHr+":"+inMin;
+                    String out="OUT "+outHr+":"+outMin;
+                    Toast.makeText(WorkTiming.this, out, Toast.LENGTH_SHORT).show();
                     time4in.setText(in);
                     time4out.setText(out);
                     time4in.setAlpha(1);
+                    time4out.setVisibility(View.VISIBLE);
                     time4out.setAlpha(1);
+                    time4inHr.setVisibility(View.GONE);
+                    time4inMin.setVisibility(View.GONE);
+                    time4outHr.setVisibility(View.GONE);
+                    time4outMin.setVisibility(View.GONE);
+                    findViewById(R.id.Colon1Work).setVisibility(View.GONE);
+                    findViewById(R.id.Colon2Work).setVisibility(View.GONE);
                     time4in.setVisibility(View.VISIBLE);
                     time4out.setVisibility(View.VISIBLE);
                     time4clicked(time4);
                 }
                 else
                 {
+                    TextView customTime=findViewById(R.id.customTime);
                     customTime.setText("    Enter your working time in 24 hr format");
                     int redColor=Color.parseColor("#FD0909");
                     customTime.setTextColor(redColor);
                 }
-            }
-        });
+        }
+
+    });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 }

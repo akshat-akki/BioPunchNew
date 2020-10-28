@@ -23,20 +23,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
 public class AddEmployee extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    String hr[];
-    String min[];
-    ArrayAdapter arrayAdapterInHr;
-    ArrayAdapter arrayAdapterInMin;
-    ArrayAdapter arrayAdapterOutHr;
-    ArrayAdapter arrayAdapterOutMin;
-    Spinner inHrSpinner;
-    Spinner inMinSpinner;
-    Spinner outHrSpinner;
-    Spinner outMinSpinner;
-    EditText EmployeeNameEditText;
-    EditText EmployeePhoneEditText;
+    private  String hr[];
+    private String min[];
+  private  ArrayAdapter arrayAdapterInHr;
+    private  ArrayAdapter arrayAdapterInMin;
+    private  ArrayAdapter arrayAdapterOutHr;
+    private  ArrayAdapter arrayAdapterOutMin;
+    private  Spinner inHrSpinner;
+    private  Spinner inMinSpinner;
+    private  Spinner outHrSpinner;
+    private  Spinner outMinSpinner;
+    private EditText EmployeeNameEditText;
+    private EditText EmployeePhoneEditText;
     String HrNo;
-    Button addbutton;
+    private Button addbutton;
 
     @Override
     public void grantUriPermission(String toPackage, Uri uri, int modeFlags) {
@@ -134,7 +134,7 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
 
     }
 
-    public void chooseFromContacts(View view) {
+    private void chooseFromContacts(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
         intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
         startActivityForResult(intent, 1);
