@@ -10,14 +10,13 @@
         android:id="@+id/BasicDetailsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
         android:fontFamily="@font/abril_fatface"
         android:text="BASIC DETAILS"
         android:textColor="#004aad"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <EditText
         android:id="@+id/EmployeeNameEditText"
@@ -174,9 +173,9 @@
         android:layout_marginTop="9dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="57dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
         app:layout_constraintBottom_toTopOf="@+id/NextActivityButton"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@android:drawable/editbox_dropdown_light_frame"
         app:layout_constraintStart_toEndOf="@+id/Colon2"
         app:layout_constraintTop_toBottomOf="@+id/textViewOutTime" />
 
@@ -235,4 +234,25 @@
         app:layout_constraintEnd_toStartOf="@+id/inMinSpinner"
         app:layout_constraintStart_toEndOf="@+id/inHrSpinner"
         app:layout_constraintTop_toBottomOf="@+id/textViewInTime" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="5dp"
+        android:backgroundTint="#FDFCFC"
+        android:drawableStart="@drawable/ic_baseline_person_add_24"
+        android:drawableTint="#004aad"
+        android:drawableTintMode="add"
+        android:onClick="chooseFromContacts"
+        android:text="Add From Contacts"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#004aad"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
