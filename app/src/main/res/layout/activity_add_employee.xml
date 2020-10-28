@@ -61,6 +61,7 @@
         android:backgroundTint="#004aad"
         android:drawableLeft="@drawable/ic_baseline_check_24"
         android:drawableTint="@android:color/white"
+        android:onClick="addEmployeeClicked"
         android:text="ADD EMPLOYEE"
         android:textColor="#FDF2F2"
         android:textSize="24sp"

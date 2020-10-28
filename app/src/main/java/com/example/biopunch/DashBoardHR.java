@@ -20,7 +20,7 @@ public class DashBoardHR extends AppCompatActivity {
     MyFragmentPagerAdapter myFragmentPagerAdapter;
     ViewPager viewPager;
     TabLayout tabLayout;
-
+    String phn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +30,14 @@ public class DashBoardHR extends AppCompatActivity {
         setPagerAdapter();
         setTabLayout();
         Intent i=getIntent();
-        String phn=i.getStringExtra("phoneNumber");
+        phn=i.getStringExtra("phoneNumber");
         Toast.makeText(DashBoardHR.this, phn, Toast.LENGTH_SHORT).show();
+    }
+    public void callActivity()
+    {
+        Intent intent=new Intent(getApplicationContext(),AddEmployee.class);
+        intent.putExtra("phone",phn);
+        startActivity(intent);
     }
 
     private void setTabLayout() {
