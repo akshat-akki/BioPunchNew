@@ -66,11 +66,16 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getApplicationContext(), "woohoo!", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), "woohoo!", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+    public void addEmployeeClicked(View view)
+    {
+        //save all this info and add this employee to the list view
 
     }
 }
