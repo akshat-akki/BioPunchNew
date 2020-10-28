@@ -13,9 +13,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -32,6 +35,8 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
     Spinner outMinSpinner;
     EditText EmployeeNameEditText;
     EditText EmployeePhoneEditText;
+    String HrNo;
+    Button addbutton;
 
     @Override
     public void grantUriPermission(String toPackage, Uri uri, int modeFlags) {
@@ -42,6 +47,11 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_employee);
+        addbutton=findViewById(R.id.NextActivityButton);
+        addbutton.setVisibility(View.INVISIBLE);
+
+
+
         //initialising the arrays
         hr = new String[24];
         min = new String[60];
@@ -84,6 +94,7 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
         //Toast.makeText(getApplicationContext(), "woohoo!", Toast.LENGTH_LONG).show();
     }
 
@@ -93,7 +104,34 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
     }
 
     public void addEmployeeClicked(View view) {
-        //save all this info and add this employee to the list view
+        Intent i=getIntent();
+        HrNo=i.getStringExtra("phone");
+        FirebaseDatabase.getInstance().getReference().child("users")
+                .child(HrNo)
+                .child("Employee")
+                .child(EmployeePhoneEditText.getText().toString())
+                .child("Name")
+                .setValue(EmployeeNameEditText.getText().toString());
+        FirebaseDatabase.getInstance().getReference().child("users")
+                .child(HrNo)
+                .child("Employee")
+                .child(EmployeePhoneEditText.getText().toString())
+                .child("Phone")
+                .setValue(EmployeePhoneEditText.getText().toString());
+        FirebaseDatabase.getInstance().getReference().child("users")
+                .child(HrNo)
+                .child("Employee")
+                .child(EmployeePhoneEditText.getText().toString())
+                .child("WorkTimeIn")
+                .setValue(inHrSpinner.getSelectedItem().toString()+":"+inMinSpinner.getSelectedItem().toString());
+        FirebaseDatabase.getInstance().getReference().child("users")
+                .child(HrNo)
+                .child("Employee")
+                .child(EmployeePhoneEditText.getText().toString())
+                .child("WorkTimeOut")
+                .setValue(outHrSpinner.getSelectedItem().toString()+":"+outMinSpinner.getSelectedItem().toString());
+        Toast.makeText(getApplicationContext(),"Employee Added Successful",Toast.LENGTH_SHORT).show();
+
     }
 
     public void chooseFromContacts(View view) {
