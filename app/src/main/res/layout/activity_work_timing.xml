@@ -140,7 +140,8 @@
         android:id="@+id/time4"
         android:layout_width="312dp"
         android:layout_height="57dp"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="476dp"
         android:background="@android:color/transparent"
         android:button="@android:drawable/radiobutton_off_background"
         android:buttonTint="@android:color/darker_gray"
@@ -150,7 +151,7 @@
         android:text="10 to 8"
         android:textColor="@android:color/background_dark"
         android:textSize="24sp"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time3in" />
 
@@ -266,7 +267,7 @@
         android:text="ADD WORK TIMING"
         android:textColor="#FDF2F2"
         android:textSize="24sp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time3in" />
 
@@ -284,17 +285,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time1in" />
 
-    <EditText
+    <TextView
         android:id="@+id/time4outEditText"
-        android:layout_width="160dp"
-        android:layout_height="48dp"
+        android:layout_width="170dp"
+        android:layout_height="30dp"
         android:layout_marginTop="9dp"
         android:layout_marginEnd="34dp"
-        android:clickable="false"
-        android:ems="10"
-        android:hint="Enter OUT time"
-        android:inputType="text|time"
-        android:visibility="invisible"
+        android:textSize="24sp"
+        android:text="Enter OUT time"
+        android:textColor="#004aad"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time2out" />
 
@@ -302,34 +302,28 @@
         android:id="@+id/addButton"
         android:layout_width="88dp"
         android:layout_height="44dp"
-        android:layout_marginLeft="172dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="5dp"
         android:background="@drawable/custom_dialog"
         android:backgroundTint="#004aad"
+        android:clickable="false"
         android:drawableLeft="@drawable/ic_baseline_check_24"
         android:drawableTint="@android:color/white"
-        android:clickable="false"
         android:text="ADD"
         android:textColor="#FDF2F2"
         android:textSize="24sp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/time4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time3in"
-        app:layout_constraintVertical_bias="0.147" />
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="460dp" />
 
-    <EditText
+    <TextView
         android:id="@+id/time4inEditText"
         android:layout_width="160dp"
-        android:layout_height="48dp"
+        android:layout_height="30dp"
+        android:textSize="24sp"
+        android:textColor="#004aad"
         android:layout_marginStart="13dp"
         android:layout_marginTop="9dp"
-        android:clickable="false"
-        android:ems="10"
-        android:hint="Enter IN time"
-        android:inputType="time"
-        android:visibility="invisible"
+        android:text="Enter IN time"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time2in" />
 
@@ -347,4 +341,64 @@
         app:layout_constraintTop_toBottomOf="@+id/time1"
         app:srcCompat="@android:drawable/ic_delete" />
 
+    <Spinner
+        android:id="@+id/time4inHr"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:spinnerMode="dropdown"
+
+        tools:layout_editor_absoluteX="89dp"
+        tools:layout_editor_absoluteY="410dp" />
+
+    <Spinner
+        android:id="@+id/time4inMin"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="127dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+       />
+
+    <Spinner
+        android:id="@+id/outHrSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        tools:layout_editor_absoluteY="410dp" />
+
+    <Spinner
+        android:id="@+id/outMinSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="57dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame" />
+    <TextView
+        android:id="@+id/Colon2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="57dp"
+        android:text=" : "
+        android:textColor="#0B0A0A"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/Colon1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="127dp"
+        android:text=" : "
+        android:textColor="#0B0A0A"
+        android:textSize="20sp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
