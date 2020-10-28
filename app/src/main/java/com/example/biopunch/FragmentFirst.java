@@ -35,8 +35,8 @@ public class FragmentFirst extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.addEmployee:
-              Intent intent=new Intent(getActivity(),AddEmployee.class);
-              getActivity().startActivity(intent);
+             DashBoardHR activity=(DashBoardHR)getActivity();
+             activity.callActivity();
 
 
                 break;
