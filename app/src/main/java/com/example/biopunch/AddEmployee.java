@@ -94,7 +94,6 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
 
     public void addEmployeeClicked(View view) {
         //save all this info and add this employee to the list view
-
     }
 
     public void chooseFromContacts(View view) {
