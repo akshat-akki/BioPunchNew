@@ -49,9 +49,6 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
         setContentView(R.layout.activity_add_employee);
         addbutton=findViewById(R.id.NextActivityButton);
         addbutton.setVisibility(View.INVISIBLE);
-
-
-
         //initialising the arrays
         hr = new String[24];
         min = new String[60];
@@ -134,7 +131,7 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
 
     }
 
-    private void chooseFromContacts(View view) {
+    public void chooseFromContacts(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
         intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
         startActivityForResult(intent, 1);

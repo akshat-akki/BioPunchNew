@@ -289,12 +289,34 @@ public class WorkTiming extends AppCompatActivity implements AdapterView.OnItemS
                 String outMin=time4outMin.getSelectedItem().toString();
                 if(inHr!=null&&inMin!=null&&outHr!=null&&outMin!=null)
                 {
+                    String x="";
+                    if(inHr.charAt(0)=='0')
+                      x=inHr.charAt(1)+x;
+                    else
+                    {
+                        if(Integer.parseInt(inHr)>12)
+                            x=String.valueOf(Integer.parseInt(inHr)-12);
+                            else
+                             x=inHr+x;
+                    }
+                    if(inMin.equals("00")==false)
+                        x=x+":"+inMin;
+                    if(outHr.charAt(0)=='0')
+                        x=x+" TO "+outHr.charAt(1);
+                    else
+                    {
+                        if(Integer.parseInt(outHr)>12)
+                            x=x+" TO "+String.valueOf(Integer.parseInt(outHr)-12);
+                        else
+                            x=x+" TO "+outHr;
+                    }
+                    if(outMin.equals("00")==false)
+                        x=x+":"+outMin;
                     findViewById(R.id.customTime).setVisibility(View.GONE);
                     timeInTextView.setVisibility(View.GONE);
                     timeOutTextView.setVisibility(View.GONE);
                     crossButton.setVisibility(View.GONE);
                     crossButtonTime4.setVisibility(View.VISIBLE);
-                    String x=inHr+":"+inMin+" TO "+outHr+":"+outMin;
                     time4.setText(x);
                     addNow.setVisibility(View.GONE);
                     time4.setAlpha(1);
