@@ -40,20 +40,12 @@ public class WorkTiming extends AppCompatActivity implements AdapterView.OnItemS
     private RadioButton time4;
     private Button addWorkTime;
     private Button nextTime;
-    private TextView timeOutTextView;
-    private TextView timeInTextView;
     private Button addNow;
     private ImageButton crossButton;
     private ImageButton crossButtonTime4;
     //textViews
     private TextView time4in;
     private TextView time4out;
-    private TextView time1in;
-    private TextView time1out;
-    private TextView time2in;
-    private TextView time2out;
-    private TextView time3in;
-    private TextView time3out;
     private int selected=1;
     private int greenColor;
     private int greyColor;
@@ -64,20 +56,12 @@ public class WorkTiming extends AppCompatActivity implements AdapterView.OnItemS
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_timing);
-        time1in=findViewById(R.id.time1in);
-        time2in=findViewById(R.id.time2in);
-        time3in=findViewById(R.id.time3in);
         time1=findViewById(R.id.time1);
         time2=findViewById(R.id.time2);
         time3=findViewById(R.id.time3);
         addNow=findViewById(R.id.addButton);
         addWorkTime=findViewById(R.id.addWorkTiming);
         nextTime=findViewById(R.id.WorkTimingDone);
-        time1out=findViewById(R.id.time1out);
-        time2out=findViewById(R.id.time2out);
-        time3out=findViewById(R.id.time3out);
-        timeInTextView=findViewById(R.id.time4inTextView);
-        timeOutTextView=findViewById(R.id.time4outTextView);
         crossButton=findViewById(R.id.crossButton);
         crossButtonTime4=findViewById(R.id.crossButtonTime4);
         //time4
@@ -225,8 +209,8 @@ public class WorkTiming extends AppCompatActivity implements AdapterView.OnItemS
         nextTime.setAlpha(1);
         addNow.setVisibility(View.GONE);
         findViewById(R.id.customTime).setVisibility(View.GONE);
-        timeInTextView.setVisibility(View.GONE);
-        timeOutTextView.setVisibility(View.GONE);
+        findViewById(R.id.time4inTextView).setVisibility(View.GONE);
+        findViewById(R.id.time4outTextView).setVisibility(View.GONE);
         crossButton.setVisibility(View.GONE);
         time1.setClickable(true);
         time2.setClickable(true);
@@ -235,12 +219,12 @@ public class WorkTiming extends AppCompatActivity implements AdapterView.OnItemS
         time1.setAlpha(1);
         time2.setAlpha(1);
         time3.setAlpha(1);
-        time1in.setAlpha(1);
-        time1out.setAlpha(1);
-        time2in.setAlpha(1);
-        time2out.setAlpha(1);
-        time3in.setAlpha(1);
-        time3out.setAlpha(1);
+        findViewById(R.id.time1in).setAlpha(1);
+        findViewById(R.id.time1out).setAlpha(1);
+        findViewById(R.id.time2in).setAlpha(1);
+        findViewById(R.id.time2out).setAlpha(1);
+        findViewById(R.id.time3in).setAlpha(1);
+        findViewById(R.id.time3out).setAlpha(1);
         addWorkTime.setAlpha(1);
         addWorkTime.setClickable(true);
     }
@@ -258,18 +242,18 @@ public class WorkTiming extends AppCompatActivity implements AdapterView.OnItemS
         addWorkTime.setClickable(false);
         nextTime.setClickable(false);
         nextTime.setAlpha((float)0.05);
-        time1in.setAlpha((float)0.05);
-        time1out.setAlpha((float)0.05);
-        time2in.setAlpha((float)0.05);
-        time2out.setAlpha((float)0.05);
-        time3in.setAlpha((float)0.05);
-        time3out.setAlpha((float)0.05);
+        findViewById(R.id.time1in).setAlpha((float)0.05);
+        findViewById(R.id.time1out).setAlpha((float)0.05);
+        findViewById(R.id.time2in).setAlpha((float)0.05);
+        findViewById(R.id.time2out).setAlpha((float)0.05);
+        findViewById(R.id.time3in).setAlpha((float)0.05);
+        findViewById(R.id.time3out).setAlpha((float)0.05);
         findViewById(R.id.WorkTimingTextView).setAlpha((float)0.05);
         findViewById(R.id.customTime).setVisibility(View.VISIBLE);
                 addNow.setVisibility(View.VISIBLE);
                 addNow.setClickable(true);
-        timeInTextView.setVisibility(View.VISIBLE);
-        timeOutTextView.setVisibility(View.VISIBLE);
+        findViewById(R.id.time4inTextView).setVisibility(View.VISIBLE);
+        findViewById(R.id.time4outTextView).setVisibility(View.VISIBLE);
         time4outHr.setVisibility(View.VISIBLE);
         time4outMin.setVisibility(View.VISIBLE);
         time4inHr.setVisibility(View.VISIBLE);
@@ -313,8 +297,8 @@ public class WorkTiming extends AppCompatActivity implements AdapterView.OnItemS
                     if(outMin.equals("00")==false)
                         x=x+":"+outMin;
                     findViewById(R.id.customTime).setVisibility(View.GONE);
-                    timeInTextView.setVisibility(View.GONE);
-                    timeOutTextView.setVisibility(View.GONE);
+                    findViewById(R.id.time4inTextView).setVisibility(View.GONE);
+                    findViewById(R.id.time4outTextView).setVisibility(View.GONE);
                     crossButton.setVisibility(View.GONE);
                     crossButtonTime4.setVisibility(View.VISIBLE);
                     time4.setText(x);
@@ -331,12 +315,12 @@ public class WorkTiming extends AppCompatActivity implements AdapterView.OnItemS
                     time1.setAlpha(1);
                     time2.setAlpha(1);
                     time3.setAlpha(1);
-                    time1in.setAlpha(1);
-                    time1out.setAlpha(1);
-                    time2in.setAlpha(1);
-                    time2out.setAlpha(1);
-                    time3in.setAlpha(1);
-                    time3out.setAlpha(1);
+                    findViewById(R.id.time1in).setAlpha(1);
+                    findViewById(R.id.time1out).setAlpha(1);
+                    findViewById(R.id.time2in).setAlpha(1);
+                    findViewById(R.id.time2out).setAlpha(1);
+                    findViewById(R.id.time3in).setAlpha(1);
+                    findViewById(R.id.time3out).setAlpha(1);
                     String in="IN "+inHr+":"+inMin;
                     String out="OUT "+outHr+":"+outMin;
                     Toast.makeText(WorkTiming.this, out, Toast.LENGTH_SHORT).show();
