@@ -24,7 +24,7 @@ public class DashBoardHR extends AppCompatActivity {
 
     MyFragmentPagerAdapter myFragmentPagerAdapter;
     ViewPager viewPager;
-    TabLayout tabLayout;
+    public TabLayout tabLayout;
      public String phn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,37 +35,21 @@ public class DashBoardHR extends AppCompatActivity {
 
         Intent i=getIntent();
         phn=i.getStringExtra("phoneNumber");
+        Toast.makeText(DashBoardHR.this, phn, Toast.LENGTH_SHORT).show();
+
         setPagerAdapter();
         setTabLayout();
-        //Toast.makeText(DashBoardHR.this, phn, Toast.LENGTH_SHORT).show();
-    }
+           }
     public void callActivity()
     {
         Intent intent=new Intent(getApplicationContext(),AddEmployee.class);
         intent.putExtra("phone",phn);
         startActivity(intent);
     }
-     String employeecount;
+
     private void setTabLayout() {
         tabLayout.setupWithViewPager(viewPager);
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference usersdRef = rootRef.child("users").child(phn).child("Employee");
-        ValueEventListener eventListener = new ValueEventListener() {
 
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                employeecount=String.valueOf(snapshot.getChildrenCount());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        };
-        tabLayout.getTabAt(0).setText("Employee ("+employeecount+")");
-        tabLayout.getTabAt(1).setText("Punched ("+employeecount+")");
-
-        tabLayout.getTabAt(2).setText("Not Punched (0)");
     }
 
     private void setPagerAdapter() {

@@ -27,11 +27,12 @@ import java.util.ArrayList;
 public class FragmentFirst extends Fragment {
     public FragmentFirst() {
     }
-
+    TabLayout t;
     ListView listView;
     ArrayList<String> EmployeeNames = new ArrayList<String>();
      ArrayAdapter<String> adapter;
     String number;
+    String employeecount;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,7 +95,7 @@ public class FragmentFirst extends Fragment {
         listView = (ListView) v.findViewById(R.id.ListEmployee);
         DashBoardHR activity = (DashBoardHR) getActivity();
         number=activity.phn;
-
+        t=activity.tabLayout;
 
 
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
@@ -102,6 +103,7 @@ public class FragmentFirst extends Fragment {
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                employeecount=String.valueOf(dataSnapshot.getChildrenCount());
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     if(ds.child("NameHR").exists()) {
                         String nameHr = ds.child("NameHR").getValue(String.class);
@@ -112,6 +114,10 @@ public class FragmentFirst extends Fragment {
                         EmployeeNames.add(name);
                     }
 
+                    t.getTabAt(0).setText("Employee ("+employeecount+")");
+                    t.getTabAt(2).setText("Not Punched ("+employeecount+")");
+
+                    t.getTabAt(1).setText("Punched (0)");
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1,EmployeeNames);
 

@@ -115,8 +115,9 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
-                            //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
                             FirebaseDatabase.getInstance().getReference().child("users").child(mobile).child("phone").setValue(mobile);
+
                             String UID=mobile;
                             Intent intent=new Intent(getApplicationContext(),ProfileActivity.class);
                             intent.putExtra("phone",UID);
