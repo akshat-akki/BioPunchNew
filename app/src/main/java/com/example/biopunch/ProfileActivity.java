@@ -219,6 +219,12 @@ public class ProfileActivity extends AppCompatActivity {
     public void next4clicked(View view)
     {
         //when contactPerson field is completed
+        FirebaseDatabase.getInstance().getReference().child("users")
+                .child(UID)
+                .child("Employee")
+                .child(UID)
+                .child("NameHR")
+                .setValue(contactPersonEditText.getText().toString());
         FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("ContactPerson").setValue(contactPersonEditText.getText().toString());
         serial4.setBackgroundResource(R.drawable.bluebutton);
         serial4.setTextColor(Color.parseColor("#ffffffff"));

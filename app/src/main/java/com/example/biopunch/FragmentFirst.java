@@ -10,10 +10,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -23,12 +29,13 @@ public class FragmentFirst extends Fragment {
     }
 
     ListView listView;
-    static ArrayList<String> locations = new ArrayList<String>();
-    static ArrayAdapter<String> places;
-
+    ArrayList<String> EmployeeNames = new ArrayList<String>();
+     ArrayAdapter<String> adapter;
+    String number;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
     }
 
@@ -44,6 +51,7 @@ public class FragmentFirst extends Fragment {
                 switch (tab.getPosition()) {
                     case 0:
                         Intent myIntent = new Intent(getActivity(),DashBoardHR.class);
+                        myIntent.putExtra("phoneNumber",number);
                         getActivity().startActivity(myIntent);
                         break;
                     case 1:
@@ -68,6 +76,7 @@ public class FragmentFirst extends Fragment {
                 switch (tab.getPosition()) {
                     case 0:
                         Intent myIntent = new Intent(getActivity(),DashBoardHR.class);
+                        myIntent.putExtra("phoneNumber",number);
                         getActivity().startActivity(myIntent);
                         break;
                     case 1:
@@ -83,7 +92,44 @@ public class FragmentFirst extends Fragment {
             }
         });
         listView = (ListView) v.findViewById(R.id.ListEmployee);
+        DashBoardHR activity = (DashBoardHR) getActivity();
+        number=activity.phn;
+
+
+
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference usersdRef = rootRef.child("users").child(number).child("Employee");
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    if(ds.child("NameHR").exists()) {
+                        String nameHr = ds.child("NameHR").getValue(String.class);
+                        EmployeeNames.add(0,nameHr + "(HR)");
+                    }
+                    if(ds.child("Name").exists()) {
+                        String name = ds.child("Name").getValue(String.class);
+                        EmployeeNames.add(name);
+                    }
+
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1,EmployeeNames);
+
+                listView.setAdapter(adapter);
+
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        usersdRef.addListenerForSingleValueEvent(eventListener);
+
         return v;
     }
+
 }
 

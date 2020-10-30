@@ -20,7 +20,7 @@ public class DashBoardHR extends AppCompatActivity {
     MyFragmentPagerAdapter myFragmentPagerAdapter;
     ViewPager viewPager;
     TabLayout tabLayout;
-     static String phn;
+     public String phn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

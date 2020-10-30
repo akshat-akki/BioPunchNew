@@ -129,6 +129,7 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
                 .setValue(outHrSpinner.getSelectedItem().toString()+":"+outMinSpinner.getSelectedItem().toString());
         Toast.makeText(getApplicationContext(),"Employee Added Successful",Toast.LENGTH_SHORT).show();
         Intent intent1=new Intent(getApplicationContext(),DashBoardHR.class);
+        intent1.putExtra("phoneNumber",HrNo);
         startActivity(intent1);
 
 
