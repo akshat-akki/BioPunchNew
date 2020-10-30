@@ -9,6 +9,8 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -26,6 +28,14 @@ public class DashBoardHR extends AppCompatActivity {
     ViewPager viewPager;
     public TabLayout tabLayout;
      public String phn;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater=getMenuInflater();
+        menuInflater.inflate(R.menu.menu_hr,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
