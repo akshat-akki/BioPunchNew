@@ -14,6 +14,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class DashBoardHR extends AppCompatActivity {
 
@@ -27,11 +32,12 @@ public class DashBoardHR extends AppCompatActivity {
         setContentView(R.layout.activity_dash_board_h_r);
         viewPager = (ViewPager) findViewById(R.id.pager);
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        setPagerAdapter();
-        setTabLayout();
+
         Intent i=getIntent();
         phn=i.getStringExtra("phoneNumber");
-        Toast.makeText(DashBoardHR.this, phn, Toast.LENGTH_SHORT).show();
+        setPagerAdapter();
+        setTabLayout();
+        //Toast.makeText(DashBoardHR.this, phn, Toast.LENGTH_SHORT).show();
     }
     public void callActivity()
     {
@@ -39,12 +45,26 @@ public class DashBoardHR extends AppCompatActivity {
         intent.putExtra("phone",phn);
         startActivity(intent);
     }
-
+     String employeecount;
     private void setTabLayout() {
         tabLayout.setupWithViewPager(viewPager);
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference usersdRef = rootRef.child("users").child(phn).child("Employee");
+        ValueEventListener eventListener = new ValueEventListener() {
 
-        tabLayout.getTabAt(0).setText("Employee (1)");
-        tabLayout.getTabAt(1).setText("Punched (1)");
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                employeecount=String.valueOf(snapshot.getChildrenCount());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        tabLayout.getTabAt(0).setText("Employee ("+employeecount+")");
+        tabLayout.getTabAt(1).setText("Punched ("+employeecount+")");
+
         tabLayout.getTabAt(2).setText("Not Punched (0)");
     }
 

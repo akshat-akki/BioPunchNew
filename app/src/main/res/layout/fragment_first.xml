@@ -17,13 +17,14 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/Tabview"
-        android:layout_width="460dp"
-        android:layout_height="81dp"
-        android:layout_marginTop="3dp"
+        android:layout_width="453dp"
+        android:layout_height="75dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ListEmployee"
+        app:layout_constraintVertical_bias="0.234"
         app:tabIconTint="@color/colorPrimary">
 
         <com.google.android.material.tabs.TabItem
