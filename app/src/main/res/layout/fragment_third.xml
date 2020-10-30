@@ -8,6 +8,7 @@
         android:id="@+id/ListEmployeeNotPunched"
         android:layout_width="402dp"
         android:layout_height="611dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,12 +18,11 @@
         android:id="@+id/TabviewNotPunched"
         android:layout_width="460dp"
         android:layout_height="81dp"
-        android:layout_marginTop="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ListEmployeeNotPunched"
         app:tabIconTint="@color/colorPrimary">
+
         <com.google.android.material.tabs.TabItem
             android:id="@+id/dashboardTabNotPunched"
             android:layout_width="wrap_content"
