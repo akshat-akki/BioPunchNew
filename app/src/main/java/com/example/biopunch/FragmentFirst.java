@@ -29,21 +29,20 @@ public class FragmentFirst extends Fragment {
     }
     TabLayout t;
     ListView listView;
-    ArrayList<String> EmployeeNames = new ArrayList<String>();
-     ArrayAdapter<String> adapter;
     String number;
     String employeecount;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
+        final ArrayList<String> EmployeeNames = new ArrayList<String>();
+        final ArrayAdapter<String> adapter;
+
         View v = inflater.inflate(R.layout.fragment_first, container, false);
         TabLayout b = (TabLayout) v.findViewById(R.id.Tabview);
         b.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -76,9 +75,6 @@ public class FragmentFirst extends Fragment {
             public void onTabReselected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
                     case 0:
-                        Intent myIntent = new Intent(getActivity(),DashBoardHR.class);
-                        myIntent.putExtra("phoneNumber",number);
-                        getActivity().startActivity(myIntent);
                         break;
                     case 1:
                         Intent myIntent1 = new Intent(getActivity(),PunchActivity.class);
