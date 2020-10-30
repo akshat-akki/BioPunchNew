@@ -91,7 +91,7 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+             addbutton.setVisibility(View.VISIBLE);
         //Toast.makeText(getApplicationContext(), "woohoo!", Toast.LENGTH_LONG).show();
     }
 
@@ -128,6 +128,9 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
                 .child("WorkTimeOut")
                 .setValue(outHrSpinner.getSelectedItem().toString()+":"+outMinSpinner.getSelectedItem().toString());
         Toast.makeText(getApplicationContext(),"Employee Added Successful",Toast.LENGTH_SHORT).show();
+        Intent intent1=new Intent(getApplicationContext(),DashBoardHR.class);
+        startActivity(intent1);
+
 
     }
 

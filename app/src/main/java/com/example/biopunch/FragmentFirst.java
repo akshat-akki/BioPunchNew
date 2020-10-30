@@ -6,17 +6,28 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 
-public class FragmentFirst extends Fragment implements View.OnClickListener {
-    public FragmentFirst() {}
+import java.util.ArrayList;
+
+
+public class FragmentFirst extends Fragment {
+    public FragmentFirst() {
+    }
+
+    ListView listView;
+    static ArrayList<String> locations = new ArrayList<String>();
+    static ArrayAdapter<String> places;
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
@@ -25,23 +36,54 @@ public class FragmentFirst extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.fragment_first, container, false);
-        Button b = (Button)v.findViewById(R.id.addEmployee);
-        b.setOnClickListener(this);
+        View v = inflater.inflate(R.layout.fragment_first, container, false);
+        TabLayout b = (TabLayout) v.findViewById(R.id.Tabview);
+        b.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        Intent myIntent = new Intent(getActivity(),DashBoardHR.class);
+                        getActivity().startActivity(myIntent);
+                        break;
+                    case 1:
+                        Intent myIntent1 = new Intent(getActivity(),PunchActivity.class);
+                        getActivity().startActivity(myIntent1);
+                        break;
+                    case 2:
+                        DashBoardHR activity = (DashBoardHR) getActivity();
+                        activity.callActivity();
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        Intent myIntent = new Intent(getActivity(),DashBoardHR.class);
+                        getActivity().startActivity(myIntent);
+                        break;
+                    case 1:
+                        Intent myIntent1 = new Intent(getActivity(),PunchActivity.class);
+                        getActivity().startActivity(myIntent1);
+                        break;
+                    case 2:
+                        DashBoardHR activity = (DashBoardHR) getActivity();
+                        activity.callActivity();
+                        break;
+
+                }
+            }
+        });
+        listView = (ListView) v.findViewById(R.id.ListEmployee);
         return v;
     }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.addEmployee:
-             DashBoardHR activity=(DashBoardHR)getActivity();
-             activity.callActivity();
-
-
-                break;
-        }
-    };
-
-    }
+}
 
