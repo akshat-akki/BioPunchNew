@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Settings_HR">
+
+    <TextView
+        android:id="@+id/OrganisationdetailText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:text="ORGANIZATION MANAGEMENT"
+        android:textColor="#004aad"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/EmployeeAccess"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/common_google_signin_btn_text_dark_default"
+        android:drawableStart="@drawable/ic_baseline_people_alt_24"
+        android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
+        android:text="Employees"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OrganisationdetailText" />
+
+    <Button
+        android:id="@+id/workTimeAccess"
+        android:layout_width="0dp"
+        android:background="@color/common_google_signin_btn_text_dark_default"
+
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:drawableStart="@android:drawable/ic_menu_recent_history"
+        android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
+        android:text="Work Timings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EmployeeAccess" />
+
+    <Button
+        android:id="@+id/holidaysAccess"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/common_google_signin_btn_text_dark_default"
+
+        android:drawableStart="@android:drawable/ic_menu_my_calendar"
+        android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
+        android:text="Holidays"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/workTimeAccess" />
+
+    <Button
+        android:id="@+id/OrganisationDetailAccess"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/common_google_signin_btn_text_dark_default"
+
+        android:drawableStart="@drawable/ic_baseline_apartment_24"
+        android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
+        android:text="Organization Detail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/holidaysAccess" />
+
+    <TextView
+        android:id="@+id/OthersText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:text="Others"
+        android:textColor="#004aad"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OrganisationDetailAccess" />
+
+    <Button
+        android:id="@+id/changePasswordAccess"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/common_google_signin_btn_text_dark_default"
+
+        android:drawableStart="@android:drawable/ic_secure"
+        android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
+        android:text="Change Password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OthersText" />
+
+    <Button
+        android:id="@+id/logoutAccess"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="91dp"
+        android:background="@color/common_google_signin_btn_text_dark_default"
+
+        android:drawableStart="@android:drawable/ic_lock_power_off"
+        android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
+        android:text="Logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changePasswordAccess" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
