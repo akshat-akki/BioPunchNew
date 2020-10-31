@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -47,10 +48,22 @@ public class PunchActivity extends AppCompatActivity {
                                 {
                                     public void run()
                                     {
-                                        new AlertDialog.Builder(PunchActivity.this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("No fingerprint Registered")
-                                                .setMessage("There is no fingerprint registered on this device")
-                                                .setPositiveButton("ADD A FINGERPRINT",null)
-                                                .setNegativeButton("GO BACK",null)
+                                        new AlertDialog.Builder(PunchActivity.this).setIcon(android.R.drawable.ic_popup_reminder).setTitle("No fingerprint Registered")
+                                                .setMessage("There is no fingerprint registered on this device.Goto Settings->Passwords and Security->Fingerprint Unlock")
+                                                .setPositiveButton("ADD A FINGERPRINT", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+                                                    }
+                                                })
+                                                .setNegativeButton("GO BACK", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
+                                                        i.putExtra("phoneNumber",no);
+                                                        startActivity(i);
+                                                    }
+                                                })
                                                 .show();
 
                                         //Do your UI operations like dialog opening or Toast here
@@ -58,9 +71,6 @@ public class PunchActivity extends AppCompatActivity {
                                 });
                             }
                         }.start();
-                        //  Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
-                       // i.putExtra("phoneNumber",no+" false");
-                        //startActivity(i);
                     } else {
                        // Toast.makeText(ge, "Error occurred!! Try again", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
