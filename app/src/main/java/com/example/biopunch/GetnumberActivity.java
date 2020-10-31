@@ -1,7 +1,6 @@
 package com.example.biopunch;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.accessibilityservice.AccessibilityService;
 import android.content.Intent;
 import android.inputmethodservice.Keyboard;
