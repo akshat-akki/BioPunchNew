@@ -48,6 +48,17 @@ public class DashBoardHR extends AppCompatActivity {
             {Intent intSet=new Intent(getApplicationContext(),Settings_HR.class);
                 startActivity(intSet);
                 return true;}
+            case R.id.workTime:
+            {
+                Intent intSet2=new Intent(getApplicationContext(),WorkTiming.class);
+                startActivity(intSet2);
+                return(true);
+            }
+            case R.id.refresh:
+            {
+                //refresh the list of punched and not punched
+                return(true);
+            }
             default:
                 return false;
         }
