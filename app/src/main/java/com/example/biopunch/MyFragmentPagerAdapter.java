@@ -1,8 +1,4 @@
 package com.example.biopunch;
-
-
-
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -29,7 +25,8 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
-    public int getCount() {
+    public int getCount()
+    {
         return 3;
     }
 }

@@ -119,6 +119,13 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
                 .child(HrNo)
                 .child("Employee")
                 .child(EmployeePhoneEditText.getText().toString())
+                .child("Punched")
+                .setValue("NO");
+
+        FirebaseDatabase.getInstance().getReference().child("users")
+                .child(HrNo)
+                .child("Employee")
+                .child(EmployeePhoneEditText.getText().toString())
                 .child("WorkTimeIn")
                 .setValue(inHrSpinner.getSelectedItem().toString()+":"+inMinSpinner.getSelectedItem().toString());
         FirebaseDatabase.getInstance().getReference().child("users")

@@ -209,7 +209,7 @@ public class WorkTiming extends AppCompatActivity implements AdapterView.OnItemS
         findViewById(R.id.Colon2Work).setVisibility(View.GONE);
         nextTime.setClickable(true);
         nextTime.setAlpha(1);
-        addNow.setVisibility(View.GONE);
+        addNow.setVisibility(View.VISIBLE);
         findViewById(R.id.customTime).setVisibility(View.GONE);
         findViewById(R.id.time4inTextView).setVisibility(View.GONE);
         findViewById(R.id.time4outTextView).setVisibility(View.GONE);
