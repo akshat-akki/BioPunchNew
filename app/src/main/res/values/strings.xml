@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BioPunch</string>
+    <string name="auth">Authenticate with fingerprint</string>
+
 </resources>
