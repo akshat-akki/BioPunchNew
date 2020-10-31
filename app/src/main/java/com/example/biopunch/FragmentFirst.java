@@ -1,18 +1,14 @@
 package com.example.biopunch;
-
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -20,10 +16,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
-
-
 public class FragmentFirst extends Fragment {
     public FragmentFirst() {
     }
@@ -57,6 +50,7 @@ public class FragmentFirst extends Fragment {
                         break;
                     case 1:
                         Intent myIntent1 = new Intent(getActivity(),PunchActivity.class);
+                        myIntent1.putExtra("phoneNumber",number);
                         getActivity().startActivity(myIntent1);
                         break;
                     case 2:
@@ -68,13 +62,15 @@ public class FragmentFirst extends Fragment {
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+            public void onTabUnselected(TabLayout.Tab tab)
+            {
 
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-                switch (tab.getPosition()) {
+                switch (tab.getPosition())
+                {
                     case 0:
                         break;
                     case 1:
@@ -85,7 +81,6 @@ public class FragmentFirst extends Fragment {
                         DashBoardHR activity = (DashBoardHR) getActivity();
                         activity.callActivity();
                         break;
-
                 }
             }
         });
@@ -99,30 +94,29 @@ public class FragmentFirst extends Fragment {
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                employeecount=String.valueOf(dataSnapshot.getChildrenCount());
+                long countNotpunched=0;
+                long totalemployee=dataSnapshot.getChildrenCount();
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    if(ds.child("NameHR").exists()) {
+                    if (ds.child("NameHR").exists()) {
                         String nameHr = ds.child("NameHR").getValue(String.class);
-                        EmployeeNames.add(0,nameHr + "(HR)");
+                        EmployeeNames.add(0, nameHr + "(HR)");
                     }
-                    if(ds.child("Name").exists()) {
+                    if (ds.child("Name").exists()) {
                         String name = ds.child("Name").getValue(String.class);
                         EmployeeNames.add(name);
                     }
-
-                    t.getTabAt(0).setText("Employee ("+employeecount+")");
-                    t.getTabAt(2).setText("Not Punched ("+employeecount+")");
-
-                    t.getTabAt(1).setText("Punched (0)");
+                    if (ds.child("Punched").getValue(String.class).equals("NO")) {
+                        countNotpunched++;
+                    }
                 }
+
+                    t.getTabAt(0).setText("Employee ("+totalemployee+")");
+                    t.getTabAt(2).setText("Not Punched ("+countNotpunched+")");
+                    t.getTabAt(1).setText("Punched ("+(totalemployee-countNotpunched)+")");
+
                 ArrayAdapter<String> adapter = new ArrayAdapter(v.getContext(), android.R.layout.simple_list_item_1,EmployeeNames);
-
                 listView.setAdapter(adapter);
-
-
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 

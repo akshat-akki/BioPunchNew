@@ -6,4 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".PunchActivity">
 
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="242dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="273dp"
+        android:layout_marginEnd="73dp"
+        android:layout_marginBottom="269dp"
+        android:text="Welcome"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
