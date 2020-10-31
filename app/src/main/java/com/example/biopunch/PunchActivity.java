@@ -39,12 +39,26 @@ public class PunchActivity extends AppCompatActivity {
                 public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                     super.onAuthenticationError(errorCode, errString);
                     if (errorCode == BiometricPrompt.ERROR_NO_BIOMETRICS) {
-                            new AlertDialog.Builder(PunchActivity.this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("No fingerprint Registered")
-                                    .setMessage("There is no fingerprint registered on this device")
-                                    .setPositiveButton("ADD A FINGERPRINT",null)
-                                    .setNegativeButton("GO BACK",null)
-                                    .show();
-                      //  Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
+                        new Thread()
+                        {
+                            public void run()
+                            {
+                                PunchActivity.this.runOnUiThread(new Runnable()
+                                {
+                                    public void run()
+                                    {
+                                        new AlertDialog.Builder(PunchActivity.this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("No fingerprint Registered")
+                                                .setMessage("There is no fingerprint registered on this device")
+                                                .setPositiveButton("ADD A FINGERPRINT",null)
+                                                .setNegativeButton("GO BACK",null)
+                                                .show();
+
+                                        //Do your UI operations like dialog opening or Toast here
+                                    }
+                                });
+                            }
+                        }.start();
+                        //  Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
                        // i.putExtra("phoneNumber",no+" false");
                         //startActivity(i);
                     } else {
