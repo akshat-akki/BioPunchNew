@@ -8,7 +8,7 @@
     <ListView
         android:id="@+id/ListEmployeePunched"
         android:layout_width="match_parent"
-        android:layout_height="623dp"
+        android:layout_height="680dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

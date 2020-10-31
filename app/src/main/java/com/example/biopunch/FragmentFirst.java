@@ -42,8 +42,9 @@ public class FragmentFirst extends Fragment {
                              Bundle savedInstanceState) {
         final ArrayList<String> EmployeeNames = new ArrayList<String>();
         final ArrayAdapter<String> adapter;
-
-        View v = inflater.inflate(R.layout.fragment_first, container, false);
+        DashBoardHR activity = (DashBoardHR) getActivity();
+        number=activity.phn;
+        final View v = inflater.inflate(R.layout.fragment_first, container, false);
         TabLayout b = (TabLayout) v.findViewById(R.id.Tabview);
         b.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -89,8 +90,7 @@ public class FragmentFirst extends Fragment {
             }
         });
         listView = (ListView) v.findViewById(R.id.ListEmployee);
-        DashBoardHR activity = (DashBoardHR) getActivity();
-        number=activity.phn;
+
         t=activity.tabLayout;
 
 
@@ -115,7 +115,7 @@ public class FragmentFirst extends Fragment {
 
                     t.getTabAt(1).setText("Punched (0)");
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1,EmployeeNames);
+                ArrayAdapter<String> adapter = new ArrayAdapter(v.getContext(), android.R.layout.simple_list_item_1,EmployeeNames);
 
                 listView.setAdapter(adapter);
 
