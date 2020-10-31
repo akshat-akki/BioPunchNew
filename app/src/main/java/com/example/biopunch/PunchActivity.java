@@ -13,6 +13,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -53,7 +54,7 @@ public class PunchActivity extends AppCompatActivity {
                                                 .setPositiveButton("ADD A FINGERPRINT", new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
-                                                        startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+                                                        startActivityForResult(new Intent(Settings.ACTION_SETTINGS), 0);
                                                     }
                                                 })
                                                 .setNegativeButton("GO BACK", new DialogInterface.OnClickListener() {
