@@ -18,6 +18,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -87,8 +89,17 @@ public class PunchActivity extends AppCompatActivity {
                 @Override
                 public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                     super.onAuthenticationSucceeded(result);
+                    FirebaseDatabase.getInstance().getReference().child("users")
+                            .child(no)
+                            .child("Employee")
+                            .child(no)
+                            .child("Punched")
+                            .setValue("YES");
+                    Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
 
-//Print a message to Logcat//
+                    i.putExtra("phoneNumber",no);
+                    startActivity(i);
+
 
                     Log.d("recognised", "Fingerprint recognised successfully");
                 }
