@@ -6,4 +6,6 @@
         android:title="Refresh"></item>
     <item android:title="Settings"
     android:id="@+id/settings"></item>
+    <item android:title="Download Report"
+        android:id="@+id/downloadReport"></item>
 </menu>

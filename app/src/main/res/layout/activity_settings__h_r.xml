@@ -10,7 +10,7 @@
         android:id="@+id/OrganisationdetailText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="50dp"
         android:text="ORGANIZATION MANAGEMENT"
         android:textColor="#004aad"
         android:textSize="24sp"
@@ -53,22 +53,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EmployeeAccess" />
 
-    <Button
-        android:id="@+id/holidaysAccess"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="10dp"
-        android:background="@color/common_google_signin_btn_text_dark_default"
-        android:drawableTint="#423636"
-        android:drawableStart="@android:drawable/ic_menu_my_calendar"
-        android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
-        android:text="Holidays"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/workTimeAccess" />
 
     <Button
         android:id="@+id/OrganisationDetailAccess"
@@ -85,7 +69,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/holidaysAccess" />
+        app:layout_constraintTop_toBottomOf="@+id/workTimeAccess" />
 
     <TextView
         android:id="@+id/OthersText"

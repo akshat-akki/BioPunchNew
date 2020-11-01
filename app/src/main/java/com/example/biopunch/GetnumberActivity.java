@@ -1,19 +1,16 @@
 package com.example.biopunch;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.accessibilityservice.AccessibilityService;
 import android.content.Intent;
-import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.google.android.gms.common.internal.Constants;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -30,6 +27,24 @@ public class GetnumberActivity extends AppCompatActivity {
         editTextMobile = findViewById(R.id.editTextPhone);
         progressBar=findViewById(R.id.progressBar1);
         progressBar.setVisibility(View.INVISIBLE);
+        findViewById(R.id.buttonnext).setVisibility(View.INVISIBLE);
+        editTextMobile.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if( s.length() == 10)
+                findViewById(R.id.buttonnext).setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         findViewById(R.id.buttonnext).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
