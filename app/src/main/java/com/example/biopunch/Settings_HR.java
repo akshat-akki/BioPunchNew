@@ -37,6 +37,14 @@ String phn;
                 startActivity(i);
             }
         });
+        findViewById(R.id.changePasswordAccess).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getApplicationContext(),ChangePassword.class);
+                i.putExtra("phoneNumber",phn);
+                startActivity(i);
+            }
+        });
         findViewById(R.id.logoutAccess).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

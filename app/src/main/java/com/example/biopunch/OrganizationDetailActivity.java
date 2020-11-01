@@ -23,12 +23,12 @@ String phn;
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
        //add name of the company
         TextView companyName=findViewById(R.id.companyTextView);
-        companyName.setText("");
+       // companyName.setText("");
         //add name of hr
         TextView nameHR=findViewById(R.id.hrNameText);
-        nameHR.setText("");
+       // nameHR.setText("");
         //add email address from firebase
         TextView emailCompany=findViewById(R.id.companyTextView);
-        companyName.setText("");
+        //emailCompany.setText("");
     }
 }
