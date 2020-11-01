@@ -1,13 +1,4 @@
 package com.example.biopunch;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.biometric.BiometricPrompt;
-import androidx.fragment.app.FragmentActivity;
-
-
-import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,15 +6,35 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricPrompt;
+import androidx.fragment.app.FragmentActivity;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class PunchActivity extends AppCompatActivity {
      String no;
+     static int j=0;
+    @Override
+    public void onBackPressed() {
+        if(j==0) {
+            Intent i = new Intent(getApplicationContext(), PunchActivity.class);
+            i.putExtra("phoneNumber", no);
+            startActivity(i);
+            j=1;
+        }
+        else
+        {
+            super.onBackPressed();
+        }
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.P)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +60,7 @@ public class PunchActivity extends AppCompatActivity {
                                 {
                                     public void run()
                                     {
-                                        new AlertDialog.Builder(PunchActivity.this).setIcon(android.R.drawable.ic_popup_reminder).setTitle("No fingerprint Registered")
+                                        new Builder(PunchActivity.this).setIcon(android.R.drawable.ic_popup_reminder).setTitle("No fingerprint Registered")
                                                 .setMessage("There is no fingerprint registered on this device.Goto Settings->Passwords and Security->Fingerprint Unlock")
                                                 .setPositiveButton("ADD A FINGERPRINT", new DialogInterface.OnClickListener() {
                                                     @Override
