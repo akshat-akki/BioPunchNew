@@ -1,24 +1,20 @@
 package com.example.biopunch;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -46,12 +42,12 @@ public class WorkTiming extends AppCompatActivity implements AdapterView.OnItemS
     //textViews
     private TextView time4in;
     private TextView time4out;
-    private int selected=1;
+    public static int selected=1;
     private int greenColor;
     private int greyColor;
     private String inTime;
     private String outTime;
-    private String phoneno;
+     String phoneno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,7 +107,6 @@ public class WorkTiming extends AppCompatActivity implements AdapterView.OnItemS
 
     public void nextClicked(View view)
     {
-
         FirebaseDatabase.getInstance().getReference().child("users").child(phoneno).child("WorkTimeIn").setValue(inTime);
         FirebaseDatabase.getInstance().getReference().child("users").child(phoneno).child("WorkTimeOut").setValue(outTime);
         Intent intent=new Intent(getApplicationContext(),DashBoardHR.class);

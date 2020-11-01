@@ -1,8 +1,5 @@
 package com.example.biopunch;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -18,9 +15,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.firebase.database.FirebaseDatabase;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.List;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class AddEmployee extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private  String hr[];
@@ -103,6 +101,8 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
     public void addEmployeeClicked(View view) {
         Intent i=getIntent();
         HrNo=i.getStringExtra("phone");
+        Boolean a=i.getBooleanExtra("EmployeeList",false);
+
         FirebaseDatabase.getInstance().getReference().child("users")
                 .child(HrNo)
                 .child("Employee")
@@ -135,10 +135,17 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
                 .child("WorkTimeOut")
                 .setValue(outHrSpinner.getSelectedItem().toString()+":"+outMinSpinner.getSelectedItem().toString());
         Toast.makeText(getApplicationContext(),"Employee Added Successful",Toast.LENGTH_SHORT).show();
-        Intent intent1=new Intent(getApplicationContext(),DashBoardHR.class);
-        intent1.putExtra("phoneNumber",HrNo);
-        startActivity(intent1);
+        if(a!=null&&a==true)
+        {
+           //if we have called this activity from the EmployeeListActivity
+            // add this name to the firebase as well as update in the EmployeeListActivity
 
+        }
+        else {
+            Intent intent1 = new Intent(getApplicationContext(), DashBoardHR.class);
+            intent1.putExtra("phoneNumber", HrNo);
+            startActivity(intent1);
+        }
 
     }
 
