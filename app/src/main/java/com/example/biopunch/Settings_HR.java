@@ -8,16 +8,32 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Settings_HR extends AppCompatActivity {
 
-
+String phn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings__h_r);
-        findViewById(R.id.workTimeAccess).setOnClickListener(new View.OnClickListener() {
+        phn=getIntent().getStringExtra("phoneNumber");
+        findViewById(R.id.EmployeeAccess).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(getApplicationContext(),WorkTiming.class);
+                Intent i=new Intent(getApplicationContext(),EmployeeList.class);
+                i.putExtra("phoneNumber",phn);
                 startActivity(i);
+            }
+        });
+       // findViewById(R.id.workTimeAccess).setOnClickListener(new View.OnClickListener() {
+         //   @Override
+           // public void onClick(View v) {
+             //   Intent i=new Intent(getApplicationContext(),WorkTiming.class);
+               // startActivity(i);
+            //}
+        //});
+        findViewById(R.id.logoutAccess).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getApplicationContext(),GetnumberActivity.class);
+                 startActivity(i);
             }
         });
     }
