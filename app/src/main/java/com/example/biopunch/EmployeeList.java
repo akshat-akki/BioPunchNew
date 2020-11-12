@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class EmployeeList extends AppCompatActivity {
     ListView listView;
     String number;
-    String employeecount;
+     String employeecount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +63,6 @@ public class EmployeeList extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i=new Intent(getApplicationContext(),AddEmployee.class);
                 i.putExtra("phoneNumber",number);
-                i.putExtra("EmployeeList",true);
                 startActivity(i);
             }
         });

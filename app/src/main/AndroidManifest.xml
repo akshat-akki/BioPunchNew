@@ -14,7 +14,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EmployeeAdded"></activity>
         <activity android:name=".SettingsEmployee" />
         <activity android:name=".ChangePassword" />
         <activity android:name=".OrganizationDetailActivity" />

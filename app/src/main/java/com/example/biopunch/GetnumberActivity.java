@@ -129,23 +129,26 @@ public class GetnumberActivity extends AppCompatActivity {
                 }
                     mobile="+91"+mobile;
                     final String userName =mobile;
-                    FirebaseDatabase.getInstance().getReference().child("users").orderByChild("phone").equalTo(userName).addListenerForSingleValueEvent(
+                    FirebaseDatabase.getInstance().getReference().child("Employees").orderByChild("MyNo").equalTo(mobile).addListenerForSingleValueEvent(
                             new ValueEventListener() {
-
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
 
                                     //Log.i(Constants.TAG, "dataSnapshot value = " + dataSnapshot.getValue());
                                     if (dataSnapshot.exists()) {
-                                        //check if it is an hr number or employee number
-                                        //return to previous activity if hr no
-                                        Intent intent = new Intent(getApplicationContext(),PasswordActivity.class);
-                                        intent.putExtra("phone",mobile);
-                                        //employee h pass kardo
-                                        startActivity(intent);
-                                        // User Exists
-                                        // Do your stuff here if user already exist
-                                    } else {
+
+                                                //check if it is an hr number or employee number
+                                                //return to previous activity if hr no
+                                                Intent intent = new Intent(getApplicationContext(), PasswordActivity.class);
+                                                intent.putExtra("phone", mobile);
+                                                //employee h pass kardo
+                                                startActivity(intent);
+                                                // User Exists
+                                                // Do your stuff here if user already exist
+                                            }
+
+
+                                        else {
                                         //if number is not registered
                                         new AlertDialog.Builder(GetnumberActivity.this).setIcon(android.R.drawable.stat_notify_error)
                                                 .setTitle("Error!")
