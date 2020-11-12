@@ -49,7 +49,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="36dp"
             android:drawableLeft="@android:drawable/stat_sys_phone_call"
-            android:drawableTint="@android:color/holo_green_dark"
+            android:drawableTint="#004aad"
             android:ems="10"
             android:inputType="phone"
             app:layout_constraintEnd_toEndOf="parent"

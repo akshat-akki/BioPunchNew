@@ -29,10 +29,26 @@ String phn;
                // startActivity(i);
             //}
         //});
+        findViewById(R.id.OrganisationDetailAccess).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getApplicationContext(),OrganizationDetailActivity.class);
+                i.putExtra("phoneNumber",phn);
+                startActivity(i);
+            }
+        });
+        findViewById(R.id.changePasswordAccess).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getApplicationContext(),ChangePassword.class);
+                i.putExtra("phoneNumber",phn);
+                startActivity(i);
+            }
+        });
         findViewById(R.id.logoutAccess).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(getApplicationContext(),GetnumberActivity.class);
+                Intent i=new Intent(getApplicationContext(),test.class);
                  startActivity(i);
             }
         });
