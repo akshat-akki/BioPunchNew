@@ -139,7 +139,7 @@ public class GetnumberActivity extends AppCompatActivity {
 
                                                 //check if it is an hr number or employee number
                                                 //return to previous activity if hr no
-                                                Intent intent = new Intent(getApplicationContext(), PasswordActivity.class);
+                                                Intent intent = new Intent(getApplicationContext(), GetPasswordEmp.class);
                                                 intent.putExtra("phone", mobile);
                                                 //employee h pass kardo
                                                 startActivity(intent);
@@ -150,15 +150,22 @@ public class GetnumberActivity extends AppCompatActivity {
 
                                         else {
                                         //if number is not registered
-                                        new AlertDialog.Builder(GetnumberActivity.this).setIcon(android.R.drawable.stat_notify_error)
+                                        new AlertDialog.Builder(GetnumberActivity.this).setIcon(android.R.drawable.stat_sys_warning)
                                                 .setTitle("Error!")
                                                 .setMessage("The number you entered is not registered with any of the company.Check your number again or contact your company with login credentials.")
                                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
-                                                       // Intent ip=new Intent(getApplicationContext(),GetnumberActivity.class);
-                                                        //ip.putExtra("login","employee");
-                                                        //startActivity(ip);
+                                                   editTextMobile.setText("");
+                                                   findViewById(R.id.buttonnext).setVisibility(View.INVISIBLE);
+                                                        progressBar.setVisibility(View.INVISIBLE);
+                                                        numberEmployee();
+                                                    }
+                                                })
+                                                .setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        finish();
                                                     }
                                                 })
                                                 .show();

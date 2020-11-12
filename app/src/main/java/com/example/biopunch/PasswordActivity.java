@@ -1,14 +1,14 @@
 package com.example.biopunch;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,8 +24,8 @@ public class PasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password);
-        editTextEnterPassword=findViewById(R.id.editTextEnterPassword);
-        Loginbutton=findViewById(R.id.LoginButton);
+        editTextEnterPassword=findViewById(R.id.editTextGetPassword);
+        Loginbutton=findViewById(R.id.SetPasswordButton);
         Intent intent=getIntent();
         phone1=intent.getStringExtra("phone");
         Loginbutton.setOnClickListener(new View.OnClickListener() {
