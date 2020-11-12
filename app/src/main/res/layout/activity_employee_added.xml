@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EmployeeAdded">
+
+    <TextView
+        android:id="@+id/image"
+        android:layout_width="84dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="43dp"
+        android:background="@drawable/ic_baseline_check_circle_24"
+        android:backgroundTint="#004aad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewEmp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Employee has been created!!"
+        android:textColor="#004aad"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:text="Share the following details with him/her after he/she downloads the app."
+        android:textColor="#004aad"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmp" />
+
+    <TextView
+        android:id="@+id/LoginCredentials"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="20dp"
+        android:text="Login Credentials"
+        android:textColor="#004aad"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/MobileNumberText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="78dp"
+        android:layout_marginTop="29dp"
+        android:text="Mobile Number"
+        android:textColor="#004aad"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LoginCredentials" />
+
+    <TextView
+        android:id="@+id/mobileNumberValue"
+        android:layout_width="163dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="78dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="200dp"
+        android:textColor="#0E0B0B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MobileNumberText" />
+
+    <TextView
+        android:id="@+id/PasswordTextEmpl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="78dp"
+        android:layout_marginTop="29dp"
+        android:text="Password"
+        android:textColor="#004aad"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mobileNumberValue" />
+    <TextView
+        android:id="@+id/passwordValue"
+        android:layout_width="163dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="78dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="200dp"
+        android:textColor="#0E0B0B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PasswordTextEmpl" />
+</androidx.constraintlayout.widget.ConstraintLayout>

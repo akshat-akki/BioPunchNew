@@ -1,10 +1,10 @@
 package com.example.biopunch;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class test extends AppCompatActivity {
 
@@ -13,9 +13,16 @@ public class test extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
     }
-    public void login(View view)
+    public void loginHR(View view)
     {
         Intent intent=new Intent(getApplicationContext(),GetnumberActivity.class);
+        intent.putExtra("login","HR");
+        startActivity(intent);
+    }
+    public void loginEmployee(View view)
+    {
+        Intent intent=new Intent(getApplicationContext(),GetnumberActivity.class);
+        intent.putExtra("login","employee");
         startActivity(intent);
     }
 }

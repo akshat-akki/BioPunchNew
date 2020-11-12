@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsEmployee">
+
+    <TextView
+        android:id="@+id/OrganisationDetailTextEmployee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="ORGANIZATION MANAGEMENT"
+        android:textColor="#004aad"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/OrganisationDetailAccessEmployee"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/common_google_signin_btn_text_dark_default"
+        android:drawableStart="@drawable/ic_baseline_apartment_24"
+        android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
+        android:drawableTint="#423636"
+        android:text="Organization Detail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OrganisationDetailTextEmployee" />
+
+    <TextView
+        android:id="@+id/OthersTextEmployee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:text="Others"
+        android:textColor="#004aad"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OrganisationDetailAccessEmployee" />
+
+    <Button
+        android:id="@+id/changePasswordAccessEmployee"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/common_google_signin_btn_text_dark_default"
+        android:drawableStart="@android:drawable/ic_secure"
+        android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
+        android:drawableTint="#423636"
+        android:text="Change Password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OthersTextEmployee" />
+
+    <Button
+        android:id="@+id/logoutAccessEmployee"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/common_google_signin_btn_text_dark_default"
+        android:drawableStart="@android:drawable/ic_lock_power_off"
+        android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
+        android:drawableTint="#423636"
+        android:text="Logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changePasswordAccessEmployee" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
