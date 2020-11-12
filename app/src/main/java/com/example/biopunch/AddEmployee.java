@@ -171,6 +171,10 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
                         {
                             // Query phone here. Covered next
                             String ContctMobVar = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                            if(ContctMobVar.substring(0,1).equals("0")==true)
+                            {
+                                ContctMobVar="+91"+ContctMobVar.substring(1);
+                            }
                             Log.i("Number", ContctMobVar);
                             EmployeePhoneEditText.setText(ContctMobVar);
                         }
