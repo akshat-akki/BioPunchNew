@@ -22,8 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AddEmployee extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private  String hr[];
-    private String min[];
-  private  ArrayAdapter arrayAdapterInHr;
+    private  String min[];
+    private  ArrayAdapter arrayAdapterInHr;
     private  ArrayAdapter arrayAdapterInMin;
     private  ArrayAdapter arrayAdapterOutHr;
     private  ArrayAdapter arrayAdapterOutMin;
@@ -31,8 +31,8 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
     private  Spinner inMinSpinner;
     private  Spinner outHrSpinner;
     private  Spinner outMinSpinner;
-    private EditText EmployeeNameEditText;
-    private EditText EmployeePhoneEditText;
+    private  EditText EmployeeNameEditText;
+    private  EditText EmployeePhoneEditText;
     String HrNo;
     private Button addbutton;
 
@@ -101,8 +101,7 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
     public void addEmployeeClicked(View view) {
         Intent i=getIntent();
         HrNo=i.getStringExtra("phone");
-        Boolean a=i.getBooleanExtra("EmployeeList",false);
-
+        //Boolean a=i.getBooleanExtra("EmployeeList",false);
         FirebaseDatabase.getInstance().getReference().child("users")
                 .child(HrNo)
                 .child("Employee")
@@ -115,6 +114,16 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
                 .child(EmployeePhoneEditText.getText().toString())
                 .child("Phone")
                 .setValue(EmployeePhoneEditText.getText().toString());
+        FirebaseDatabase.getInstance().getReference().child("Employees")
+                .child(EmployeePhoneEditText.getText().toString())
+                .child("HrNo")
+                .setValue(HrNo);
+        FirebaseDatabase.getInstance().getReference().child("Employees")
+                .child(EmployeePhoneEditText.getText().toString())
+                .child("MyNo")
+                .setValue(EmployeePhoneEditText.getText().toString());
+
+
         FirebaseDatabase.getInstance().getReference().child("users")
                 .child(HrNo)
                 .child("Employee")
@@ -135,18 +144,9 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
                 .child("WorkTimeOut")
                 .setValue(outHrSpinner.getSelectedItem().toString()+":"+outMinSpinner.getSelectedItem().toString());
         Toast.makeText(getApplicationContext(),"Employee Added Successful",Toast.LENGTH_SHORT).show();
-        if(a!=null&&a==true)
-        {
-           //if we have called this activity from the EmployeeListActivity
-            // add this name to the firebase as well as update in the EmployeeListActivity
-
-        }
-        else {
             Intent intent1 = new Intent(getApplicationContext(), DashBoardHR.class);
             intent1.putExtra("phoneNumber", HrNo);
             startActivity(intent1);
-        }
-
     }
 
     public void chooseFromContacts(View view) {
