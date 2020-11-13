@@ -7,7 +7,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -68,11 +67,8 @@ public class GetnumberActivity extends AppCompatActivity {
                             if (ds.child("MyNo").getValue(String.class).equals(userName)) {
                                 empflag = 1;
                                 Intent intent = new Intent(getApplicationContext(), test.class);
-                                intent.putExtra("mobile", mobile);
                                 startActivity(intent);
-
                             }
-
                         }
                     }
                     @Override
