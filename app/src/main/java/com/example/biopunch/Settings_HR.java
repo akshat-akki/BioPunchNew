@@ -22,13 +22,14 @@ String phn;
                 startActivity(i);
             }
         });
-       // findViewById(R.id.workTimeAccess).setOnClickListener(new View.OnClickListener() {
-         //   @Override
-           // public void onClick(View v) {
-             //   Intent i=new Intent(getApplicationContext(),WorkTiming.class);
-               // startActivity(i);
-            //}
-        //});
+        findViewById(R.id.workTimeAccess).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getApplicationContext(),WorkTiming.class);
+                i.putExtra("mobile",phn);
+                startActivity(i);
+            }
+        });
         findViewById(R.id.OrganisationDetailAccess).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
