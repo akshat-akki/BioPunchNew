@@ -1,5 +1,4 @@
 package com.example.biopunch;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,6 +24,7 @@ public class GetnumberActivity extends AppCompatActivity {
     String mobile;
     private EditText editTextMobile;
     ProgressBar progressBar;
+    int empflag=0;
     public void numberHR()
     {
         editTextMobile.addTextChangedListener(new TextWatcher() {
@@ -59,6 +59,29 @@ public class GetnumberActivity extends AppCompatActivity {
                 }
                 mobile="+91"+mobile;
                 final String userName =mobile;
+                DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+                DatabaseReference usersdRef = rootRef.child("Employees");
+                ValueEventListener eventListener = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            if (ds.child("MyNo").getValue(String.class).equals(userName)) {
+                                empflag = 1;
+                                Intent intent = new Intent(getApplicationContext(), test.class);
+                                intent.putExtra("mobile", mobile);
+                                startActivity(intent);
+
+                            }
+
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                };
+                usersdRef.addListenerForSingleValueEvent(eventListener);
+
                 FirebaseDatabase.getInstance().getReference().child("users").orderByChild("phone").equalTo(userName).addListenerForSingleValueEvent(
                         new ValueEventListener() {
 
@@ -75,16 +98,19 @@ public class GetnumberActivity extends AppCompatActivity {
                                     startActivity(intent);
                                     // User Exists
                                     // Do your stuff here if user already exist
-                                } else {
-                                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                                    intent.putExtra("mobile", mobile);
-                                    //hr hai pass kardo
-                                    startActivity(intent);
+                                }
+                                else {
+                                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                        intent.putExtra("mobile", mobile);
+                                        //hr hai pass kardo
+                                        startActivity(intent);
 
+
+                                }
                                     // User Not Yet Exists
                                     // Do your stuff here if user not yet exists
                                 }
-                            }
+
                             @Override
                             public void onCancelled (DatabaseError databaseError){
 
