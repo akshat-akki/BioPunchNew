@@ -81,6 +81,8 @@ public class GetnumberActivity extends AppCompatActivity {
                     }
                 };
                 usersdRef.addListenerForSingleValueEvent(eventListener);
+                if(empflag==1)
+                    return;
 
                 FirebaseDatabase.getInstance().getReference().child("users").orderByChild("phone").equalTo(userName).addListenerForSingleValueEvent(
                         new ValueEventListener() {
@@ -88,37 +90,26 @@ public class GetnumberActivity extends AppCompatActivity {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                                //Log.i(Constants.TAG, "dataSnapshot value = " + dataSnapshot.getValue());
+
                                 if (dataSnapshot.exists()) {
-                                    //check if it is an hr number or employee number
-                                    //dialog alert if employee number
                                     Intent intent = new Intent(getApplicationContext(),PasswordActivity.class);
                                     intent.putExtra("phone",mobile);
-                                    //intent.putExtra()-hr hai ye pass kardo
                                     startActivity(intent);
-                                    // User Exists
-                                    // Do your stuff here if user already exist
-                                }
+                                 }
                                 else {
+                                    if(empflag==0) {
                                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                                         intent.putExtra("mobile", mobile);
-                                        //hr hai pass kardo
                                         startActivity(intent);
-
-
+                                    }
                                 }
-                                    // User Not Yet Exists
-                                    // Do your stuff here if user not yet exists
-                                }
+                            }
 
                             @Override
                             public void onCancelled (DatabaseError databaseError){
 
                             }
-                        }
-
-                );
-
+                        });
             }
         });
     }
