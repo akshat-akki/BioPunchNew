@@ -7,16 +7,17 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingsEmployee extends AppCompatActivity {
-
+ private String phnEmp="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings_employee);
+        phnEmp=getIntent().getStringExtra("phoneNumber");
         findViewById(R.id.OrganisationDetailAccessEmployee).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(),OrganizationDetailActivity.class);
-                //intent.putExtra();->add phone number of hr of this employee
+                intent.putExtra("phoneNumber",phnEmp);
                 startActivity(intent);
             }
         });
@@ -24,7 +25,7 @@ public class SettingsEmployee extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(),ChangePassword.class);
-                //intent.putExtra();->add phone number of hr of this employee
+                intent.putExtra("phoneNumber",phnEmp);
                 startActivity(intent);
             }
         });

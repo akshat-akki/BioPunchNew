@@ -45,7 +45,7 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_employee);
-        addbutton=findViewById(R.id.NextActivityButton);
+        addbutton=findViewById(R.id.NextActivityButtonAdd);
         addbutton.setVisibility(View.INVISIBLE);
         //initialising the arrays
         hr = new String[24];

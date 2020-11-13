@@ -42,6 +42,11 @@ public class DashBoardHR extends AppCompatActivity {
                 //refresh the list of punched and not punched
                 return(true);
             }
+            case R.id.downloadReport:
+            {
+                //convert json to excel
+                //return(true);
+            }
             default:
                 return false;
         }
