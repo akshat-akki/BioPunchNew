@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -94,6 +96,7 @@ public class GetnumberActivity extends AppCompatActivity {
             }
         });
     }
+    int flag=0;
     public void numberEmployee()
     {
         editTextMobile.addTextChangedListener(new TextWatcher() {
@@ -129,56 +132,58 @@ public class GetnumberActivity extends AppCompatActivity {
                 }
                     mobile="+91"+mobile;
                     final String userName =mobile;
-                    FirebaseDatabase.getInstance().getReference().child("Employees").orderByChild("MyNo").equalTo(mobile).addListenerForSingleValueEvent(
-                            new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                                    //Log.i(Constants.TAG, "dataSnapshot value = " + dataSnapshot.getValue());
-                                    if (dataSnapshot.exists()) {
-
-                                                //check if it is an hr number or employee number
-                                                //return to previous activity if hr no
-                                                Intent intent = new Intent(getApplicationContext(), GetPasswordEmp.class);
-                                                intent.putExtra("phone", mobile);
-                                                //employee h pass kardo
-                                                startActivity(intent);
-                                                // User Exists
-                                                // Do your stuff here if user already exist
-                                            }
-
-
-                                        else {
-                                        //if number is not registered
-                                        new AlertDialog.Builder(GetnumberActivity.this).setIcon(android.R.drawable.stat_sys_warning)
-                                                .setTitle("Error!")
-                                                .setMessage("The number you entered is not registered with any of the company.Check your number again or contact your company with login credentials.")
-                                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialog, int which) {
-                                                   editTextMobile.setText("");
-                                                   findViewById(R.id.buttonnext).setVisibility(View.INVISIBLE);
-                                                        progressBar.setVisibility(View.INVISIBLE);
-                                                        numberEmployee();
-                                                    }
-                                                })
-                                                .setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialog, int which) {
-                                                        finish();
-                                                    }
-                                                })
-                                                .show();
-                                    }
+                    DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+                    DatabaseReference usersdRef = rootRef.child("Employees");
+                    ValueEventListener eventListener = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            if (ds.child("MyNo").getValue(String.class).equals(mobile)) {
+                                if(ds.child("Password").getValue(String.class).equals(mobile)) {
+                                    flag = 1;
+                                    Intent intent = new Intent(getApplicationContext(), GetPasswordEmp.class);
+                                    intent.putExtra("phone", mobile);
+                                    startActivity(intent);
                                 }
-                                @Override
-                                public void onCancelled (DatabaseError databaseError){
-
+                                else
+                                {
+                                    flag = 1;
+                                    Intent intent = new Intent(getApplicationContext(), PasswordActivity.class);
+                                    intent.putExtra("phone", mobile);
+                                    intent.putExtra("role", "employee");
+                                    startActivity(intent);
                                 }
+
                             }
+                        }
+                        if(flag==0) {
+                            new AlertDialog.Builder(GetnumberActivity.this).setIcon(android.R.drawable.stat_sys_warning)
+                                    .setTitle("Error!")
+                                    .setMessage("The number you entered is not registered with any of the company.Check your number again or contact your company with login credentials.")
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            editTextMobile.setText("");
+                                            findViewById(R.id.buttonnext).setVisibility(View.INVISIBLE);
+                                            progressBar.setVisibility(View.INVISIBLE);
+                                            numberEmployee();
+                                        }
+                                    })
+                                    .setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            finish();
+                                        }
+                                    })
+                                    .show();
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
-                    );
-
+                    }
+                };
+                usersdRef.addListenerForSingleValueEvent(eventListener);
                 }
             });
         }
@@ -198,4 +203,4 @@ public class GetnumberActivity extends AppCompatActivity {
         else
             numberEmployee();
     }
-    }
+}

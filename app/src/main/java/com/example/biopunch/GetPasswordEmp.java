@@ -9,6 +9,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 public class GetPasswordEmp extends AppCompatActivity {
     private EditText getPassword;
     @Override
@@ -16,7 +18,7 @@ public class GetPasswordEmp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_password_emp);
         Intent intent=getIntent();
-        String number=intent.getStringExtra("phone");
+        final String number=intent.getStringExtra("phone");
         getPassword=(EditText)findViewById(R.id.editTextGetPassword);
         getPassword.addTextChangedListener(new TextWatcher() {
             @Override
@@ -35,13 +37,19 @@ public class GetPasswordEmp extends AppCompatActivity {
                  findViewById(R.id.SetPasswordButton).setOnClickListener(new View.OnClickListener() {
                      @Override
                      public void onClick(View v) {
-                         //goto next activity
+                         FirebaseDatabase.getInstance().getReference().child("Employees")
+                                 .child(number)
+                                 .child("Password")
+                                 .setValue(getPassword.getText().toString());
+                         Intent i=new Intent(getApplicationContext(),EmpDashboard.class);
+                         i.putExtra("phone",number);
+                         startActivity(i);
+
                      }
                  });
-                 //save the password in firebase
+
              }
             }
-
             @Override
             public void afterTextChanged(Editable s) {
 
