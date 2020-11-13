@@ -55,7 +55,7 @@ public class GetnumberActivity extends AppCompatActivity {
                     editTextMobile.setError("Enter a valid mobile");
                     editTextMobile.requestFocus();
                     return;
-                    //
+
                 }
                 mobile="+91"+mobile;
                 final String userName =mobile;
