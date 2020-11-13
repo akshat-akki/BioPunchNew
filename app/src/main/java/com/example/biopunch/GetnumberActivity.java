@@ -7,7 +7,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -67,12 +66,25 @@ public class GetnumberActivity extends AppCompatActivity {
                         for (DataSnapshot ds : dataSnapshot.getChildren()) {
                             if (ds.child("MyNo").getValue(String.class).equals(userName)) {
                                 empflag = 1;
-                                Intent intent = new Intent(getApplicationContext(), test.class);
-                                intent.putExtra("mobile", mobile);
-                                startActivity(intent);
-
+                                new AlertDialog.Builder(GetnumberActivity.this).setIcon(android.R.drawable.stat_sys_warning)
+                                        .setTitle("Error")
+                                        .setMessage("You are registered as an employee")
+                                        .setPositiveButton("Enter as an employee", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Intent intent = new Intent(getApplicationContext(), GetnumberActivity.class);
+                                                intent.putExtra("login","employee");
+                                                startActivity(intent);
+                                            }
+                                        })
+                                        .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Intent intent = new Intent(getApplicationContext(), test.class);
+                                                startActivity(intent);
+                                            }
+                                        }).show();
                             }
-
                         }
                     }
                     @Override
@@ -83,33 +95,35 @@ public class GetnumberActivity extends AppCompatActivity {
                 usersdRef.addListenerForSingleValueEvent(eventListener);
                 if(empflag==1)
                     return;
+                else
+                {
+                    FirebaseDatabase.getInstance().getReference().child("users").orderByChild("phone").equalTo(userName).addListenerForSingleValueEvent(
+                            new ValueEventListener() {
 
-                FirebaseDatabase.getInstance().getReference().child("users").orderByChild("phone").equalTo(userName).addListenerForSingleValueEvent(
-                        new ValueEventListener() {
-
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
 
 
-                                if (dataSnapshot.exists()) {
-                                    Intent intent = new Intent(getApplicationContext(),PasswordActivity.class);
-                                    intent.putExtra("phone",mobile);
-                                    startActivity(intent);
-                                 }
-                                else {
-                                    if(empflag==0) {
-                                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                                        intent.putExtra("mobile", mobile);
+                                    if (dataSnapshot.exists()) {
+                                        Intent intent = new Intent(getApplicationContext(),PasswordActivity.class);
+                                        intent.putExtra("phone",mobile);
                                         startActivity(intent);
                                     }
+                                    else {
+                                        if(empflag==0) {
+                                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                            intent.putExtra("mobile", mobile);
+                                            startActivity(intent);
+                                        }
+                                    }
                                 }
-                            }
 
-                            @Override
-                            public void onCancelled (DatabaseError databaseError){
+                                @Override
+                                public void onCancelled (DatabaseError databaseError){
 
-                            }
-                        });
+                                }
+                            });
+                }
             }
         });
     }

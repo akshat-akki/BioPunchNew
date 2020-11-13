@@ -43,6 +43,7 @@ public class PasswordActivity extends AppCompatActivity {
                                     // Do your stuff here if user already exist
                                 }
                                  else {
+                                     editTextEnterPassword.setText("");
                                     Toast.makeText(getApplicationContext(), "Password entered is wrong", Toast.LENGTH_SHORT).show();
                                 }
                             }

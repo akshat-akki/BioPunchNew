@@ -19,7 +19,7 @@ public class GetPasswordEmp extends AppCompatActivity {
         setContentView(R.layout.activity_get_password_emp);
         Intent intent=getIntent();
         final String number=intent.getStringExtra("phone");
-        getPassword=(EditText)findViewById(R.id.editTextGetPassword);
+        getPassword=(EditText)findViewById(R.id.editTextGetPasswordEmp);
         getPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -29,12 +29,12 @@ public class GetPasswordEmp extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
              if(s.length()<6)
-                 findViewById(R.id.WarningTextView).setVisibility(View.VISIBLE);
+                 findViewById(R.id.WarningTextViewEmp).setVisibility(View.VISIBLE);
              else
              {
-                 findViewById(R.id.WarningTextView).setVisibility(View.INVISIBLE);
-                 findViewById(R.id.SetPasswordButton).setVisibility(View.VISIBLE);
-                 findViewById(R.id.SetPasswordButton).setOnClickListener(new View.OnClickListener() {
+                 findViewById(R.id.WarningTextViewEmp).setVisibility(View.INVISIBLE);
+                 findViewById(R.id.SetPasswordButtonEmp).setVisibility(View.VISIBLE);
+                 findViewById(R.id.SetPasswordButtonEmp).setOnClickListener(new View.OnClickListener() {
                      @Override
                      public void onClick(View v) {
                          FirebaseDatabase.getInstance().getReference().child("Employees")
