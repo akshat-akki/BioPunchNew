@@ -35,6 +35,7 @@ String phn;
             public void onClick(View v) {
                 Intent i=new Intent(getApplicationContext(),OrganizationDetailActivity.class);
                 i.putExtra("phoneNumber",phn);
+                i.putExtra("role","HR");
                 startActivity(i);
             }
         });

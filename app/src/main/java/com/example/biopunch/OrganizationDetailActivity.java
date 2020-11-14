@@ -3,6 +3,7 @@ package com.example.biopunch;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,7 +18,9 @@ String phn;
         setContentView(R.layout.activity_organization_detail);
         Intent i=getIntent();
         phn=i.getStringExtra("phoneNumber");
-        //Toast.makeText(this, phn, Toast.LENGTH_SHORT).show();
+        String role=i.getStringExtra("role");
+        Toast.makeText(this, role, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, phn, Toast.LENGTH_SHORT).show();
         TextView contactNo= findViewById(R.id.contactNoText);
         contactNo.setText(phn);
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
