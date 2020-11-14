@@ -107,6 +107,7 @@ public class GetnumberActivity extends AppCompatActivity {
                                     if (dataSnapshot.exists()) {
                                         Intent intent = new Intent(getApplicationContext(),PasswordActivity.class);
                                         intent.putExtra("phone",mobile);
+                                        intent.putExtra("role","HR");
                                         startActivity(intent);
                                     }
                                     else {
