@@ -62,7 +62,7 @@ public class EmployeeList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(getApplicationContext(),AddEmployee.class);
-                i.putExtra("phoneNumber",number);
+                i.putExtra("phone",number);
                 startActivity(i);
             }
         });
