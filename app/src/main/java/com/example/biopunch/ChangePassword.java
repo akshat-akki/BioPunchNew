@@ -42,9 +42,6 @@ public class ChangePassword extends AppCompatActivity {
            }
            @Override
            public void onTextChanged(CharSequence s, int start, int before, int count) {
-             //check if password entered is correct
-              // if incorrect do this:
-              //findViewById(R.id.wrongPassword).setVisibility(View.VISIBLE);
                if(role.equals("HR"))
                {
                    FirebaseDatabase.getInstance().getReference().child("users").orderByChild("Password").equalTo(change.getText().toString(),mobileNo).addListenerForSingleValueEvent(
@@ -52,7 +49,31 @@ public class ChangePassword extends AppCompatActivity {
                                @Override
                                public void onDataChange(DataSnapshot dataSnapshot) {
                                    if (dataSnapshot.exists()) {
-                                       Toast.makeText(ChangePassword.this, "matched", Toast.LENGTH_SHORT).show();
+                                       findViewById(R.id.wrongPassword).setVisibility(View.INVISIBLE);
+                                       corr=true;
+                                       // User Exists
+                                       // Do your stuff here if user already exist
+                                   }
+                                   else {
+                                       corr=false;
+                                   }
+                               }
+
+                               @Override
+                               public void onCancelled(@NonNull DatabaseError error) {
+
+                               }
+
+
+                           });
+               }
+               else
+               {
+                   FirebaseDatabase.getInstance().getReference().child("Employees").orderByChild("Password").equalTo(change.getText().toString(),mobileNo).addListenerForSingleValueEvent(
+                           new ValueEventListener() {
+                               @Override
+                               public void onDataChange(DataSnapshot dataSnapshot) {
+                                   if (dataSnapshot.exists()) {
                                        findViewById(R.id.wrongPassword).setVisibility(View.INVISIBLE);
                                        corr=true;
                                        // User Exists
@@ -85,24 +106,24 @@ public class ChangePassword extends AppCompatActivity {
 
            @Override
            public void onTextChanged(CharSequence s, int start, int before, int count) {
-           if(corr==false)
-           {
-               findViewById(R.id.wrongPassword).setVisibility(View.VISIBLE);
-               change.setText("");
-           }
-           else
-           {
-               if(s.length()<6)
-               {
-                   corrN=false;
-                   findViewById(R.id.passwordLengthWrong).setVisibility(View.VISIBLE);
+                   if(corr==false)
+                   {
+                       findViewById(R.id.wrongPassword).setVisibility(View.VISIBLE);
+                       change.setText("");
+                   }
+                   else
+                   {
+                       if(s.length()<6)
+                       {
+                           corrN=false;
+                           findViewById(R.id.passwordLengthWrong).setVisibility(View.VISIBLE);
+                       }
+                       else
+                       {
+                           corrN=true;
+                           findViewById(R.id.passwordLengthWrong).setVisibility(View.INVISIBLE);
+                   }
                }
-               else
-               {
-                   corrN=true;
-                   findViewById(R.id.passwordLengthWrong).setVisibility(View.INVISIBLE);
-               }
-           }
            }
 
            @Override
@@ -118,34 +139,39 @@ public class ChangePassword extends AppCompatActivity {
 
            @Override
            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            //see if newP and confirm matches
-               //if not do this:
-               //findViewById(R.id.confirmPasswordWrong).setVisibility(View.VISIBLE);
-               //then make the button visible
-               //and change the new password
-               if(corr==true&&corrN==true)
-               {
-                   if(confirm.getText().toString().equals(newP.getText().toString()))
-                   {findViewById(R.id.changePasswordButton).setVisibility(View.VISIBLE);
-                       findViewById(R.id.confirmPasswordWrong).setVisibility(View.INVISIBLE);
-                   findViewById(R.id.changePasswordButton).setOnClickListener(new View.OnClickListener() {
-                   @Override
-                   public void onClick(View v) {
-                       FirebaseDatabase.getInstance().getReference().child("users")
-                               .child(mobileNo)
-                               .child("Password")
-                               .setValue(newP.getText().toString());
-                       Toast.makeText(ChangePassword.this, "Your password has been changed!!" , Toast.LENGTH_SHORT).show();
-                       Intent i=new Intent(getApplicationContext(),DashBoardHR.class);
-                       i.putExtra("phoneNumber",mobileNo);
-                       startActivity(i);
-                   }
-               });}
-                   else
+                   if(corr==true&&corrN==true)
                    {
-                       findViewById(R.id.confirmPasswordWrong).setVisibility(View.VISIBLE);
+                       if(confirm.getText().toString().equals(newP.getText().toString()))
+                       {findViewById(R.id.changePasswordButton).setVisibility(View.VISIBLE);
+                           findViewById(R.id.confirmPasswordWrong).setVisibility(View.INVISIBLE);
+                           findViewById(R.id.changePasswordButton).setOnClickListener(new View.OnClickListener() {
+                               @Override
+                               public void onClick(View v) {
+                                   if(role.equals("HR"))
+                                   {
+                                       FirebaseDatabase.getInstance().getReference().child("users")
+                                               .child(mobileNo)
+                                               .child("Password")
+                                               .setValue(newP.getText().toString());
+                                   }
+                                   else
+                                   {
+                                       FirebaseDatabase.getInstance().getReference().child("Employees")
+                                               .child(mobileNo)
+                                               .child("Password")
+                                               .setValue(newP.getText().toString());
+                                   }
+                                   Toast.makeText(ChangePassword.this, "Your password has been changed!!" , Toast.LENGTH_SHORT).show();
+                                   Intent i=new Intent(getApplicationContext(),DashBoardHR.class);
+                                   i.putExtra("phoneNumber",mobileNo);
+                                   startActivity(i);
+                               }
+                           });}
+                       else
+                       {
+                           findViewById(R.id.confirmPasswordWrong).setVisibility(View.VISIBLE);
+                       }
                    }
-           }
            }
 
            @Override
