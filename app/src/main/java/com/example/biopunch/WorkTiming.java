@@ -109,7 +109,7 @@ public class WorkTiming extends AppCompatActivity implements AdapterView.OnItemS
     {
         FirebaseDatabase.getInstance().getReference().child("users").child(phoneno).child("WorkTimeIn").setValue(inTime);
         FirebaseDatabase.getInstance().getReference().child("users").child(phoneno).child("WorkTimeOut").setValue(outTime);
-        Intent intent=new Intent(getApplicationContext(),Location.class);
+        Intent intent=new Intent(getApplicationContext(),DashBoardHR.class);
         intent.putExtra("phoneNumber",phoneno);
         startActivity(intent);
     }

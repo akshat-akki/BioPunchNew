@@ -27,6 +27,7 @@ public class SettingsEmployee extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(),ChangePassword.class);
                 intent.putExtra("phoneNumber",phnEmp);
+                intent.putExtra("role","employee");
                 startActivity(intent);
             }
         });

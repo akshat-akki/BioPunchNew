@@ -44,6 +44,7 @@ String phn;
             public void onClick(View v) {
                 Intent i=new Intent(getApplicationContext(),ChangePassword.class);
                 i.putExtra("phoneNumber",phn);
+                i.putExtra("role","HR");
                 startActivity(i);
             }
         });
