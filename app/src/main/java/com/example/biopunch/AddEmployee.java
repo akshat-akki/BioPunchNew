@@ -101,7 +101,6 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
     public void addEmployeeClicked(View view) {
         Intent i=getIntent();
         HrNo=i.getStringExtra("phone");
-        //Boolean a=i.getBooleanExtra("EmployeeList",false);
         FirebaseDatabase.getInstance().getReference().child("users")
                 .child(HrNo)
                 .child("Employee")
@@ -127,7 +126,9 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
                 .child("Password")
                 .setValue(EmployeePhoneEditText.getText().toString());
 
-
+        FirebaseDatabase.getInstance().getReference().child("Employees")
+                .child(EmployeePhoneEditText.getText().toString())
+                .child("Attendance");
 
         FirebaseDatabase.getInstance().getReference().child("users")
                 .child(HrNo)
