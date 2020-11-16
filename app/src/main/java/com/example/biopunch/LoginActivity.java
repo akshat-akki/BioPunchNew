@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     //firebase auth object
     private FirebaseAuth mAuth;
     String mobile;
+    private boolean role,activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,8 @@ public class LoginActivity extends AppCompatActivity {
         //and sending the verification code to the number
         Intent intent = getIntent();
         mobile = intent.getStringExtra("mobile");
+        role=intent.getBooleanExtra("roleHr",true);
+        activity=intent.getBooleanExtra("activityPassword",false);
         sendVerificationCodeToUser(mobile);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,14 +118,33 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
+                            if(activity==false) {
 
-                            FirebaseDatabase.getInstance().getReference().child("users").child(mobile).child("phone").setValue(mobile);
+                                FirebaseDatabase.getInstance().getReference().child("users").child(mobile).child("phone").setValue(mobile);
 
-                            String UID=mobile;
-                            Intent intent=new Intent(getApplicationContext(),ProfileActivity.class);
-                            intent.putExtra("phone",UID);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
+                                String UID = mobile;
+                                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                                intent.putExtra("phone", UID);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                            }
+                            else
+                            {
+                                if(role==true)
+                                {
+                                    Intent i=new Intent(getApplicationContext(),ForgotPassword.class);
+                                    i.putExtra("role","HR");
+                                    i.putExtra("phone",mobile);
+                                    startActivity(i);
+                                }
+                                else
+                                {
+                                    Intent i=new Intent(getApplicationContext(),ForgotPassword.class);
+                                    i.putExtra("role","employee");
+                                    i.putExtra("phone",mobile);
+                                    startActivity(i);
+                                }
+                            }
                         }
                         else
                         {

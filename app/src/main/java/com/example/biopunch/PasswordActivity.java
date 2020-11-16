@@ -1,6 +1,7 @@
 package com.example.biopunch;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,15 +22,32 @@ public class PasswordActivity extends AppCompatActivity {
     Button Loginbutton;
     public String phone1;
     private String role;
+    private Button forgotpassword;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password);
-        editTextEnterPassword=findViewById(R.id.editTextGetPassword);
-        Loginbutton=findViewById(R.id.SetPasswordButton);
-        Intent intent=getIntent();
-        phone1=intent.getStringExtra("phone");
-        role=intent.getStringExtra("role");
+        editTextEnterPassword = findViewById(R.id.editTextGetPassword);
+        Loginbutton = findViewById(R.id.SetPasswordButton);
+        Intent intent = getIntent();
+        phone1 = intent.getStringExtra("phone");
+        role = intent.getStringExtra("role");
+        forgotpassword = findViewById(R.id.ForgotPasswordButton);
+        forgotpassword.setPaintFlags(forgotpassword.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG | Paint.FAKE_BOLD_TEXT_FLAG);
+        forgotpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(),LoginActivity.class);
+                intent.putExtra("mobile",phone1);
+                if(role.equals("HR"))
+                    intent.putExtra("roleHr",true);
+                else
+                    intent.putExtra("roleHr",false);
+                intent.putExtra("activityPassword",true);
+                startActivity(intent);
+            }
+        });
         Loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +107,11 @@ public class PasswordActivity extends AppCompatActivity {
                 }
             };
         });
+
     }
+
+
+
+
 }
 
