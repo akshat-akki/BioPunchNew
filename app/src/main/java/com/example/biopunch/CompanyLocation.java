@@ -36,7 +36,7 @@ public class CompanyLocation extends FragmentActivity implements OnMapReadyCallb
     private GoogleMap mMap;
     LocationManager locationManager;
     LocationListener locationListener;
-    private boolean save=false;
+    boolean save=false;
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -165,14 +165,14 @@ public class CompanyLocation extends FragmentActivity implements OnMapReadyCallb
                 Toast.makeText(CompanyLocation.this,"Location Saved:)", Toast.LENGTH_LONG).show();
                 save=true;
                 Log.i("Location:",locationAdd);
+                if(save==true)
+                {
+                    Intent intent=new Intent(getApplicationContext(),DashBoardHR.class);
+                    intent.putExtra("phoneNumber",hrno);
+                    startActivity(intent);
+                }
             }
         });
-        if(save==true)
-        {
-            Intent intent=new Intent(getApplicationContext(),DashBoardHR.class);
-            intent.putExtra("phoneNumber",hrno);
-            startActivity(intent);
-        }
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
