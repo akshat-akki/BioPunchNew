@@ -35,7 +35,7 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
     private  EditText EmployeePhoneEditText;
     String HrNo;
     private Button addbutton;
-
+    boolean save=false;
     @Override
     public void grantUriPermission(String toPackage, Uri uri, int modeFlags) {
         super.grantUriPermission(toPackage, uri, modeFlags);
@@ -85,11 +85,16 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
         arrayAdapterOutMin = new ArrayAdapter(AddEmployee.this, android.R.layout.simple_spinner_item, min);
         arrayAdapterOutMin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         outMinSpinner.setAdapter(arrayAdapterOutMin);
+        String a=EmployeeNameEditText.getText().toString();
+        String b=EmployeePhoneEditText.getText().toString();
+        if(a.length()>0&&b.length()>0)
+            save=true;
+        if(save==true)
+            addbutton.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-             addbutton.setVisibility(View.VISIBLE);
         //Toast.makeText(getApplicationContext(), "woohoo!", Toast.LENGTH_LONG).show();
     }
 
@@ -181,8 +186,20 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
                             {
                                 ContctMobVar="+91"+ContctMobVar.substring(1);
                             }
+                            if(ContctMobVar.substring(0,1).equals("+")==false)
+                            {
+                                ContctMobVar="+91"+ContctMobVar;
+                            }
                             Log.i("Number", ContctMobVar);
-                            EmployeePhoneEditText.setText(ContctMobVar);
+                            String no="";
+                            for(int i=0;i<ContctMobVar.length();i++){
+                                if(Character.isDigit(ContctMobVar.charAt(i))==true)
+                                    no=no+ContctMobVar.charAt(i);
+                                else if(ContctMobVar.charAt(i)=='+')
+                                    no=no+ContctMobVar.charAt(i);
+                            }
+                            EmployeePhoneEditText.setText(no);
+                            addbutton.setVisibility(View.VISIBLE);
                         }
                     }
                 }

@@ -22,6 +22,15 @@ public class SettingsEmployee extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        findViewById(R.id.EmployeeDetailAccessEmployee).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(),EmployeeDetailActivity.class);
+                intent.putExtra("phoneNumber",phnEmp);
+                intent.putExtra("role","employee");
+                startActivity(intent);
+            }
+        });
         findViewById(R.id.changePasswordAccessEmployee).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
