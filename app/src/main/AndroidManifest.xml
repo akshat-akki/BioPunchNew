@@ -40,6 +40,7 @@
         <activity android:name=".SettingsEmployee" />
         <activity android:name=".ChangePassword" />
         <activity android:name=".OrganizationDetailActivity" />
+        <activity android:name=".EmployeeDetailActivity"/>
         <activity android:name=".EmployeeList" />
         <activity android:name=".Settings_HR" />
         <activity android:name=".PunchActivity" />

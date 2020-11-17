@@ -25,18 +25,19 @@ public class FragmentFirst extends Fragment {
     ListView listView;
     String number;
     String employeecount;
+    final static ArrayList<String> EmployeeNames = new ArrayList<String>();
+    final static ArrayList<String> EmployeeContacts = new ArrayList<String>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
-        final ArrayList<String> EmployeeNames = new ArrayList<String>();
         final ArrayAdapter<String> adapter;
-        final ArrayList<String> EmployeeContacts = new ArrayList<String>();
         DashBoardHR activity = (DashBoardHR) getActivity();
         number=activity.phn;
         final View v = inflater.inflate(R.layout.fragment_first, container, false);
@@ -97,21 +98,33 @@ public class FragmentFirst extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 long countNotpunched=0;
+                boolean present=false;
                 long totalemployee=dataSnapshot.getChildrenCount();
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     if (ds.child("NameHR").exists()) {
                         String nameHr = ds.child("NameHR").getValue(String.class);
+                        if(EmployeeNames.contains(nameHr + "(HR)")==false)
                         EmployeeNames.add(0, nameHr + "(HR)");
                     }
                     if (ds.child("Name").exists()) {
                         String name = ds.child("Name").getValue(String.class);
-                        EmployeeNames.add(name);
+                        if(EmployeeNames.contains(name)==false)
+                        {
+                            EmployeeNames.add(name);
+                            present=false;
+                        }
+                        else
+                        {
+                            present=true;
+                        }
                     }
                     if (ds.child("Punched").getValue(String.class).equals("NO")) {
+                        if(present==false)
                         countNotpunched++;
                     }
                     if(ds.child("Phone").exists()){
                         String phoneEmp=ds.child("Phone").getValue(String.class);
+                        if(EmployeeContacts.contains(phoneEmp)==false)
                         EmployeeContacts.add(phoneEmp);
                     }
                 }
@@ -134,6 +147,8 @@ public class FragmentFirst extends Fragment {
                         return true;
                     }
                 });
+                listView.deferNotifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -144,6 +159,7 @@ public class FragmentFirst extends Fragment {
         usersdRef.addListenerForSingleValueEvent(eventListener);
 
         return v;
+
     }
 
 }
