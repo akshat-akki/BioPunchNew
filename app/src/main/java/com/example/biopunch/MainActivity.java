@@ -67,8 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void getStart(View view)
     {
-        Intent intent=new Intent(getApplicationContext(),CompanyLocation.class);
-        intent.putExtra("phoneNumber","+919793779111");
+        Intent intent=new Intent(getApplicationContext(),test.class);
         startActivity(intent);
     }
 }
