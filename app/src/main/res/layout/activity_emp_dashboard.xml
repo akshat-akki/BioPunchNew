@@ -8,20 +8,23 @@
 
     <ListView
         android:id="@+id/punchEmpWeekly"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="410dp"
+        android:layout_height="596dp"
+        app:layout_constraintBottom_toTopOf="@+id/TabviewEmp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/TabviewEmp"
-        android:layout_width="453dp"
-        android:layout_height="75dp"
+        android:layout_width="452dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/punchEmpWeekly"
         app:tabIconTint="@color/colorPrimary">
 
         <com.google.android.material.tabs.TabItem

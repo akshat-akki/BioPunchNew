@@ -10,24 +10,23 @@
         android:id="@+id/pager"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:tabGravity="fill"
+            app:tabMaxWidth="0dp">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/EmployeeTab"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Employee (1)" />
+                android:text="Employee (67)" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/PunchedTab"
@@ -39,7 +38,7 @@
                 android:id="@+id/NotPunchedTab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NotPunched (0)" />
+                android:text="NotPunched (66)" />
         </com.google.android.material.tabs.TabLayout>
 
     </androidx.viewpager.widget.ViewPager>
