@@ -6,13 +6,12 @@
 
     <ListView
         android:id="@+id/ListEmployeeNotPunched"
-        android:layout_width="match_parent"
-        android:layout_height="680dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="410dp"
+        android:layout_height="596dp"
+        app:layout_constraintBottom_toTopOf="@+id/TabviewNotPunched"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/TabviewNotPunched"
@@ -22,6 +21,8 @@
         android:layout_marginEnd="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintTop_toBottomOf="@+id/ListEmployeeNotPunched"
         app:layout_constraintStart_toStartOf="parent"
         app:tabIconTint="@color/colorPrimary">
 
