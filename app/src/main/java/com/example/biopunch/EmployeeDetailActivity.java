@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -18,10 +20,12 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class EmployeeDetailActivity extends AppCompatActivity {
-//issey bhi karna h bhyi bohot kaam h
     private String empNo;
     private String role;
     private String hrNo;
+     private TextView companyNameEmp;
+    private TextView nameEmp;
+    private TextView contactEmp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +34,32 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         role=getIntent().getStringExtra("role");
         hrNo=empNo.substring(empNo.indexOf(' ')+1);
         empNo=empNo.substring(0,empNo.indexOf(' '));
+        contactEmp= findViewById(R.id.empContactNoText);
+        contactEmp.setText(empNo);
+        Toast.makeText(this, hrNo+"fd", Toast.LENGTH_SHORT).show();
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference usersdRef = ref.child("users");
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    if (ds.child("phone").getValue(String.class).equals(hrNo)) {
+                         companyNameEmp=findViewById(R.id.companyTextViewEmp);
+                         nameEmp=findViewById(R.id.empNameText);
+                        if(ds.child("CompanyName").exists())
+                            companyNameEmp.setText(ds.child("CompanyName").getValue(String.class));
+                        if(ds.child("Employee").child(empNo).child("Name").exists())
+                            nameEmp.setText(ds.child("Employee").child(empNo).child("Name").getValue(String.class));
+                        break;
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        usersdRef.addListenerForSingleValueEvent(eventListener);
         if(role.equals("HR"))
         {
            findViewById(R.id.deleteEmployee).setVisibility(View.VISIBLE);
@@ -51,7 +81,6 @@ public class EmployeeDetailActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //delete the employee from list
-                               DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
                                 Query query = ref.child("Employees").orderByChild("MyNo").equalTo(empNo);
                                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override

@@ -25,6 +25,7 @@ public class SettingsEmployee extends AppCompatActivity {
         findViewById(R.id.EmployeeDetailAccessEmployee).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               //hr bhi kara hi do paas
                 Intent intent=new Intent(getApplicationContext(),EmployeeDetailActivity.class);
                 intent.putExtra("phoneNumber",phnEmp);
                 intent.putExtra("role","employee");
