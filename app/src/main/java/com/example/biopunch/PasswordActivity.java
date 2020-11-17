@@ -17,7 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class PasswordActivity extends AppCompatActivity {
-
     private EditText editTextEnterPassword;
     Button Loginbutton;
     public String phone1;
@@ -51,7 +50,6 @@ public class PasswordActivity extends AppCompatActivity {
         Loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //for hr
                 if(role.equals("HR"))
                 {
                 FirebaseDatabase.getInstance().getReference().child("users").orderByChild("Password").equalTo(editTextEnterPassword.getText().toString(),phone1).addListenerForSingleValueEvent(
@@ -77,8 +75,8 @@ public class PasswordActivity extends AppCompatActivity {
                             }
 
 
-                        });}
-                //for employee
+                        });
+                }
                 else
                 {
                     FirebaseDatabase.getInstance().getReference().child("Employees").orderByChild("Password").equalTo(editTextEnterPassword.getText().toString(),phone1).addListenerForSingleValueEvent(
@@ -104,14 +102,9 @@ public class PasswordActivity extends AppCompatActivity {
 
 
                             });
-                }
-            };
-        });
-
+                    }
+                };
+            });
+        }
     }
-
-
-
-
-}
 
