@@ -13,13 +13,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricPrompt;
 import androidx.fragment.app.FragmentActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class PunchActivity extends AppCompatActivity {
-     String no;
+     private String no,hrno;
+     boolean empdash;
      static int j=0;
     @Override
     public void onBackPressed() {
@@ -42,6 +47,26 @@ public class PunchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_punch);
         no=getIntent().getStringExtra("phoneNumber");
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference usersdRef = rootRef.child("Employees");
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    if (ds.child("MyNo").getValue(String.class).equals(no))
+                    {
+                        hrno=ds.child("HrNo").getValue(String.class);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        usersdRef.addListenerForSingleValueEvent(eventListener);
+
+        empdash=getIntent().getBooleanExtra("Empdash",false);
         try {
             Executor newExecutor = Executors.newSingleThreadExecutor();
             FragmentActivity activity = this;
@@ -73,9 +98,17 @@ public class PunchActivity extends AppCompatActivity {
                                                 .setNegativeButton("GO BACK", new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
-                                                        Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
-                                                        i.putExtra("phoneNumber",no);
-                                                        startActivity(i);
+                                                        if(empdash==false) {
+                                                            Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
+                                                            i.putExtra("phoneNumber", no);
+                                                            startActivity(i);
+                                                        }
+                                                        else
+                                                        {
+                                                            Intent i = new Intent(getApplicationContext(), EmpDashboard.class);
+                                                            i.putExtra("phone", no);
+                                                            startActivity(i);
+                                                        }
                                                     }
                                                 })
                                                 .show();
@@ -100,18 +133,30 @@ public class PunchActivity extends AppCompatActivity {
                 @Override
                 public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                     super.onAuthenticationSucceeded(result);
-                    FirebaseDatabase.getInstance().getReference().child("users")
-                            .child(no)
-                            .child("Employee")
-                            .child(no)
-                            .child("Punched")
-                            .setValue("YES");
-                    Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
+                    if(empdash==false) {
+                        FirebaseDatabase.getInstance().getReference().child("users")
+                                .child(no)
+                                .child("Employee")
+                                .child(no)
+                                .child("Punched")
+                                .setValue("YES");
 
-                    i.putExtra("phoneNumber",no);
-                    startActivity(i);
-
-
+                        Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
+                        i.putExtra("phoneNumber", no);
+                        startActivity(i);
+                    }
+                    else
+                    {
+                        FirebaseDatabase.getInstance().getReference().child("users")
+                                .child(hrno)
+                                .child("Employee")
+                                .child(no)
+                                .child("Punched")
+                                .setValue("YES");
+                        Intent i = new Intent(getApplicationContext(), EmpDashboard.class);
+                        i.putExtra("phone", no);
+                        startActivity(i);
+                    }
                     Log.d("recognised", "Fingerprint recognised successfully");
                 }
 

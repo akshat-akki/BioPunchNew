@@ -24,7 +24,7 @@ public class GetnumberActivity extends AppCompatActivity {
     private EditText editTextMobile;
     ProgressBar progressBar;
     int empflag=0;
-    public void numberHR()
+    private void numberHR()
     {
         editTextMobile.addTextChangedListener(new TextWatcher() {
             @Override
@@ -129,7 +129,7 @@ public class GetnumberActivity extends AppCompatActivity {
         });
     }
     int flag=0;
-    public void numberEmployee()
+    private void numberEmployee()
     {
         editTextMobile.addTextChangedListener(new TextWatcher() {
             @Override
