@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -36,7 +35,6 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         empNo=empNo.substring(0,empNo.indexOf(' '));
         contactEmp= findViewById(R.id.empContactNoText);
         contactEmp.setText(empNo);
-        Toast.makeText(this, hrNo+"fd", Toast.LENGTH_SHORT).show();
         final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
         DatabaseReference usersdRef = ref.child("users");
         ValueEventListener eventListener = new ValueEventListener() {

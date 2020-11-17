@@ -39,18 +39,15 @@
 
     <TextView
         android:id="@+id/empNameText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="326dp"
+        android:layout_height="28dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="226dp"
         android:drawableStart="@drawable/ic_baseline_account_circle_24"
         android:drawableTint="#FFFFFF"
         android:text="name"
         android:textColor="#FBFAFA"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EmpText" />
 
@@ -70,8 +67,8 @@
 
     <TextView
         android:id="@+id/empContactNoText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="204dp"
+        android:layout_height="28dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:drawableStart="@android:drawable/stat_sys_phone_call"
