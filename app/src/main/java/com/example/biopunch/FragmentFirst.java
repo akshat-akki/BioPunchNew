@@ -106,26 +106,28 @@ public class FragmentFirst extends Fragment {
                         if(EmployeeNames.contains(nameHr + "(HR)")==false)
                         EmployeeNames.add(0, nameHr + "(HR)");
                     }
-                    if (ds.child("Name").exists()) {
-                        String name = ds.child("Name").getValue(String.class);
-                        if(EmployeeNames.contains(name)==false)
+                    if(ds.child("Phone").exists()){
+                        String phoneEmp=ds.child("Phone").getValue(String.class);
+                        if(EmployeeContacts.contains(phoneEmp)==false)
                         {
-                            EmployeeNames.add(name);
-                            present=false;
-                        }
-                        else
-                        {
-                            present=true;
+                            EmployeeContacts.add(phoneEmp);
+                            if (ds.child("Name").exists()) {
+                                String name = ds.child("Name").getValue(String.class);
+                                if(EmployeeNames.contains(name)==false)
+                                {
+                                    EmployeeNames.add(name);
+                                    present=false;
+                                }
+                                else
+                                {
+                                    present=true;
+                                }
+                            }
                         }
                     }
                     if (ds.child("Punched").getValue(String.class).equals("NO")) {
                         if(present==false)
-                        countNotpunched++;
-                    }
-                    if(ds.child("Phone").exists()){
-                        String phoneEmp=ds.child("Phone").getValue(String.class);
-                        if(EmployeeContacts.contains(phoneEmp)==false)
-                        EmployeeContacts.add(phoneEmp);
+                            countNotpunched++;
                     }
                 }
 
