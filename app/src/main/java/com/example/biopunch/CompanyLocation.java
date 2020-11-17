@@ -81,7 +81,6 @@ public class CompanyLocation extends FragmentActivity implements OnMapReadyCallb
                 mMap.clear();
                 if(location!=null)
                 {
-                 //   Toast.makeText(CompanyLocation.this, location.toString(), Toast.LENGTH_SHORT).show();
                 LatLng userLocation = new LatLng(location.getLatitude(), location.getLongitude());
                 mMap.addMarker(new MarkerOptions().position(userLocation).title("YOUR LOCATION!!"));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,zoomLevel));
@@ -184,7 +183,6 @@ public class CompanyLocation extends FragmentActivity implements OnMapReadyCallb
             if(lastKnown!=null)
             {
                 mMap.clear();
-           // Toast.makeText(CompanyLocation.this, lastKnown.toString(), Toast.LENGTH_SHORT).show();
             LatLng userLocation = new LatLng(lastKnown.getLatitude(), lastKnown.getLongitude());
             mMap.addMarker(new MarkerOptions().position(userLocation).title("YOUR LOCATION!!"));
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,zoomLevel));
