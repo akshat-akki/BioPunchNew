@@ -6,5 +6,103 @@
     android:layout_height="match_parent"
     android:background="@drawable/organisationbg"
     tools:context=".EmployeeDetailActivity">
+    <TextView
+        android:id="@+id/companyTextViewEmp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:text="Company Text"
+        android:textColor="#004aad"
+        android:textSize="45sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/EmpText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="226dp"
+        android:text="NAME OF EMPLOYEE"
+
+        android:textColor="#FBFAFA"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/companyTextViewEmp" />
+
+    <TextView
+        android:id="@+id/empNameText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="226dp"
+        android:drawableStart="@drawable/ic_baseline_account_circle_24"
+        android:drawableTint="#FFFFFF"
+        android:text="name"
+        android:textColor="#FBFAFA"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EmpText" />
+
+    <TextView
+        android:id="@+id/contactNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="100dp"
+        android:text="CONTACT NUMBER"
+        android:textColor="#FBFAFA"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/empNameText" />
+
+    <TextView
+        android:id="@+id/empContactNoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:drawableStart="@android:drawable/stat_sys_phone_call"
+        android:drawableTint="#FFFFFF"
+        android:text="number"
+        android:textColor="#FBFAFA"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contactNo" />
+
+    <Button
+        android:id="@+id/downloadRepoEmpHr"
+        android:layout_width="150dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="127dp"
+        android:background="@drawable/custom_dialog"
+        android:text="Download Report"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/deleteEmployee"
+        android:layout_width="150dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginBottom="128dp"
+        android:background="@drawable/custom_dialog"
+        android:text="Delete Employee"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

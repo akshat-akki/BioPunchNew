@@ -4,18 +4,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import androidx.annotation.NonNull;
+
 import androidx.fragment.app.Fragment;
-import com.google.android.material.tabs.TabItem;
+
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 public class FragmentFirst extends Fragment {
     public FragmentFirst() {
@@ -35,6 +36,7 @@ public class FragmentFirst extends Fragment {
                              Bundle savedInstanceState) {
         final ArrayList<String> EmployeeNames = new ArrayList<String>();
         final ArrayAdapter<String> adapter;
+        final ArrayList<String> EmployeeContacts = new ArrayList<String>();
         DashBoardHR activity = (DashBoardHR) getActivity();
         number=activity.phn;
         final View v = inflater.inflate(R.layout.fragment_first, container, false);
@@ -108,6 +110,10 @@ public class FragmentFirst extends Fragment {
                     if (ds.child("Punched").getValue(String.class).equals("NO")) {
                         countNotpunched++;
                     }
+                    if(ds.child("Phone").exists()){
+                        String phoneEmp=ds.child("Phone").getValue(String.class);
+                        EmployeeContacts.add(phoneEmp);
+                    }
                 }
 
                     t.getTabAt(0).setText("Employee ("+totalemployee+")");
@@ -116,7 +122,20 @@ public class FragmentFirst extends Fragment {
 
                 ArrayAdapter<String> adapter = new ArrayAdapter(v.getContext(), android.R.layout.simple_list_item_1,EmployeeNames);
                 listView.setAdapter(adapter);
+                listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                        if(position==0)
+                            return false;
+                        Intent intent1=new Intent(getContext(),EmployeeDetailActivity.class);
+                        intent1.putExtra("phoneNumber",EmployeeContacts.get(position-1)+" "+number);
+                        intent1.putExtra("role","HR");
+                        startActivity(intent1);
+                        return true;
+                    }
+                });
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
