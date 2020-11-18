@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gmap"
     tools:context=".LocationCheck">
 
     <TextView
@@ -11,6 +12,7 @@
         android:layout_width="386dp"
         android:layout_height="57dp"
         android:layout_marginTop="150dp"
+        android:alpha="1"
         android:text="Wait while your location"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="35sp"
@@ -24,6 +26,7 @@
         android:layout_width="281dp"
         android:layout_height="57dp"
         android:layout_marginTop="17dp"
+        android:alpha="1"
         android:text="is being recorded"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="35sp"
@@ -39,6 +42,7 @@
         android:layout_height="47dp"
         android:layout_marginTop="13dp"
         android:layout_marginBottom="262dp"
+        android:alpha="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

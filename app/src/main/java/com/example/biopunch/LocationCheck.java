@@ -33,7 +33,7 @@ public class LocationCheck extends AppCompatActivity {
     Location dB;
     String latitudeDB;
     String longitudeDB;
-
+   private String punched;
     public void startListening()
     {
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED)
@@ -124,13 +124,40 @@ public class LocationCheck extends AppCompatActivity {
                             }
                         }
                         if (from.equals("DashHR")) {
+                            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+                            DatabaseReference usersdRef = rootRef.child("users");
+                            ValueEventListener eventListener = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                        if (ds.child("phone").getValue(String.class).equals(no))
+                                        {
+                                            punched=ds.child("Employee").child(no).child("Punched").getValue(String.class);
+                                            break;
+                                        }
+                                    }
+                                }
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            };
+                            usersdRef.addListenerForSingleValueEvent(eventListener);
                             if (locDone == true) {
+                                if(punched.equals("YES"))
                                 FirebaseDatabase.getInstance().getReference().child("users")
                                         .child(no)
                                         .child("Employee")
                                         .child(no)
                                         .child("Punched")
-                                        .setValue("YES");
+                                        .setValue("NO");
+                                else
+                                    FirebaseDatabase.getInstance().getReference().child("users")
+                                            .child(no)
+                                            .child("Employee")
+                                            .child(no)
+                                            .child("Punched")
+                                            .setValue("YES");
                                 Toast.makeText(LocationCheck.this, "Location matched!!", Toast.LENGTH_SHORT).show();
                             } else {
                                 Toast.makeText(LocationCheck.this, "Location unmatched!!", Toast.LENGTH_SHORT).show();
@@ -140,13 +167,40 @@ public class LocationCheck extends AppCompatActivity {
                              startActivity(i);
                         } else {
                             hrno = getIntent().getStringExtra("HRNO");
+                            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+                            DatabaseReference usersdRef = rootRef.child("users");
+                            ValueEventListener eventListener = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                        if (ds.child("phone").getValue(String.class).equals(hrno))
+                                        {
+                                            punched=ds.child("Employee").child(no).child("Punched").getValue(String.class);
+                                            break;
+                                        }
+                                    }
+                                }
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            };
+                            usersdRef.addListenerForSingleValueEvent(eventListener);
                             if (locDone == true) {
+                                if(punched.equals("NO"))
                                 FirebaseDatabase.getInstance().getReference().child("users")
                                         .child(hrno)
                                         .child("Employee")
                                         .child(no)
                                         .child("Punched")
                                         .setValue("YES");
+                                else
+                                    FirebaseDatabase.getInstance().getReference().child("users")
+                                            .child(hrno)
+                                            .child("Employee")
+                                            .child(no)
+                                            .child("Punched")
+                                            .setValue("NO");
                                 Toast.makeText(LocationCheck.this, "Location matched!!", Toast.LENGTH_SHORT).show();
                             } else {
                                 Toast.makeText(LocationCheck.this, "Location unmatched!!", Toast.LENGTH_SHORT).show();
