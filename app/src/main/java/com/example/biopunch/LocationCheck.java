@@ -28,14 +28,15 @@ import java.util.Locale;
 
 public class LocationCheck extends AppCompatActivity {
     boolean locDone=false;
+    int flag=0;
     LocationManager locationManager;
     LocationListener locationListener;
     private String no;
     private String from;
     private String hrno;
     Location dB;
-    String latitudeDB="26" ;
-    String longitudeDB="80";
+    String latitudeDB;
+    String longitudeDB;
 
     public void startListening()
     {
@@ -93,7 +94,6 @@ public class LocationCheck extends AppCompatActivity {
         setContentView(R.layout.activity_location_check);
         no=getIntent().getStringExtra("phoneNumber");
         from=getIntent().getStringExtra("from");
-        Log.i("numberHR",no+"  "+from);
         locationManager=(LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
           dB=new Location("");
         DatabaseReference usersdRef = FirebaseDatabase.getInstance().getReference().child("users").child(no);
@@ -114,8 +114,6 @@ public class LocationCheck extends AppCompatActivity {
                     dB.setLatitude(Double.parseDouble(latitudeDB));
                 if(longitudeDB!=null && longitudeDB.length()>0)
                     dB.setLongitude(Double.parseDouble(longitudeDB));
-                Log.i("latitudeDb and longitudeDb=",latitudeDB+"  "+longitudeDB);
-               // Toast.makeText(LocationCheck.this, dB.toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -127,13 +125,17 @@ public class LocationCheck extends AppCompatActivity {
         locationListener=new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                Log.i("Location and db",location.toString()+"  "+dB.toString());
                 if(location!=null)
                 {
-                    if(dB.distanceTo(location)<200)
-                        locDone=true;
-                    else
-                        locDone=false;
+                    if(flag==0) {
+                        Log.i("location:", location.toString()+ " "+dB.toString());
+                        if (dB.distanceTo(location) < 200)
+                            locDone = true;
+                        else
+                            locDone = false;
+                        Log.i("distance:", String.valueOf(dB.distanceTo(location)));
+                        flag=1;
+                    }
                 }
             }
 
@@ -160,13 +162,14 @@ public class LocationCheck extends AppCompatActivity {
         {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
             Location lastKnown=locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-//            Log.i("curr and db",lastKnown.toString()+"  "+dB.toString());
+            Log.i("lastKnown:",lastKnown.toString()+" " + dB.toString());
             if(lastKnown!=null)
             {
                 if(dB.distanceTo(lastKnown)<200)
                     locDone=true;
                 else
                     locDone=false;
+                Log.i("distance:",String.valueOf(dB.distanceTo(lastKnown)));
             }
         }
         if(from.equals("DashHR"))
