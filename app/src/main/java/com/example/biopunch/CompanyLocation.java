@@ -83,7 +83,7 @@ public class CompanyLocation extends FragmentActivity implements OnMapReadyCallb
                 {
                 LatLng userLocation = new LatLng(location.getLatitude(), location.getLongitude());
                 mMap.addMarker(new MarkerOptions().position(userLocation).title("YOUR LOCATION!!"));
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,zoomLevel));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(userLocation));
                     Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
                     String locationAdd="";
                     try {
@@ -149,7 +149,7 @@ public class CompanyLocation extends FragmentActivity implements OnMapReadyCallb
                             mMap.clear();
                             MarkerOptions options = new MarkerOptions().position(new LatLng(latLng.latitude,latLng.longitude)).title(address.getLocality());
                             mMap.addMarker(options).showInfoWindow();
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,zoomLevel));
+                            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                             FirebaseDatabase.getInstance().getReference().child("users").child(hrno).child("Location").setValue(latLng);
                         }
                     }
