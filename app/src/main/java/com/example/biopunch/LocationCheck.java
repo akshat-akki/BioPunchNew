@@ -92,10 +92,10 @@ public class LocationCheck extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_check);
-        no=getIntent().getStringExtra("phoneNumber");
-        from=getIntent().getStringExtra("from");
-        locationManager=(LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
-          dB=new Location("");
+        no = getIntent().getStringExtra("phoneNumber");
+        from = getIntent().getStringExtra("from");
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        dB = new Location("");
         DatabaseReference usersdRef = FirebaseDatabase.getInstance().getReference().child("users").child(no);
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
@@ -108,13 +108,96 @@ public class LocationCheck extends AppCompatActivity {
                     if (ds.child("longitude").exists()) {
                         longitudeDB = ds.child("longitude").getValue(String.class);
                     }
-
                 }
-                if(latitudeDB!=null && latitudeDB.length()>0)
-                    dB.setLatitude(Double.parseDouble(latitudeDB));
-                if(longitudeDB!=null && longitudeDB.length()>0)
-                    dB.setLongitude(Double.parseDouble(longitudeDB));
-            }
+                    if (latitudeDB != null && latitudeDB.length() > 0)
+                        dB.setLatitude(Double.parseDouble(latitudeDB));
+                    if (longitudeDB != null && longitudeDB.length() > 0)
+                        dB.setLongitude(Double.parseDouble(longitudeDB));
+                    Log.i("DB Location:", String.valueOf(dB.getLatitude()));
+
+                    if (dB.getLatitude() > 1) {
+                        locationListener = new LocationListener() {
+                            @Override
+                            public void onLocationChanged(Location location) {
+                                if (location != null) {
+                                    if (flag == 0) {
+                                        Log.i("location:", location.toString() + " " + dB.toString());
+                                        if (dB.distanceTo(location) < 200)
+                                            locDone = true;
+                                        else
+                                            locDone = false;
+                                        //Log.i("distance:", String.valueOf(dB.distanceTo(location)));
+                                        flag = 1;
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+                            }
+
+                            @Override
+                            public void onProviderEnabled(String provider) {
+
+                            }
+
+                            @Override
+                            public void onProviderDisabled(String provider) {
+
+                            }
+                        };
+                        if (ContextCompat.checkSelfPermission(LocationCheck.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(LocationCheck.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                        } else {
+                            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+                            Location lastKnown = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+                            if (lastKnown != null) {
+                                Log.i("lastKnown and database:", lastKnown.toString() + " " + dB.toString());
+                                if (dB.distanceTo(lastKnown) < 200)
+                                    locDone = true;
+                                else
+                                    locDone = false;
+                                Log.i("distance:", String.valueOf(dB.distanceTo(lastKnown)));
+                            }
+                        }
+                        if (from.equals("DashHR")) {
+                            if (locDone == true) {
+                                FirebaseDatabase.getInstance().getReference().child("users")
+                                        .child(no)
+                                        .child("Employee")
+                                        .child(no)
+                                        .child("Punched")
+                                        .setValue("YES");
+                                Toast.makeText(LocationCheck.this, "Location matched!!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(LocationCheck.this, "Location unmatched!!", Toast.LENGTH_SHORT).show();
+                            }
+                            //   Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
+                            // i.putExtra("phoneNumber", no);
+                            //startActivity(i);
+                        } else {
+                            hrno = getIntent().getStringExtra("HRNO");
+                            if (locDone == true) {
+                                FirebaseDatabase.getInstance().getReference().child("users")
+                                        .child(hrno)
+                                        .child("Employee")
+                                        .child(no)
+                                        .child("Punched")
+                                        .setValue("YES");
+                                Toast.makeText(LocationCheck.this, "Location matched!!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(LocationCheck.this, "Location unmatched!!", Toast.LENGTH_SHORT).show();
+                            }
+                            //Intent i = new Intent(getApplicationContext(), EmpDashboard.class);
+                            //i.putExtra("phone", no);
+                            //startActivity(i);
+                        }
+                    }
+
+
+               }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -122,96 +205,6 @@ public class LocationCheck extends AppCompatActivity {
             }
         };
         usersdRef.addListenerForSingleValueEvent(eventListener);
-        locationListener=new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                if(location!=null)
-                {
-                    if(flag==0) {
-                        Log.i("location:", location.toString()+ " "+dB.toString());
-                        if (dB.distanceTo(location) < 200)
-                            locDone = true;
-                        else
-                            locDone = false;
-                        Log.i("distance:", String.valueOf(dB.distanceTo(location)));
-                        flag=1;
-                    }
-                }
-            }
 
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-
-            }
-        };
-        if(ContextCompat.checkSelfPermission(LocationCheck.this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED)
-        {
-            ActivityCompat.requestPermissions(LocationCheck.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
-        }
-        else
-        {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
-            Location lastKnown=locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            Log.i("lastKnown:",lastKnown.toString()+" " + dB.toString());
-            if(lastKnown!=null)
-            {
-                if(dB.distanceTo(lastKnown)<200)
-                    locDone=true;
-                else
-                    locDone=false;
-                Log.i("distance:",String.valueOf(dB.distanceTo(lastKnown)));
-            }
-        }
-        if(from.equals("DashHR"))
-        {
-            if(locDone==true)
-            {
-                FirebaseDatabase.getInstance().getReference().child("users")
-                        .child(no)
-                        .child("Employee")
-                        .child(no)
-                        .child("Punched")
-                        .setValue("YES");
-                Toast.makeText(LocationCheck.this, "Location matched!!", Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
-                Toast.makeText(LocationCheck.this, "Location unmatched!!", Toast.LENGTH_SHORT).show();
-            }
-            //   Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
-            // i.putExtra("phoneNumber", no);
-            //startActivity(i);
-        }
-        else
-        {
-            hrno=getIntent().getStringExtra("HRNO");
-            if(locDone==true)
-            {
-                FirebaseDatabase.getInstance().getReference().child("users")
-                        .child(hrno)
-                        .child("Employee")
-                        .child(no)
-                        .child("Punched")
-                        .setValue("YES");
-                Toast.makeText(LocationCheck.this, "Location matched!!", Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
-                Toast.makeText(LocationCheck.this, "Location unmatched!!", Toast.LENGTH_SHORT).show();
-            }
-            //Intent i = new Intent(getApplicationContext(), EmpDashboard.class);
-            //i.putExtra("phone", no);
-            //startActivity(i);
-        }
     }
 }
