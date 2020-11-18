@@ -109,6 +109,7 @@ public class EmployeeDetailActivity extends AppCompatActivity {
                                 });
                                 Intent intent=new Intent(getApplicationContext(),DashBoardHR.class);
                                 intent.putExtra("phoneNumber",hrNo);
+                                intent.putExtra("from","EmployeeDelete");
                                 startActivity(intent);
                             }
                         })

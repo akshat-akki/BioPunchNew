@@ -21,16 +21,17 @@ import java.util.ArrayList;
 public class FragmentFirst extends Fragment {
     public FragmentFirst() {
     }
+    String fromA;
     TabLayout t;
     ListView listView;
     String number;
+    static int selected;
     String employeecount;
     final static ArrayList<String> EmployeeNames = new ArrayList<String>();
     final static ArrayList<String> EmployeeContacts = new ArrayList<String>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -40,6 +41,7 @@ public class FragmentFirst extends Fragment {
         final ArrayAdapter<String> adapter;
         DashBoardHR activity = (DashBoardHR) getActivity();
         number=activity.phn;
+        fromA=activity.from;
         final View v = inflater.inflate(R.layout.fragment_first, container, false);
         TabLayout b = (TabLayout) v.findViewById(R.id.Tabview);
         b.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -130,11 +132,6 @@ public class FragmentFirst extends Fragment {
                             countNotpunched++;
                     }
                 }
-
-                    t.getTabAt(0).setText("Employee ("+totalemployee+")");
-                    t.getTabAt(2).setText("Not Punched ("+countNotpunched+")");
-                    t.getTabAt(1).setText("Punched ("+(totalemployee-countNotpunched)+")");
-
                 ArrayAdapter<String> adapter = new ArrayAdapter(v.getContext(), android.R.layout.simple_list_item_1,EmployeeNames);
                 listView.setAdapter(adapter);
                 listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -142,6 +139,7 @@ public class FragmentFirst extends Fragment {
                     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                         if(position==0)
                             return false;
+                        selected=position;
                         Intent intent1=new Intent(getContext(),EmployeeDetailActivity.class);
                         intent1.putExtra("phoneNumber",EmployeeContacts.get(position-1)+" "+number);
                         intent1.putExtra("role","HR");
@@ -149,8 +147,17 @@ public class FragmentFirst extends Fragment {
                         return true;
                     }
                 });
-                listView.deferNotifyDataSetChanged();
                 adapter.notifyDataSetChanged();
+                if(fromA!=null&&fromA.equals("EmployeeDelete")&&selected!=0)
+                {
+                    EmployeeNames.remove(selected);
+                    EmployeeContacts.remove(selected-1);
+                    selected=0;
+                    adapter.notifyDataSetChanged();
+                }
+                t.getTabAt(0).setText("Employee ("+totalemployee+")");
+                t.getTabAt(2).setText("Not Punched ("+countNotpunched+")");
+                t.getTabAt(1).setText("Punched ("+(totalemployee-countNotpunched)+")");
             }
 
             @Override
@@ -159,7 +166,6 @@ public class FragmentFirst extends Fragment {
             }
         };
         usersdRef.addListenerForSingleValueEvent(eventListener);
-
         return v;
 
     }

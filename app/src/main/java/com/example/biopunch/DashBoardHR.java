@@ -19,7 +19,7 @@ public class DashBoardHR extends AppCompatActivity {
     ViewPager viewPager;
     public TabLayout tabLayout;
      public static String phn;
-
+     public static String from;//for determining if the element is deleted
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater=getMenuInflater();
@@ -61,6 +61,7 @@ public class DashBoardHR extends AppCompatActivity {
 
         Intent i=getIntent();
         phn=i.getStringExtra("phoneNumber");
+        from=i.getStringExtra("from");
         Toast.makeText(DashBoardHR.this, phn, Toast.LENGTH_SHORT).show();
 
         setPagerAdapter();
