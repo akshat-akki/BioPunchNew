@@ -2,9 +2,8 @@ package com.example.biopunch;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -22,9 +21,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.List;
-import java.util.Locale;
 
 public class LocationCheck extends AppCompatActivity {
     boolean locDone=false;
@@ -44,41 +40,6 @@ public class LocationCheck extends AppCompatActivity {
         {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
         }
-    }
-    public String updateLocation(Location location)
-    {
-        String add="";
-        Geocoder geo=new Geocoder(this, Locale.getDefault());
-        try {
-            List<Address> l = geo.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-            if(l!=null && l.size()>0)
-            {
-                if(l.get(0).getThoroughfare()!=null)
-                {
-                    add+=l.get(0).getThoroughfare()+"\n";
-                }
-                if(l.get(0).getLocality()!=null)
-                {
-                    add+=l.get(0).getLocality()+" ";
-                }
-                if(l.get(0).getPostalCode()!=null)
-                {
-                    add+=l.get(0).getPostalCode()+" ";
-                }
-                if(l.get(0).getAdminArea()!=null)
-                {
-                    add+=l.get(0).getAdminArea()+" ";
-                }
-            }
-
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        if(add.length()<=0)
-            add="Address not found :(";
-        return(add);
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -174,9 +135,9 @@ public class LocationCheck extends AppCompatActivity {
                             } else {
                                 Toast.makeText(LocationCheck.this, "Location unmatched!!", Toast.LENGTH_SHORT).show();
                             }
-                            //   Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
-                            // i.putExtra("phoneNumber", no);
-                            //startActivity(i);
+                               Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
+                             i.putExtra("phoneNumber", no);
+                             startActivity(i);
                         } else {
                             hrno = getIntent().getStringExtra("HRNO");
                             if (locDone == true) {
@@ -190,9 +151,9 @@ public class LocationCheck extends AppCompatActivity {
                             } else {
                                 Toast.makeText(LocationCheck.this, "Location unmatched!!", Toast.LENGTH_SHORT).show();
                             }
-                            //Intent i = new Intent(getApplicationContext(), EmpDashboard.class);
-                            //i.putExtra("phone", no);
-                            //startActivity(i);
+                            Intent i = new Intent(getApplicationContext(), EmpDashboard.class);
+                            i.putExtra("phone", no);
+                            startActivity(i);
                         }
                     }
 
