@@ -154,6 +154,8 @@ public class FragmentFirst extends Fragment {
                     EmployeeContacts.remove(selected-1);
                     selected=0;
                     adapter.notifyDataSetChanged();
+                    totalemployee--;
+                    countNotpunched--;
                 }
                 t.getTabAt(0).setText("Employee ("+totalemployee+")");
                 t.getTabAt(2).setText("Not Punched ("+countNotpunched+")");

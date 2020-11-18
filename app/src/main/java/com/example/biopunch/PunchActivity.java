@@ -157,6 +157,8 @@ public class PunchActivity extends AppCompatActivity {
                         i.putExtra("phone", no);
                         startActivity(i);
                     }
+
+
                     Log.d("recognised", "Fingerprint recognised successfully");
                 }
 

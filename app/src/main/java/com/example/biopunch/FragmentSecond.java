@@ -108,8 +108,8 @@ public class FragmentSecond extends Fragment {
                         EmployeeNamesPunched.add(name);
                         countpunched++;
                     }
-                    tPunched.getTabAt(2).setText("Not Punched ("+(totalemployee-countpunched)+")");
-                    tPunched.getTabAt(1).setText("Punched ("+countpunched+")");
+                  //  tPunched.getTabAt(2).setText("Not Punched ("+(totalemployee-countpunched)+")");
+                   // tPunched.getTabAt(1).setText("Punched ("+countpunched+")");
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter(v1.getContext(), android.R.layout.simple_list_item_1,EmployeeNamesPunched);
                 listViewPunched.setAdapter(adapter);
