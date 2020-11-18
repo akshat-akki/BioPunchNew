@@ -90,27 +90,29 @@ public class LocationCheck extends AppCompatActivity {
         setContentView(R.layout.activity_location_check);
         no=getIntent().getStringExtra("phoneNumber");
         from=getIntent().getStringExtra("from");
-
+        Log.i("numberHR",no+"  "+from);
         locationManager=(LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
-          dB=new Location(LocationManager.GPS_PROVIDER);
-        DatabaseReference usersdRef = FirebaseDatabase.getInstance().getReference().child("users").child(no).child("Location");
+          dB=new Location("");
+        DatabaseReference usersdRef = FirebaseDatabase.getInstance().getReference().child("users").child(no);
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                String latitudeDB ="";
+                String longitudeDB="";
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    String latitudeDB = "";
-                    String longitudeDB="";
-                    if (ds.child("latitude").exists()) {
-                        latitudeDB = ds.child("latitude").getValue(String.class);
+                    if (ds.child("Location").child("latitude").exists()) {
+                        latitudeDB = ds.child("Location").child("latitude").getValue(String.class);
                     }
-                    if (ds.child("longitude").exists()) {
-                        longitudeDB = ds.child("longitude").getValue(String.class);
+                    if (ds.child("Location").child("longitude").exists()) {
+                        longitudeDB = ds.child("Location").child("longitude").getValue(String.class);
                     }
-                    if(latitudeDB!=null && latitudeDB.length()>0)
-                        dB.setLatitude(Double.parseDouble(latitudeDB));
-                    if(longitudeDB!=null && longitudeDB.length()>0)
-                        dB.setLongitude(Double.parseDouble(longitudeDB));
+                    break;
                 }
+                if(latitudeDB!=null && latitudeDB.length()>0)
+                    dB.setLatitude(Double.parseDouble(latitudeDB));
+                if(longitudeDB!=null && longitudeDB.length()>0)
+                    dB.setLongitude(Double.parseDouble(longitudeDB));
+                Log.i("latitudeDb and longitudeDb=",latitudeDB+"  "+longitudeDB);
                 Toast.makeText(LocationCheck.this, dB.toString(), Toast.LENGTH_SHORT).show();
             }
 
@@ -127,9 +129,9 @@ public class LocationCheck extends AppCompatActivity {
                 if(location!=null)
                 {
                     if(dB.distanceTo(location)<200)
-                        locDone=false;
-                    else
                         locDone=true;
+                    else
+                        locDone=false;
                 }
             }
 
@@ -160,9 +162,9 @@ public class LocationCheck extends AppCompatActivity {
             if(lastKnown!=null)
             {
                 if(dB.distanceTo(lastKnown)<200)
-                    locDone=false;
-                else
                     locDone=true;
+                else
+                    locDone=false;
             }
         }
         if(from.equals("DashHR"))

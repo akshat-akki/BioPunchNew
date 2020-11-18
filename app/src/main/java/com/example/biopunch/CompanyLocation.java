@@ -150,7 +150,8 @@ public class CompanyLocation extends FragmentActivity implements OnMapReadyCallb
                             MarkerOptions options = new MarkerOptions().position(new LatLng(latLng.latitude,latLng.longitude)).title(address.getLocality());
                             mMap.addMarker(options).showInfoWindow();
                             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                            FirebaseDatabase.getInstance().getReference().child("users").child(hrno).child("Location").setValue(latLng);
+                            FirebaseDatabase.getInstance().getReference().child("users").child(hrno).child("Location").child("latitude").setValue(Double.toString(latLng.latitude));
+                            FirebaseDatabase.getInstance().getReference().child("users").child(hrno).child("Location").child("longitude").setValue(Double.toString(latLng.longitude));
                         }
                     }
                 } catch (Exception e) {
