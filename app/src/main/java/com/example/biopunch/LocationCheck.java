@@ -34,6 +34,9 @@ public class LocationCheck extends AppCompatActivity {
     private String from;
     private String hrno;
     Location dB;
+    String latitudeDB="26" ;
+    String longitudeDB="80";
+
     public void startListening()
     {
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED)
@@ -97,23 +100,22 @@ public class LocationCheck extends AppCompatActivity {
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String latitudeDB ="";
-                String longitudeDB="";
+
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    if (ds.child("Location").child("latitude").exists()) {
-                        latitudeDB = ds.child("Location").child("latitude").getValue(String.class);
+                    if (ds.child("latitude").exists()) {
+                        latitudeDB = ds.child("latitude").getValue(String.class);
                     }
-                    if (ds.child("Location").child("longitude").exists()) {
-                        longitudeDB = ds.child("Location").child("longitude").getValue(String.class);
+                    if (ds.child("longitude").exists()) {
+                        longitudeDB = ds.child("longitude").getValue(String.class);
                     }
-                    break;
+
                 }
                 if(latitudeDB!=null && latitudeDB.length()>0)
                     dB.setLatitude(Double.parseDouble(latitudeDB));
                 if(longitudeDB!=null && longitudeDB.length()>0)
                     dB.setLongitude(Double.parseDouble(longitudeDB));
                 Log.i("latitudeDb and longitudeDb=",latitudeDB+"  "+longitudeDB);
-                Toast.makeText(LocationCheck.this, dB.toString(), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(LocationCheck.this, dB.toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -158,7 +160,7 @@ public class LocationCheck extends AppCompatActivity {
         {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
             Location lastKnown=locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            Log.i("curr and db",lastKnown.toString()+"  "+dB.toString());
+//            Log.i("curr and db",lastKnown.toString()+"  "+dB.toString());
             if(lastKnown!=null)
             {
                 if(dB.distanceTo(lastKnown)<200)
