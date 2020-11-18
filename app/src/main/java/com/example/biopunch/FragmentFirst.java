@@ -134,17 +134,16 @@ public class FragmentFirst extends Fragment {
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter(v.getContext(), android.R.layout.simple_list_item_1,EmployeeNames);
                 listView.setAdapter(adapter);
-                listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         if(position==0)
-                            return false;
+                            return ;
                         selected=position;
                         Intent intent1=new Intent(getContext(),EmployeeDetailActivity.class);
                         intent1.putExtra("phoneNumber",EmployeeContacts.get(position-1)+" "+number);
                         intent1.putExtra("role","HR");
                         startActivity(intent1);
-                        return true;
                     }
                 });
                 adapter.notifyDataSetChanged();

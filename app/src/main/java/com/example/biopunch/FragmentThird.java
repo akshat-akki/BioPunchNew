@@ -26,7 +26,6 @@ public class FragmentThird extends Fragment {
     private String numberNotPunched;
     private String Punchedcount;
     private ListView listViewNotPunched;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,16 +101,17 @@ public class FragmentThird extends Fragment {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     if(ds.child("Punched").getValue(String.class).equals("NO")&&ds.child("NameHR").exists()) {
                         String nameHr = ds.child("NameHR").getValue(String.class);
-                        EmployeeNamesNotPunched.add(0,nameHr + "(HR)");
+                        if(EmployeeNamesNotPunched.contains(nameHr + "(HR)")==false)
+                            EmployeeNamesNotPunched.add(0, nameHr + "(HR)");
                         countNotpunched++;
                     }
                     if(ds.child("Name").exists()&&ds.child("Punched").getValue(String.class).equals("NO")) {
                         String name = ds.child("Name").getValue(String.class);
+                        if(EmployeeNamesNotPunched.contains(name)==false)
                         EmployeeNamesNotPunched.add(name);
                         countNotpunched++;
                     }
-                   // tNotPunched.getTabAt(2).setText("Not Punched ("+(countNotpunched)+")");
-                   // tNotPunched.getTabAt(1).setText("Punched ("+(totalemployee-countNotpunched)+")");
+
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter(v2.getContext(), android.R.layout.simple_list_item_1,EmployeeNamesNotPunched);
                 listViewNotPunched.setAdapter(adapter);

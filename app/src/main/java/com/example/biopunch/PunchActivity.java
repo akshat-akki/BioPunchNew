@@ -141,9 +141,9 @@ public class PunchActivity extends AppCompatActivity {
                                 .child("Punched")
                                 .setValue("YES");
 
-                        Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
-                        i.putExtra("phoneNumber", no);
-                        startActivity(i);
+                     //   Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
+                       // i.putExtra("phoneNumber", no);
+                        //startActivity(i);
                     }
                     else
                     {
