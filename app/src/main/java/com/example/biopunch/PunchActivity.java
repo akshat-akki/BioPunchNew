@@ -26,6 +26,7 @@ public class PunchActivity extends AppCompatActivity {
      private String no,hrno;
      boolean empdash;
      static int j=0;
+     boolean locDone=false;
     @Override
     public void onBackPressed() {
         if(j==0) {
@@ -133,14 +134,15 @@ public class PunchActivity extends AppCompatActivity {
                 @Override
                 public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                     super.onAuthenticationSucceeded(result);
+                    
                     if(empdash==false) {
+
                         FirebaseDatabase.getInstance().getReference().child("users")
                                 .child(no)
                                 .child("Employee")
                                 .child(no)
                                 .child("Punched")
                                 .setValue("YES");
-
                      //   Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
                        // i.putExtra("phoneNumber", no);
                         //startActivity(i);
