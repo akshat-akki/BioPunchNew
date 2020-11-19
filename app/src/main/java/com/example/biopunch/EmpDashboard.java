@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,6 +18,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
+import sun.bob.mcalendarview.MCalendarView;
+import sun.bob.mcalendarview.vo.DateData;
 
 public class EmpDashboard extends AppCompatActivity {
     private String empno="";
@@ -58,6 +64,16 @@ public class EmpDashboard extends AppCompatActivity {
         Intent i=getIntent();
         empno=i.getStringExtra("phone");
         bottomtab=findViewById(R.id.TabviewEmp);
+        MCalendarView calendarView = findViewById(R.id.calendar);
+        ArrayList<DateData> dates=new ArrayList<>();
+        dates.add(new DateData(2020,11,26));
+        dates.add(new DateData(2020,11,27));
+        for(int l=0;l<dates.size();l++) {
+            calendarView.markDate(dates.get(l).getYear(),dates.get(l).getMonth(),dates.get(l).getDay());//mark multiple dates with this code.
+        }
+
+
+        Log.i("marked dates:-",""+calendarView.getMarkedDates());
 
         bottomtab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

@@ -6,14 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".EmpDashboard">
 
-    <ListView
-        android:id="@+id/punchEmpWeekly"
+
+    <sun.bob.mcalendarview.MCalendarView
+        android:id="@+id/calendar"
         android:layout_width="410dp"
-        android:layout_height="596dp"
+        android:layout_height="402dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="66dp"
         app:layout_constraintBottom_toTopOf="@+id/TabviewEmp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".EmpDashboard" />
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/TabviewEmp"
         android:layout_width="452dp"
@@ -24,7 +30,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/punchEmpWeekly"
         app:tabIconTint="@color/colorPrimary">
 
         <com.google.android.material.tabs.TabItem
@@ -42,4 +47,6 @@
             android:icon="@drawable/fingernew"
             android:text="PunchNow" />
     </com.google.android.material.tabs.TabLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

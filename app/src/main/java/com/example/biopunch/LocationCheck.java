@@ -63,7 +63,13 @@ public class LocationCheck extends AppCompatActivity {
         Log.i("number:",no);
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         dB = new Location("");
-        DatabaseReference usersdRef = FirebaseDatabase.getInstance().getReference().child("users").child(no);
+        DatabaseReference usersdRef;
+        if(from.equals("DashHR"))
+            usersdRef= FirebaseDatabase.getInstance().getReference().child("users").child(no);
+        else {
+            hrno=getIntent().getStringExtra("HRNO");
+            usersdRef = FirebaseDatabase.getInstance().getReference().child("users").child(hrno);
+        }
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
