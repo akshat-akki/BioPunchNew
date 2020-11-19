@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -225,7 +224,7 @@ public class GetnumberActivity extends AppCompatActivity {
         setContentView(R.layout.activity_getnumber);
         Intent i=getIntent();
         String person=i.getStringExtra("login");
-        Toast.makeText(this, person, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, person, Toast.LENGTH_SHORT).show();
         editTextMobile = findViewById(R.id.editTextPhone);
         progressBar=findViewById(R.id.progressBar1);
         progressBar.setVisibility(View.INVISIBLE);
