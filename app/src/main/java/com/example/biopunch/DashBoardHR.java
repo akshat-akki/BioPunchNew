@@ -102,7 +102,7 @@ public class DashBoardHR extends AppCompatActivity {
         Intent i=getIntent();
         phn=i.getStringExtra("phoneNumber");
         from=i.getStringExtra("from");
-        Toast.makeText(DashBoardHR.this, phn, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(DashBoardHR.this, phn, Toast.LENGTH_SHORT).show();
 
         setPagerAdapter();
         setTabLayout();
