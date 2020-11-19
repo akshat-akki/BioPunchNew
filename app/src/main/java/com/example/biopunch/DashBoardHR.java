@@ -39,6 +39,9 @@ public class DashBoardHR extends AppCompatActivity {
                 return true;}
             case R.id.refresh:
             {
+                Intent myIntent = new Intent(getApplicationContext(),DashBoardHR.class);
+                myIntent.putExtra("phoneNumber",phn);
+                startActivity(myIntent);
                 //refresh the list of punched and not punched
                 return(true);
             }
