@@ -69,6 +69,7 @@ public class DashBoardHR extends AppCompatActivity {
             {
                 String path=report();
                 Toast.makeText(getApplicationContext(),"File Downloaded at"+path,Toast.LENGTH_LONG).show();
+                return true;
             }
             default:
                 return false;
