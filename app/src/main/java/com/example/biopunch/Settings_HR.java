@@ -27,6 +27,7 @@ String phn;
             public void onClick(View v) {
                 Intent i=new Intent(getApplicationContext(),WorkTiming.class);
                 i.putExtra("mobile",phn);
+                i.putExtra("from","settings");
                 startActivity(i);
             }
         });

@@ -23,6 +23,23 @@ public class GetnumberActivity extends AppCompatActivity {
     private EditText editTextMobile;
     ProgressBar progressBar;
     int empflag=0;
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        new AlertDialog.Builder(GetnumberActivity.this).setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Are you sure?")
+                .setMessage("Do you definitely want to exit?")
+                .setPositiveButton("No", null)
+                .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        System.exit(0);
+                    }
+                }).show();
+    }
+
     private void numberHR()
     {
         editTextMobile.addTextChangedListener(new TextWatcher() {
@@ -65,7 +82,7 @@ public class GetnumberActivity extends AppCompatActivity {
                         for (DataSnapshot ds : dataSnapshot.getChildren()) {
                             if (ds.child("MyNo").getValue(String.class).equals(userName)) {
                                 empflag = 1;
-                                new AlertDialog.Builder(GetnumberActivity.this).setIcon(android.R.drawable.stat_sys_warning)
+                                new AlertDialog.Builder(GetnumberActivity.this).setIcon(android.R.drawable.ic_dialog_alert)
                                         .setTitle("Error")
                                         .setMessage("You are registered as an employee")
                                         .setPositiveButton("Enter as an employee", new DialogInterface.OnClickListener() {

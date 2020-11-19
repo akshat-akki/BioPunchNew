@@ -1,26 +1,18 @@
 package com.example.biopunch;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.ActionCodeUrl;
-import com.opencsv.CSVWriter;
-
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DashBoardHR extends AppCompatActivity {
 
@@ -29,6 +21,24 @@ public class DashBoardHR extends AppCompatActivity {
     public TabLayout tabLayout;
      public static String phn;
      public static String from;//for determining if the element is deleted
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        new AlertDialog.Builder(DashBoardHR.this).setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Are you sure?")
+                .setMessage("Do you definitely want to exit?")
+                .setPositiveButton("NO",null)
+                .setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        System.exit(0);
+                    }
+                })
+                .show();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater=getMenuInflater();
@@ -74,7 +84,7 @@ public class DashBoardHR extends AppCompatActivity {
         Intent i=getIntent();
         phn=i.getStringExtra("phoneNumber");
         from=i.getStringExtra("from");
-        Toast.makeText(DashBoardHR.this, phn, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(DashBoardHR.this, phn, Toast.LENGTH_SHORT).show();
 
         setPagerAdapter();
         setTabLayout();
