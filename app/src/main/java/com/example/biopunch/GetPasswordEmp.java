@@ -13,6 +13,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class GetPasswordEmp extends AppCompatActivity {
     private EditText getPassword;
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
