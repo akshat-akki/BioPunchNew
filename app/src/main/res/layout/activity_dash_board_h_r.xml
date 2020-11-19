@@ -18,10 +18,10 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:theme="@style/AppTheme"
             app:tabGravity="fill"
             app:tabInlineLabel="true"
-            android:theme="@style/TabLayout_Theme"
-            app:tabMode="scrollable">
+            app:tabMode="fixed">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/EmployeeTab"
