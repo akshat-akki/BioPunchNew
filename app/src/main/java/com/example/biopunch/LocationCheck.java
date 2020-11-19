@@ -22,6 +22,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class LocationCheck extends AppCompatActivity {
     boolean locDone=false;
     int flag=0;
@@ -135,22 +140,34 @@ public class LocationCheck extends AppCompatActivity {
                                         {
                                             punched=ds.child("Employee").child(no).child("Punched").getValue(String.class);
                                             if (locDone == true) {
-                                                String date = String.valueOf(android.text.format.DateFormat.format("dd-MM-yyyy", new java.util.Date()));
-                                                Log.i("date today",date);
+                                                String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+                                                Calendar calendar = Calendar.getInstance();
+                                                int hour24hrs = calendar.get(Calendar.HOUR_OF_DAY);
+                                                int minutes = calendar.get(Calendar.MINUTE);
+                                                int seconds = calendar.get(Calendar.SECOND);
+                                                String time=hour24hrs+":"+minutes+":"+seconds;
+                                                Log.i("date today",currentDate+" "+time);
                                                 if(punched.equals("YES"))
+                                                {
                                                     FirebaseDatabase.getInstance().getReference().child("users")
                                                             .child(no)
                                                             .child("Employee")
                                                             .child(no)
                                                             .child("Punched")
                                                             .setValue("NO");
+                                                    FirebaseDatabase.getInstance().getReference().child("users").child(no).child("Employee").child(no).child(currentDate).child("Work Time Out").setValue(time);
+                                                }
                                                 else
+                                                {
                                                     FirebaseDatabase.getInstance().getReference().child("users")
                                                             .child(no)
                                                             .child("Employee")
                                                             .child(no)
                                                             .child("Punched")
                                                             .setValue("YES");
+                                                    FirebaseDatabase.getInstance().getReference().child("users").child(no).child("Employee").child(no).child(currentDate).child("Work Time In").setValue(time);
+                                                }
+                                                FirebaseDatabase.getInstance().getReference().child("users").child(no).child("Employee").child(no).child(currentDate).child("Date").setValue(currentDate);
                                                 Toast.makeText(LocationCheck.this, "Location matched!!", Toast.LENGTH_SHORT).show();
                                             } else {
                                                 Toast.makeText(LocationCheck.this, "Location unmatched!!", Toast.LENGTH_SHORT).show();
@@ -179,22 +196,34 @@ public class LocationCheck extends AppCompatActivity {
                                         {
                                             punched=ds.child("Employee").child(no).child("Punched").getValue(String.class);
                                             if (locDone == true) {
-                                                String date = String.valueOf(android.text.format.DateFormat.format("dd-MM-yyyy", new java.util.Date()));
-                                                Log.i("date today",date);
+                                                String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+                                                Calendar calendar = Calendar.getInstance();
+                                                int hour24hrs = calendar.get(Calendar.HOUR_OF_DAY);
+                                                int minutes = calendar.get(Calendar.MINUTE);
+                                                int seconds = calendar.get(Calendar.SECOND);
+                                                String time=hour24hrs+":"+minutes+":"+seconds;
+                                                Log.i("date today",currentDate+" "+time);
                                                 if(punched.equals("NO"))
+                                                {
                                                     FirebaseDatabase.getInstance().getReference().child("users")
                                                             .child(hrno)
                                                             .child("Employee")
                                                             .child(no)
                                                             .child("Punched")
                                                             .setValue("YES");
+                                                    FirebaseDatabase.getInstance().getReference().child("Employees").child(no).child(currentDate).child("Work Time In").setValue(time);
+                                                }
                                                 else
+                                                {
                                                     FirebaseDatabase.getInstance().getReference().child("users")
                                                             .child(hrno)
                                                             .child("Employee")
                                                             .child(no)
                                                             .child("Punched")
                                                             .setValue("NO");
+                                                    FirebaseDatabase.getInstance().getReference().child("Employees").child(no).child(currentDate).child("Work Time Out").setValue(time);
+                                                }
+                                                FirebaseDatabase.getInstance().getReference().child("Employees").child(no).child(currentDate).child("Date").setValue(currentDate);
                                                 Toast.makeText(LocationCheck.this, "Location matched!!", Toast.LENGTH_SHORT).show();
                                             } else {
                                                 Toast.makeText(LocationCheck.this, "Location unmatched!!", Toast.LENGTH_SHORT).show();
