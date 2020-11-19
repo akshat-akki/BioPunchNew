@@ -55,6 +55,7 @@ public class LocationCheck extends AppCompatActivity {
         setContentView(R.layout.activity_location_check);
         no = getIntent().getStringExtra("phoneNumber");
         from = getIntent().getStringExtra("from");
+        Log.i("number:",no);
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         dB = new Location("");
         DatabaseReference usersdRef = FirebaseDatabase.getInstance().getReference().child("users").child(no);
@@ -144,6 +145,8 @@ public class LocationCheck extends AppCompatActivity {
                             };
                             usersdRef.addListenerForSingleValueEvent(eventListener);
                             if (locDone == true) {
+                                String date = String.valueOf(android.text.format.DateFormat.format("dd-MM-yyyy", new java.util.Date()));
+                                Toast.makeText(LocationCheck.this, date, Toast.LENGTH_SHORT).show();
                                 if(punched.equals("YES"))
                                 FirebaseDatabase.getInstance().getReference().child("users")
                                         .child(no)
