@@ -19,8 +19,8 @@ public class SettingsEmployee extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
-        Intent intent=new Intent(getApplicationContext(),SettingsEmployee.class);
-        intent.putExtra("phoneNumber",phnEmp);
+        Intent intent=new Intent(getApplicationContext(),EmpDashboard.class);
+        intent.putExtra("phone",phnEmp);
         startActivity(intent);
     }
 
