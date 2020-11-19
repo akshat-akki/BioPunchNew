@@ -134,7 +134,30 @@ public class LocationCheck extends AppCompatActivity {
                                         if (ds.child("phone").getValue(String.class).equals(no))
                                         {
                                             punched=ds.child("Employee").child(no).child("Punched").getValue(String.class);
-                                            break;
+                                            if (locDone == true) {
+                                                String date = String.valueOf(android.text.format.DateFormat.format("dd-MM-yyyy", new java.util.Date()));
+                                                Log.i("date today",date);
+                                                if(punched.equals("YES"))
+                                                    FirebaseDatabase.getInstance().getReference().child("users")
+                                                            .child(no)
+                                                            .child("Employee")
+                                                            .child(no)
+                                                            .child("Punched")
+                                                            .setValue("NO");
+                                                else
+                                                    FirebaseDatabase.getInstance().getReference().child("users")
+                                                            .child(no)
+                                                            .child("Employee")
+                                                            .child(no)
+                                                            .child("Punched")
+                                                            .setValue("YES");
+                                                Toast.makeText(LocationCheck.this, "Location matched!!", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(LocationCheck.this, "Location unmatched!!", Toast.LENGTH_SHORT).show();
+                                            }
+                                            Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
+                                            i.putExtra("phoneNumber", no);
+                                            startActivity(i);
                                         }
                                     }
                                 }
@@ -144,30 +167,6 @@ public class LocationCheck extends AppCompatActivity {
                                 }
                             };
                             usersdRef.addListenerForSingleValueEvent(eventListener);
-                            if (locDone == true) {
-                                String date = String.valueOf(android.text.format.DateFormat.format("dd-MM-yyyy", new java.util.Date()));
-                                Toast.makeText(LocationCheck.this, date, Toast.LENGTH_SHORT).show();
-                                if(punched.equals("YES"))
-                                FirebaseDatabase.getInstance().getReference().child("users")
-                                        .child(no)
-                                        .child("Employee")
-                                        .child(no)
-                                        .child("Punched")
-                                        .setValue("NO");
-                                else
-                                    FirebaseDatabase.getInstance().getReference().child("users")
-                                            .child(no)
-                                            .child("Employee")
-                                            .child(no)
-                                            .child("Punched")
-                                            .setValue("YES");
-                                Toast.makeText(LocationCheck.this, "Location matched!!", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(LocationCheck.this, "Location unmatched!!", Toast.LENGTH_SHORT).show();
-                            }
-                               Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
-                             i.putExtra("phoneNumber", no);
-                             startActivity(i);
                         } else {
                             hrno = getIntent().getStringExtra("HRNO");
                             DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
@@ -179,7 +178,30 @@ public class LocationCheck extends AppCompatActivity {
                                         if (ds.child("phone").getValue(String.class).equals(hrno))
                                         {
                                             punched=ds.child("Employee").child(no).child("Punched").getValue(String.class);
-                                            break;
+                                            if (locDone == true) {
+                                                String date = String.valueOf(android.text.format.DateFormat.format("dd-MM-yyyy", new java.util.Date()));
+                                                Log.i("date today",date);
+                                                if(punched.equals("NO"))
+                                                    FirebaseDatabase.getInstance().getReference().child("users")
+                                                            .child(hrno)
+                                                            .child("Employee")
+                                                            .child(no)
+                                                            .child("Punched")
+                                                            .setValue("YES");
+                                                else
+                                                    FirebaseDatabase.getInstance().getReference().child("users")
+                                                            .child(hrno)
+                                                            .child("Employee")
+                                                            .child(no)
+                                                            .child("Punched")
+                                                            .setValue("NO");
+                                                Toast.makeText(LocationCheck.this, "Location matched!!", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(LocationCheck.this, "Location unmatched!!", Toast.LENGTH_SHORT).show();
+                                            }
+                                            Intent i = new Intent(getApplicationContext(), EmpDashboard.class);
+                                            i.putExtra("phone", no);
+                                            startActivity(i);
                                         }
                                     }
                                 }
@@ -189,28 +211,6 @@ public class LocationCheck extends AppCompatActivity {
                                 }
                             };
                             usersdRef.addListenerForSingleValueEvent(eventListener);
-                            if (locDone == true) {
-                                if(punched.equals("NO"))
-                                FirebaseDatabase.getInstance().getReference().child("users")
-                                        .child(hrno)
-                                        .child("Employee")
-                                        .child(no)
-                                        .child("Punched")
-                                        .setValue("YES");
-                                else
-                                    FirebaseDatabase.getInstance().getReference().child("users")
-                                            .child(hrno)
-                                            .child("Employee")
-                                            .child(no)
-                                            .child("Punched")
-                                            .setValue("NO");
-                                Toast.makeText(LocationCheck.this, "Location matched!!", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(LocationCheck.this, "Location unmatched!!", Toast.LENGTH_SHORT).show();
-                            }
-                            Intent i = new Intent(getApplicationContext(), EmpDashboard.class);
-                            i.putExtra("phone", no);
-                            startActivity(i);
                         }
                     }
 
