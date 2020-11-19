@@ -1,7 +1,9 @@
 package com.example.biopunch;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -175,12 +177,27 @@ public class LocationCheck extends AppCompatActivity {
                                                 }
                                                 FirebaseDatabase.getInstance().getReference().child("users").child(no).child("Employee").child(no).child(currentDate).child("Date").setValue(currentDate);
                                                 Toast.makeText(LocationCheck.this, "Location matched!!", Toast.LENGTH_SHORT).show();
+                                                Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
+                                                i.putExtra("phoneNumber", no);
+                                                startActivity(i);
                                             } else {
-                                                Toast.makeText(LocationCheck.this, "Location unmatched!!", Toast.LENGTH_SHORT).show();
+                                                new AlertDialog.Builder(LocationCheck.this).setIcon(android.R.drawable.ic_dialog_info).setTitle("Location Not Matched").setMessage("Location mismatch.Please try again later!").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
+                                                        i.putExtra("phoneNumber", no);
+                                                        startActivity(i);
+                                                    };
+                                                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        Intent i = new Intent(getApplicationContext(), LocationCheck.class);
+                                                        i.putExtra("phoneNumber", no);
+                                                        i.putExtra("from",from);
+                                                        startActivity(i);
+                                                    }
+                                                }).show();
                                             }
-                                            Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
-                                            i.putExtra("phoneNumber", no);
-                                            startActivity(i);
                                         }
                                     }
                                 }
@@ -231,12 +248,28 @@ public class LocationCheck extends AppCompatActivity {
                                                 }
                                                 FirebaseDatabase.getInstance().getReference().child("Employees").child(no).child(currentDate).child("Date").setValue(currentDate);
                                                 Toast.makeText(LocationCheck.this, "Location matched!!", Toast.LENGTH_SHORT).show();
+                                                Intent i = new Intent(getApplicationContext(), EmpDashboard.class);
+                                                i.putExtra("phone", no);
+                                                startActivity(i);
                                             } else {
-                                                Toast.makeText(LocationCheck.this, "Location unmatched!!", Toast.LENGTH_SHORT).show();
+                                                new AlertDialog.Builder(LocationCheck.this).setIcon(android.R.drawable.ic_dialog_info).setTitle("Location Not Matched").setMessage("Location mismatch.Please try again later!").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        Intent i = new Intent(getApplicationContext(), EmpDashboard.class);
+                                                        i.putExtra("phone", no);
+                                                        startActivity(i);
+                                                    };
+                                                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        Intent i = new Intent(getApplicationContext(), LocationCheck.class);
+                                                        i.putExtra("phoneNumber", no);
+                                                        i.putExtra("from",from);
+                                                        i.putExtra("HRNO",hrno);
+                                                        startActivity(i);
+                                                    }
+                                                }).show();
                                             }
-                                            Intent i = new Intent(getApplicationContext(), EmpDashboard.class);
-                                            i.putExtra("phone", no);
-                                            startActivity(i);
                                         }
                                     }
                                 }
