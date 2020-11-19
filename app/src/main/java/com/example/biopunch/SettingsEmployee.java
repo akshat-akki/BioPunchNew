@@ -15,6 +15,15 @@ import com.google.firebase.database.ValueEventListener;
 public class SettingsEmployee extends AppCompatActivity {
  private String phnEmp="";
     private String hr;
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Intent intent=new Intent(getApplicationContext(),SettingsEmployee.class);
+        intent.putExtra("phoneNumber",phnEmp);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

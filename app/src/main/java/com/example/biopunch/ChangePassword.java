@@ -166,7 +166,7 @@ public class ChangePassword extends AppCompatActivity {
                                                .setValue(newP.getText().toString());
                                        Toast.makeText(ChangePassword.this, "Your password has been changed!!" , Toast.LENGTH_SHORT).show();
                                        Intent i=new Intent(getApplicationContext(),EmpDashboard.class);
-                                       i.putExtra("phoneNumber",mobileNo);
+                                       i.putExtra("phone",mobileNo);
                                        startActivity(i);
                                    }
                                }
