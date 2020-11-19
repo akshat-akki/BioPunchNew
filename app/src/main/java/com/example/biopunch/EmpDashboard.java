@@ -5,10 +5,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,8 +22,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.opencsv.CSVWriter;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import sun.bob.mcalendarview.MCalendarView;
 import sun.bob.mcalendarview.MarkStyle;
@@ -32,6 +39,9 @@ public class EmpDashboard extends AppCompatActivity {
     private TabLayout bottomtab;
     MCalendarView calendarView;
     ArrayList<DateData> dates=new ArrayList<>();
+    private  String[] attend;
+    private  List<String[]> data = new ArrayList<String[]>();
+
 
     @Override
     public void onBackPressed() {
@@ -72,13 +82,16 @@ public class EmpDashboard extends AppCompatActivity {
                 return true;}
             case R.id.downloadReportEmployee:
             {
-                //return the json to excel sheet
+                String path=report();
+                Toast.makeText(getApplicationContext(),"File Downloaded at"+path,Toast.LENGTH_LONG).show();
+
                 return(true);
             }
             default:
                 return false;
         }
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,5 +169,48 @@ public class EmpDashboard extends AppCompatActivity {
                 }
             }
         });
+    }
+    private String report() {
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference myRef = database.child("Employees").child(empno).child("Attendance");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    if (ds.child("Date").exists() && ds.child("Work Time In").exists() && ds.child("Work Time Out").exists()) {
+                        final String date = ds.child("Date").getValue(String.class);
+                        final String InTime = ds.child("Work Time In").getValue(String.class);
+                        final String OutTime = ds.child("Work Time Out").getValue(String.class);
+                        Log.i("info", date + " " + InTime + " " + OutTime);
+                        String csv = (Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + empno + "Report.csv"); // Here csv file name is MyCsvFile.csv
+                        CSVWriter writer = null;
+                        try {
+                            writer = new CSVWriter(new FileWriter(csv));
+
+
+                            data.add(new String[]{"*DATE*", "*IN TIME*", "*OUT TIME*"});
+                            data.add(new String[]{date, InTime, OutTime});
+                            writer.writeAll(data); // data is adding to csv
+                            writer.close();
+                            //callRead();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Toast.makeText(getApplicationContext(), "File Downloaded at" + csv, Toast.LENGTH_LONG).show();
+                    }
+
+
+                }
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+
+        });
+
+        return Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + empno + "Report.csv";
     }
 }
