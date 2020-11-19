@@ -1,14 +1,14 @@
 package com.example.biopunch;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.ActionCodeUrl;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,35 +24,22 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.opencsv.CSVWriter;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DashBoardHR extends AppCompatActivity {
 
     MyFragmentPagerAdapter myFragmentPagerAdapter;
     ViewPager viewPager;
-    public TabLayout tabLayout;
+     public TabLayout tabLayout;
      public static String phn;
-     public static String from;//for determining if the element is deleted
-
-    @Override
-    public void onBackPressed() {
-        //super.onBackPressed();
-        new AlertDialog.Builder(DashBoardHR.this).setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Are you sure?")
-                .setMessage("Do you definitely want to exit?")
-                .setPositiveButton("NO",null)
-                .setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                        System.exit(0);
-                    }
-                })
-                .show();
-    }
-
+     public static String from;
+     private  String[] attend;
+     private List<String[]> data = new ArrayList<String[]>();
+     //for determining if the element is deleted
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater=getMenuInflater();
@@ -81,8 +69,7 @@ public class DashBoardHR extends AppCompatActivity {
             {
                 String path=report();
                 Toast.makeText(getApplicationContext(),"File Downloaded at"+path,Toast.LENGTH_LONG).show();
-                //convert json to excel
-                return(true);
+                return true;
             }
             default:
                 return false;
@@ -99,7 +86,7 @@ public class DashBoardHR extends AppCompatActivity {
         Intent i=getIntent();
         phn=i.getStringExtra("phoneNumber");
         from=i.getStringExtra("from");
-       // Toast.makeText(DashBoardHR.this, phn, Toast.LENGTH_SHORT).show();
+        Toast.makeText(DashBoardHR.this, phn, Toast.LENGTH_SHORT).show();
 
         setPagerAdapter();
         setTabLayout();
@@ -109,16 +96,6 @@ public class DashBoardHR extends AppCompatActivity {
         Intent intent=new Intent(getApplicationContext(),AddEmployee.class);
         intent.putExtra("phone",phn);
         startActivity(intent);
-    }
-
-    private void setTabLayout() {
-        tabLayout.setupWithViewPager(viewPager);
-
-    }
-
-    private void setPagerAdapter() {
-        myFragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(myFragmentPagerAdapter);
     }
     private String report()
     {
@@ -131,16 +108,15 @@ public class DashBoardHR extends AppCompatActivity {
 
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     if (ds.child("Date").exists() && ds.child("Work Time In").exists() && ds.child("Work Time Out").exists()) {
-                        final String date = ds.child("*Date*").getValue(String.class);
-                        final String InTime = ds.child("*Work Time In*").getValue(String.class);
-                        final String OutTime = ds.child("*Work Time Out*").getValue(String.class);
+                        final String date = ds.child("Date").getValue(String.class);
+                        final String InTime = ds.child("Work Time In").getValue(String.class);
+                        final String OutTime = ds.child("Work Time Out").getValue(String.class);
                         Log.i("info", date + " " + InTime + " " + OutTime);
                         String csv = (Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + phn + "Report.csv"); // Here csv file name is MyCsvFile.csv
                         CSVWriter writer = null;
                         try {
                             writer = new CSVWriter(new FileWriter(csv));
-                            List<String[]> data = null;
-                            data.add(new String[]{"DATE", "IN TIME", "OUT TIME"});
+                            data.add(new String[]{"*DATE*", "*IN TIME*", "*OUT TIME*"});
                             data.add(new String[]{date, InTime, OutTime});
                             writer.writeAll(data); // data is adding to csv
                             writer.close();
@@ -156,6 +132,16 @@ public class DashBoardHR extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {}
 
         });
-        return Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + phn + "Report.csv";
+         return Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + phn + "Report.csv";
+    }
+
+    private void setTabLayout() {
+        tabLayout.setupWithViewPager(viewPager);
+
+    }
+
+    private void setPagerAdapter() {
+        myFragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(myFragmentPagerAdapter);
     }
 }
