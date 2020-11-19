@@ -3,8 +3,10 @@ package com.example.biopunch;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +19,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.opencsv.CSVWriter;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EmployeeDetailActivity extends AppCompatActivity {
     private String empNo;
@@ -25,6 +33,9 @@ public class EmployeeDetailActivity extends AppCompatActivity {
      private TextView companyNameEmp;
     private TextView nameEmp;
     private TextView contactEmp;
+    private Button download;
+    String[] attend;
+    List<String[]> data = new ArrayList<String[]>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +46,50 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         empNo=empNo.substring(0,empNo.indexOf(' '));
         contactEmp= findViewById(R.id.empContactNoText);
         contactEmp.setText(empNo);
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference myRef = database.child("Employees").child(empNo).child("Attendance");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    if (ds.child("Date").exists()&&ds.child("Work Time In").exists()&&ds.child("Work Time Out").exists())
+                    {
+                       final  String date=ds.child("Date").getValue(String.class);
+                       final  String InTime=ds.child("Work Time In").getValue(String.class);
+                       final  String OutTime=ds.child("Work Time Out").getValue(String.class);
+                       Log.i("info",date+" "+InTime+" "+OutTime);
+                        download=findViewById(R.id.downloadRepoEmpHr);
+                        download.setOnClickListener(new View.OnClickListener() {
+                            String csv = (Environment.getExternalStorageDirectory().getAbsolutePath() + "/"+empNo+"Report.csv"); // Here csv file name is MyCsvFile.csv
+                            @Override
+                            public void onClick(View v) {
+                                CSVWriter writer = null;
+                                try {
+                                    writer = new CSVWriter(new FileWriter(csv));
+
+
+                                    data.add(new String[]{"*DATE*","*IN TIME*","*OUT TIME*"});
+                                    data.add(new String[]{date,InTime,OutTime});
+                                    writer.writeAll(data); // data is adding to csv
+                                    writer.close();
+                                    //callRead();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+
+        });
+
+
         final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
         DatabaseReference usersdRef = ref.child("users");
         ValueEventListener eventListener = new ValueEventListener() {
