@@ -41,6 +41,12 @@ public class LocationCheck extends AppCompatActivity {
     String latitudeDB;
     String longitudeDB;
    private String punched;
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
+
     public void startListening()
     {
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED)

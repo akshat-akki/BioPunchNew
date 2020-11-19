@@ -19,7 +19,8 @@ public class test extends AppCompatActivity {
                 .setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        finishAffinity();
+
                         System.exit(0);
                     }
                 })
