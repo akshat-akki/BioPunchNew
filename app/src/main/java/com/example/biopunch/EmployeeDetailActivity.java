@@ -2,12 +2,14 @@ package com.example.biopunch;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -21,6 +23,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.opencsv.CSVWriter;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -53,15 +56,15 @@ public class EmployeeDetailActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    if (ds.child("Date").exists()&&ds.child("Work Time In").exists()&&ds.child("Work Time Out").exists())
-                    {
-                       final  String date=ds.child("Date").getValue(String.class);
-                       final  String InTime=ds.child("Work Time In").getValue(String.class);
-                       final  String OutTime=ds.child("Work Time Out").getValue(String.class);
-                       Log.i("info",date+" "+InTime+" "+OutTime);
-                        download=findViewById(R.id.downloadRepoEmpHr);
+                    if (ds.child("Date").exists() && ds.child("Work Time In").exists() && ds.child("Work Time Out").exists()) {
+                        final String date = ds.child("Date").getValue(String.class);
+                        final String InTime = ds.child("Work Time In").getValue(String.class);
+                        final String OutTime = ds.child("Work Time Out").getValue(String.class);
+                        Log.i("info", date + " " + InTime + " " + OutTime);
+                        download = findViewById(R.id.downloadRepoEmpHr);
                         download.setOnClickListener(new View.OnClickListener() {
-                            String csv = (Environment.getExternalStorageDirectory().getAbsolutePath() + "/"+empNo+"Report.csv"); // Here csv file name is MyCsvFile.csv
+                            String csv = (Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + empNo + "Report.csv"); // Here csv file name is MyCsvFile.csv
+
                             @Override
                             public void onClick(View v) {
                                 CSVWriter writer = null;
@@ -69,18 +72,20 @@ public class EmployeeDetailActivity extends AppCompatActivity {
                                     writer = new CSVWriter(new FileWriter(csv));
 
 
-                                    data.add(new String[]{"*DATE*","*IN TIME*","*OUT TIME*"});
-                                    data.add(new String[]{date,InTime,OutTime});
+                                    data.add(new String[]{"*DATE*", "*IN TIME*", "*OUT TIME*"});
+                                    data.add(new String[]{date, InTime, OutTime});
                                     writer.writeAll(data); // data is adding to csv
                                     writer.close();
                                     //callRead();
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
-
+                                Toast.makeText(getApplicationContext(),"File Downloaded at"+csv,Toast.LENGTH_LONG).show();
                             }
                         });
+
                     }
+
                 }
             }
 
