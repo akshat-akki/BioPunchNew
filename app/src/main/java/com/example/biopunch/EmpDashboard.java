@@ -3,6 +3,7 @@ package com.example.biopunch;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -20,14 +21,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import sun.bob.mcalendarview.MCalendarView;
+import sun.bob.mcalendarview.MarkStyle;
 import sun.bob.mcalendarview.vo.DateData;
 
 public class EmpDashboard extends AppCompatActivity {
     private String empno="";
     private String hrno="";
     private TabLayout bottomtab;
+    MCalendarView calendarView;
+    ArrayList<DateData> dates=new ArrayList<>();
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -64,15 +69,33 @@ public class EmpDashboard extends AppCompatActivity {
         Intent i=getIntent();
         empno=i.getStringExtra("phone");
         bottomtab=findViewById(R.id.TabviewEmp);
-        MCalendarView calendarView = findViewById(R.id.calendar);
-        ArrayList<DateData> dates=new ArrayList<>();
-        dates.add(new DateData(2020,11,26));
-        dates.add(new DateData(2020,11,27));
-        for(int l=0;l<dates.size();l++) {
-            calendarView.markDate(dates.get(l).getYear(),dates.get(l).getMonth(),dates.get(l).getDay());//mark multiple dates with this code.
-        }
+         calendarView = findViewById(R.id.calendar);
 
+        DatabaseReference rootRef1 = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference usersdRef1 = rootRef1.child("Employees").child(empno).child("Attendance");
+        ValueEventListener eventListener1 = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    if (ds.child("Date").exists())
+                    {
+                        String str=ds.child("Date").getValue(String.class);
+                        Log.i("Dates",str+"");
+                        dates.add(new DateData(Integer.parseInt(str.substring(6,10)),Integer.parseInt(str.substring(3,5)),Integer.parseInt(str.substring(0,2))));
+                    }
+                }
+                calendarView.setMarkedStyle(MarkStyle.BACKGROUND,Color.GREEN);
+                for(int l=0;l<dates.size();l++) {
 
+                    calendarView.markDate(dates.get(l).getYear(),dates.get(l).getMonth(),dates.get(l).getDay());//mark multiple dates with this code.
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        usersdRef1.addListenerForSingleValueEvent(eventListener1);
         Log.i("marked dates:-",""+calendarView.getMarkedDates());
 
         bottomtab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

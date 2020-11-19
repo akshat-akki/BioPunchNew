@@ -161,7 +161,7 @@ public class LocationCheck extends AppCompatActivity {
                                                             .child(no)
                                                             .child("Punched")
                                                             .setValue("NO");
-                                                    FirebaseDatabase.getInstance().getReference().child("users").child(no).child("Employee").child(no).child(currentDate).child("Work Time Out").setValue(time);
+                                                    FirebaseDatabase.getInstance().getReference().child("users").child(no).child("Employee").child(no).child("Attendance").child(currentDate).child("Work Time Out").setValue(time);
                                                 }
                                                 else
                                                 {
@@ -171,9 +171,9 @@ public class LocationCheck extends AppCompatActivity {
                                                             .child(no)
                                                             .child("Punched")
                                                             .setValue("YES");
-                                                    FirebaseDatabase.getInstance().getReference().child("users").child(no).child("Employee").child(no).child(currentDate).child("Work Time In").setValue(time);
+                                                    FirebaseDatabase.getInstance().getReference().child("users").child(no).child("Employee").child(no).child("Attendance").child(currentDate).child("Work Time In").setValue(time);
                                                 }
-                                                FirebaseDatabase.getInstance().getReference().child("users").child(no).child("Employee").child(no).child(currentDate).child("Date").setValue(currentDate);
+                                                FirebaseDatabase.getInstance().getReference().child("users").child(no).child("Employee").child(no).child("Attendance").child(currentDate).child("Date").setValue(currentDate);
                                                 Toast.makeText(LocationCheck.this, "Location matched!!", Toast.LENGTH_SHORT).show();
                                             } else {
                                                 Toast.makeText(LocationCheck.this, "Location unmatched!!", Toast.LENGTH_SHORT).show();
@@ -217,7 +217,7 @@ public class LocationCheck extends AppCompatActivity {
                                                             .child(no)
                                                             .child("Punched")
                                                             .setValue("YES");
-                                                    FirebaseDatabase.getInstance().getReference().child("Employees").child(no).child(currentDate).child("Work Time In").setValue(time);
+                                                    FirebaseDatabase.getInstance().getReference().child("Employees").child(no).child("Attendance").child(currentDate).child("Work Time In").setValue(time);
                                                 }
                                                 else
                                                 {
@@ -227,9 +227,9 @@ public class LocationCheck extends AppCompatActivity {
                                                             .child(no)
                                                             .child("Punched")
                                                             .setValue("NO");
-                                                    FirebaseDatabase.getInstance().getReference().child("Employees").child(no).child(currentDate).child("Work Time Out").setValue(time);
+                                                    FirebaseDatabase.getInstance().getReference().child("Employees").child(no).child("Attendance").child(currentDate).child("Work Time Out").setValue(time);
                                                 }
-                                                FirebaseDatabase.getInstance().getReference().child("Employees").child(no).child(currentDate).child("Date").setValue(currentDate);
+                                                FirebaseDatabase.getInstance().getReference().child("Employees").child(no).child("Attendance").child(currentDate).child("Date").setValue(currentDate);
                                                 Toast.makeText(LocationCheck.this, "Location matched!!", Toast.LENGTH_SHORT).show();
                                             } else {
                                                 Toast.makeText(LocationCheck.this, "Location unmatched!!", Toast.LENGTH_SHORT).show();
