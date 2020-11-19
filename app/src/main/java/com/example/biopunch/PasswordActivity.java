@@ -22,6 +22,12 @@ public class PasswordActivity extends AppCompatActivity {
     public String phone1;
     private String role;
     private Button forgotpassword;
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

@@ -37,6 +37,12 @@ public class CompanyLocation extends FragmentActivity implements OnMapReadyCallb
     LocationManager locationManager;
     LocationListener locationListener;
     boolean save=false;
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

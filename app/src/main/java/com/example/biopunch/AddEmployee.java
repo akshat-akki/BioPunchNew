@@ -13,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -154,7 +153,7 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
                 .child(EmployeePhoneEditText.getText().toString())
                 .child("WorkTimeOut")
                 .setValue(outHrSpinner.getSelectedItem().toString()+":"+outMinSpinner.getSelectedItem().toString());
-        Toast.makeText(getApplicationContext(),"Employee Added Successful",Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getApplicationContext(),"Employee Added Successful",Toast.LENGTH_SHORT).show();
             Intent intent1 = new Intent(getApplicationContext(), DashBoardHR.class);
             intent1.putExtra("phoneNumber", HrNo);
             startActivity(intent1);
@@ -176,7 +175,7 @@ public class AddEmployee extends AppCompatActivity implements AdapterView.OnItem
                     Cursor c =  getContentResolver().query(contactData, null, null, null, null);
                     if (c.moveToFirst()) {
                         String name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                        Toast.makeText(this, "Contact added:"+name, Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(this, "Contact added:"+name, Toast.LENGTH_SHORT).show();
                         EmployeeNameEditText.setText(name);
                         if (Integer.parseInt(c.getString(c.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0)
                         {

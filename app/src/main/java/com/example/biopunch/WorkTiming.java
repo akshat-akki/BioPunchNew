@@ -48,6 +48,12 @@ public class WorkTiming extends AppCompatActivity implements AdapterView.OnItemS
     private String inTime;
     private String outTime;
      String phoneno;
+    private String from;
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,11 +115,18 @@ public class WorkTiming extends AppCompatActivity implements AdapterView.OnItemS
     {
         FirebaseDatabase.getInstance().getReference().child("users").child(phoneno).child("WorkTimeIn").setValue(inTime);
         FirebaseDatabase.getInstance().getReference().child("users").child(phoneno).child("WorkTimeOut").setValue(outTime);
-        FirebaseDatabase.getInstance().getReference().child("users").child(phoneno).child("Attendance");
-        Intent intent=new Intent(getApplicationContext(),CompanyLocation.class);
-        intent.putExtra("phoneNumber",phoneno);
-        startActivity(intent);
-
+        from=getIntent().getStringExtra("from");
+        if(from!=null&&from.equals("settings"))
+        {
+            Intent intent=new Intent(getApplicationContext(),Settings_HR.class);
+            intent.putExtra("phoneNumber",phoneno);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(getApplicationContext(), CompanyLocation.class);
+            intent.putExtra("phoneNumber", phoneno);
+            startActivity(intent);
+        }
     }
     public void time1clicked(View view)
     {

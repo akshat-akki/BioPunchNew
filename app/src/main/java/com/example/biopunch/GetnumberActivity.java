@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,6 +23,24 @@ public class GetnumberActivity extends AppCompatActivity {
     private EditText editTextMobile;
     ProgressBar progressBar;
     int empflag=0;
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        new AlertDialog.Builder(GetnumberActivity.this).setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Are you sure?")
+                .setMessage("Do you definitely want to exit?")
+                .setPositiveButton("No", null)
+                .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finishAffinity();
+
+                        System.exit(0);
+                    }
+                }).show();
+    }
+
     private void numberHR()
     {
         editTextMobile.addTextChangedListener(new TextWatcher() {
@@ -66,7 +83,7 @@ public class GetnumberActivity extends AppCompatActivity {
                         for (DataSnapshot ds : dataSnapshot.getChildren()) {
                             if (ds.child("MyNo").getValue(String.class).equals(userName)) {
                                 empflag = 1;
-                                new AlertDialog.Builder(GetnumberActivity.this).setIcon(android.R.drawable.stat_sys_warning)
+                                new AlertDialog.Builder(GetnumberActivity.this).setIcon(android.R.drawable.ic_dialog_alert)
                                         .setTitle("Error")
                                         .setMessage("You are registered as an employee")
                                         .setPositiveButton("Enter as an employee", new DialogInterface.OnClickListener() {
@@ -225,7 +242,7 @@ public class GetnumberActivity extends AppCompatActivity {
         setContentView(R.layout.activity_getnumber);
         Intent i=getIntent();
         String person=i.getStringExtra("login");
-        Toast.makeText(this, person, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, person, Toast.LENGTH_SHORT).show();
         editTextMobile = findViewById(R.id.editTextPhone);
         progressBar=findViewById(R.id.progressBar1);
         progressBar.setVisibility(View.INVISIBLE);

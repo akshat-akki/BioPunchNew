@@ -153,6 +153,10 @@ public class ChangePassword extends AppCompatActivity {
                                                .child(mobileNo)
                                                .child("Password")
                                                .setValue(newP.getText().toString());
+                                       Toast.makeText(ChangePassword.this, "Your password has been changed!!" , Toast.LENGTH_SHORT).show();
+                                       Intent i=new Intent(getApplicationContext(),DashBoardHR.class);
+                                       i.putExtra("phoneNumber",mobileNo);
+                                       startActivity(i);
                                    }
                                    else
                                    {
@@ -160,11 +164,11 @@ public class ChangePassword extends AppCompatActivity {
                                                .child(mobileNo)
                                                .child("Password")
                                                .setValue(newP.getText().toString());
+                                       Toast.makeText(ChangePassword.this, "Your password has been changed!!" , Toast.LENGTH_SHORT).show();
+                                       Intent i=new Intent(getApplicationContext(),EmpDashboard.class);
+                                       i.putExtra("phone",mobileNo);
+                                       startActivity(i);
                                    }
-                                   Toast.makeText(ChangePassword.this, "Your password has been changed!!" , Toast.LENGTH_SHORT).show();
-                                   Intent i=new Intent(getApplicationContext(),DashBoardHR.class);
-                                   i.putExtra("phoneNumber",mobileNo);
-                                   startActivity(i);
                                }
                            });}
                        else

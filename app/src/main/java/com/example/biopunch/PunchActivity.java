@@ -25,19 +25,21 @@ import java.util.concurrent.Executors;
 public class PunchActivity extends AppCompatActivity {
      private String no,hrno;
      boolean empdash;
-     static int j=0;
+
     @Override
     public void onBackPressed() {
-        if(j==0) {
-            Intent i = new Intent(getApplicationContext(), PunchActivity.class);
-            i.putExtra("phoneNumber", no);
-            startActivity(i);
-            j=1;
-        }
-        else
-        {
-            super.onBackPressed();
-        }
+        //super.onBackPressed();
+    if(empdash==true)
+    {
+        Intent intent1=new Intent(getApplicationContext(),EmpDashboard.class);
+        intent1.putExtra("phone",no);
+        startActivity(intent1);
+    }
+    else {
+        Intent intent1=new Intent(getApplicationContext(),DashBoardHR.class);
+        intent1.putExtra("phoneNumber",no);
+        startActivity(intent1);
+    }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -47,6 +49,7 @@ public class PunchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_punch);
         no=getIntent().getStringExtra("phoneNumber");
+        empdash=getIntent().getBooleanExtra("Empdash",false);
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference usersdRef = rootRef.child("Employees");
         ValueEventListener eventListener = new ValueEventListener() {
@@ -65,8 +68,6 @@ public class PunchActivity extends AppCompatActivity {
             }
         };
         usersdRef.addListenerForSingleValueEvent(eventListener);
-
-        empdash=getIntent().getBooleanExtra("Empdash",false);
         try {
             Executor newExecutor = Executors.newSingleThreadExecutor();
             FragmentActivity activity = this;
@@ -120,10 +121,17 @@ public class PunchActivity extends AppCompatActivity {
                         }.start();
                     } else {
                        // Toast.makeText(ge, "Error occurred!! Try again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
-
-                        i.putExtra("phoneNumber",no);
-                        startActivity(i);
+                        if(empdash==false) {
+                            Intent i = new Intent(getApplicationContext(), DashBoardHR.class);
+                            i.putExtra("phoneNumber", no);
+                            startActivity(i);
+                        }
+                        else
+                        {
+                            Intent i = new Intent(getApplicationContext(), EmpDashboard.class);
+                            i.putExtra("phone", no);
+                            startActivity(i);
+                        }
                         Log.i("error", "An unrecoverable error occurred");
                     }
                 }

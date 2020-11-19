@@ -9,6 +9,16 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Settings_HR extends AppCompatActivity {
 
 String phn;
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Intent i=new Intent(getApplicationContext(),DashBoardHR.class);
+        i.putExtra("phoneNumber",phn);
+        i.putExtra("from","settings");
+        startActivity(i);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +37,7 @@ String phn;
             public void onClick(View v) {
                 Intent i=new Intent(getApplicationContext(),WorkTiming.class);
                 i.putExtra("mobile",phn);
+                i.putExtra("from","settings");
                 startActivity(i);
             }
         });
