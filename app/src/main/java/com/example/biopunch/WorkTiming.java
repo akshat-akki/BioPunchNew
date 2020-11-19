@@ -48,6 +48,12 @@ public class WorkTiming extends AppCompatActivity implements AdapterView.OnItemS
     private String inTime;
     private String outTime;
      String phoneno;
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
