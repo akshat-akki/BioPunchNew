@@ -1,76 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:elevation="4dp"
+    android:background="#101E42"
+    android:backgroundTintMode="add"
+    android:orientation="vertical"
     tools:context=".test">
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="150dp"
-        android:layout_height="172dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="131dp"
-        android:layout_marginTop="160dp"
-        android:backgroundTint="@color/cardview_light_background"
-        android:elevation="4dp"
-        android:onClick="loginHR"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/admin" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="4dp">
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="150dp"
-        android:layout_height="172dp"
-        android:layout_below="@+id/textView8"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="89dp"
-        android:backgroundTint="@color/cardview_light_background"
-        android:elevation="4dp"
-        android:onClick="loginEmployee"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/employee" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="#FFFFFF"
+            android:elevation="4dp">
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="6dp"
-        android:fontFamily="sans-serif"
-        android:text="ADMIN"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="24sp" />
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButton2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif"
+                android:text="EMPLOYEE"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageButton2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="6dp"
-        android:fontFamily="sans-serif"
-        android:text="EMPLOYEE"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="24sp" />
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/abril_fatface"
+                android:text="SELECT YOUR ROLE"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="36sp" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/abril_fatface"
-        android:text="SELECT YOUR ROLE"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="36sp" />
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButton"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif"
+                android:text="ADMIN"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="24sp" />
 
-</RelativeLayout>
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="150dp"
+                android:layout_height="172dp"
+                android:layout_below="@+id/textView10"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="52dp"
+                android:backgroundTint="@color/cardview_light_background"
+                android:elevation="4dp"
+                android:onClick="loginHR"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/admin" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="150dp"
+                android:layout_height="172dp"
+                android:layout_below="@+id/textView8"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="21dp"
+                android:backgroundTint="@color/cardview_light_background"
+                android:elevation="4dp"
+                android:onClick="loginEmployee"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/employee" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</ScrollView>
 
 
