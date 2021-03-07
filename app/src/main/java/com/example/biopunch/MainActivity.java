@@ -9,6 +9,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -49,21 +50,35 @@ public class MainActivity extends AppCompatActivity {
                 });
         final AlertDialog alert = builder.create();
         alert.show();
+
     }
+    private final int SPLASH_DISPLAY_LENGTH = 2000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             buildAlertMessageNoGps();
+        }
+        else
+        {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    /* Create an Intent that will start the Menu-Activity. */
+                    Intent intent = new Intent(getApplicationContext(), test.class);
+                    startActivity(intent);
+                }
+            }, SPLASH_DISPLAY_LENGTH);
+
         }
 
 
-        locationManager=(LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
-        locationListener=new LocationListener() {
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
 
@@ -76,12 +91,21 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onProviderEnabled(String provider) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        /* Create an Intent that will start the Menu-Activity. */
+                        Intent intent = new Intent(getApplicationContext(), test.class);
+                        startActivity(intent);
+                    }
+                }, SPLASH_DISPLAY_LENGTH);
 
             }
 
             @Override
             public void onProviderDisabled(String provider) {
-
+                /*finishAffinity();
+                System.exit(0);*/
             }
         };
         if (ContextCompat.checkSelfPermission(this,
@@ -98,28 +122,16 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 // No explanation needed; request the permission
                 ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
-
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             }
         } else {
+
             // Permission has already been granted
         }
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED)
-        {
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        } else {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
         }
-        else
-        {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
-        }
-
-    }
-    public void getStart(View view)
-    {
-        Intent intent=new Intent(getApplicationContext(),test.class);
-        startActivity(intent);
     }
 }
