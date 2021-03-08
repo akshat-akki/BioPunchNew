@@ -5,21 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#101E42"
+    android:background="@color/colorBackground"
     android:backgroundTintMode="add"
-    android:orientation="vertical"
+
     tools:context=".test">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="4dp">
+
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:background="#FFFFFF"
+            android:layout_gravity="center"
             android:elevation="4dp">
 
             <TextView
@@ -38,7 +36,7 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
+
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/abril_fatface"
@@ -83,10 +81,8 @@
                 android:onClick="loginEmployee"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/employee" />
+
         </RelativeLayout>
-    </RelativeLayout>
-
-
 </ScrollView>
 
 

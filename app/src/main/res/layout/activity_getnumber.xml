@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GetnumberActivity">
-
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:background="#101E42"
+            android:background="@color/colorBackground"
             android:elevation="4dp">
 
                 <TextView
@@ -24,7 +26,6 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="87dp"
                     android:layout_marginEnd="19dp"
-                    android:fontFamily="@font/abril_fatface"
                     android:text="What's your mobile number?"
                     android:textColor="#ffff"
                     android:textSize="27sp"
@@ -41,6 +42,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="36dp"
                     android:text="Enter your mobile number to start                                                          "
+                    android:textColor="#ffff"
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -68,7 +70,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="281dp"
             android:drawableLeft="@android:drawable/stat_sys_phone_call"
-            android:drawableTint="#004aad"
+            android:drawableTint="@color/colorPrimary"
             android:ems="10"
             android:inputType="phone"
             app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +87,7 @@
             android:layout_marginTop="56dp"
             android:layout_marginEnd="24dp"
             android:background="@drawable/custom_dialog"
-            android:backgroundTint="#004aad"
+            android:backgroundTint="@color/colorPrimary"
             android:drawableLeft="@drawable/ic_baseline_check_24"
             android:drawableTint="@android:color/white"
             android:text="Next"
@@ -111,5 +113,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
 
-
-</RelativeLayout>
+        </RelativeLayout>
+</ScrollView>
