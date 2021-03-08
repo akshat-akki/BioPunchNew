@@ -52,7 +52,7 @@ public class GetnumberActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if( s.length() == 10)
-                    findViewById(R.id.buttonnext).setVisibility(View.VISIBLE);
+                    findViewById(R.id.buttonNext).setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -60,13 +60,13 @@ public class GetnumberActivity extends AppCompatActivity {
 
             }
         });
-        findViewById(R.id.buttonnext).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.buttonNext).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((InputMethodManager) getSystemService(GetnumberActivity.INPUT_METHOD_SERVICE))
                         .toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
                 progressBar.setVisibility(View.VISIBLE);
-                findViewById(R.id.buttonnext).setVisibility(View.INVISIBLE); mobile = editTextMobile.getText().toString().trim();
+                findViewById(R.id.buttonNext).setVisibility(View.INVISIBLE); mobile = editTextMobile.getText().toString().trim();
                 if(mobile.isEmpty() || mobile.length() < 10){
                     editTextMobile.setError("Enter a valid mobile");
                     editTextMobile.requestFocus();
@@ -157,7 +157,7 @@ public class GetnumberActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if( s.length() == 10)
-                    findViewById(R.id.buttonnext).setVisibility(View.VISIBLE);
+                    findViewById(R.id.buttonNext).setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -165,13 +165,13 @@ public class GetnumberActivity extends AppCompatActivity {
 
             }
         });
-        findViewById(R.id.buttonnext).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.buttonNext).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((InputMethodManager) getSystemService(GetnumberActivity.INPUT_METHOD_SERVICE))
                         .toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
                 progressBar.setVisibility(View.VISIBLE);
-                findViewById(R.id.buttonnext).setVisibility(View.INVISIBLE);
+                findViewById(R.id.buttonNext).setVisibility(View.INVISIBLE);
                 mobile = editTextMobile.getText().toString().trim();
                 if (mobile.isEmpty() || mobile.length() < 10) {
                     editTextMobile.setError("Enter a valid mobile");
@@ -213,7 +213,7 @@ public class GetnumberActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             editTextMobile.setText("");
-                                            findViewById(R.id.buttonnext).setVisibility(View.INVISIBLE);
+                                            findViewById(R.id.buttonNext).setVisibility(View.INVISIBLE);
                                             progressBar.setVisibility(View.INVISIBLE);
                                             numberEmployee();
                                         }
@@ -246,7 +246,7 @@ public class GetnumberActivity extends AppCompatActivity {
         editTextMobile = findViewById(R.id.editTextPhone);
         progressBar=findViewById(R.id.progressBar1);
         progressBar.setVisibility(View.INVISIBLE);
-        findViewById(R.id.buttonnext).setVisibility(View.INVISIBLE);
+        findViewById(R.id.buttonNext).setVisibility(View.INVISIBLE);
         if(person.equals("HR"))
             numberHR();
         else
