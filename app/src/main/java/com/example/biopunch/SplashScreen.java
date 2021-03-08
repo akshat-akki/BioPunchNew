@@ -10,7 +10,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -18,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-public class MainActivity extends AppCompatActivity {
+public class SplashScreen extends AppCompatActivity {
     LocationManager locationManager;
     LocationListener locationListener;
     @Override
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_splash);
 
         final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     /* Create an Intent that will start the Menu-Activity. */
-                    Intent intent = new Intent(getApplicationContext(), test.class);
+                    Intent intent = new Intent(getApplicationContext(), RoleActivity.class);
                     startActivity(intent);
                 }
             }, SPLASH_DISPLAY_LENGTH);
@@ -95,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         /* Create an Intent that will start the Menu-Activity. */
-                        Intent intent = new Intent(getApplicationContext(), test.class);
+                        Intent intent = new Intent(getApplicationContext(), RoleActivity.class);
                         startActivity(intent);
                     }
                 }, SPLASH_DISPLAY_LENGTH);

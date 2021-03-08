@@ -55,8 +55,8 @@
         <activity android:name=".GetnumberActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".test" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".RoleActivity" />
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

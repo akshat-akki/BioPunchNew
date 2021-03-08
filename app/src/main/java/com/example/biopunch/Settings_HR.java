@@ -62,7 +62,7 @@ String phn;
         findViewById(R.id.logoutAccess).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(getApplicationContext(),test.class);
+                Intent i=new Intent(getApplicationContext(), RoleActivity.class);
                  startActivity(i);
             }
         });

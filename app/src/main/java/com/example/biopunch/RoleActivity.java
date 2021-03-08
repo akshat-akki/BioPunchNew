@@ -8,11 +8,11 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class test extends AppCompatActivity {
+public class RoleActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
-        new AlertDialog.Builder(test.this).setIcon(android.R.drawable.ic_dialog_alert)
+        new AlertDialog.Builder(RoleActivity.this).setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Are you sure?")
                 .setMessage("Do you definitely want to exit?")
                 .setPositiveButton("NO",null)
@@ -30,7 +30,7 @@ public class test extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_role);
     }
     public void loginHR(View view)
     {

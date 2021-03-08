@@ -97,7 +97,7 @@ public class GetnumberActivity extends AppCompatActivity {
                                         .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                Intent intent = new Intent(getApplicationContext(), test.class);
+                                                Intent intent = new Intent(getApplicationContext(), RoleActivity.class);
                                                 startActivity(intent);
                                             }
                                         }).show();

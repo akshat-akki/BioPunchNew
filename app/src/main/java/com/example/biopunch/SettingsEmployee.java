@@ -77,7 +77,7 @@ public class SettingsEmployee extends AppCompatActivity {
         findViewById(R.id.logoutAccessEmployee).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),test.class);
+                Intent intent=new Intent(getApplicationContext(), RoleActivity.class);
                 startActivity(intent);
             }
         });

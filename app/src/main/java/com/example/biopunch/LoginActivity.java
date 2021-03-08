@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                 .setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent1=new Intent(getApplicationContext(),test.class);
+                        Intent intent1=new Intent(getApplicationContext(), RoleActivity.class);
                         startActivity(intent1);
                     }
                 })

@@ -8,7 +8,7 @@
     android:background="@color/colorBackground"
     android:backgroundTintMode="add"
 
-    tools:context=".test">
+    tools:context=".RoleActivity">
 
 
 
