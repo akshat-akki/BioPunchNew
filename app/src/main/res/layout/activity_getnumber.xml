@@ -86,7 +86,6 @@
                                             android:layout_centerHorizontal="true"
                                             android:layout_centerVertical="true"
                                             android:layout_weight="1"
-                                            android:onClick="onCountryPickerClick"
                                             >
                                         </com.hbb20.CountryCodePicker>
 

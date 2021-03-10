@@ -1,4 +1,5 @@
 package com.example.biopunch;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,13 +19,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.hbb20.CountryCodePicker;
 
 public class GetnumberActivity extends AppCompatActivity {
     String mobile;
     private EditText editTextMobile;
     ProgressBar progressBar;
     int empflag=0;
-
+    String countryCode="+91";
+    CountryCodePicker countryCodePicker;
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
@@ -51,7 +55,7 @@ public class GetnumberActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if( s.length() == 10)
+                if( s.length() > 1 )
                     findViewById(R.id.buttonNext).setVisibility(View.VISIBLE);
             }
 
@@ -66,14 +70,15 @@ public class GetnumberActivity extends AppCompatActivity {
                 ((InputMethodManager) getSystemService(GetnumberActivity.INPUT_METHOD_SERVICE))
                         .toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
                 progressBar.setVisibility(View.VISIBLE);
-                findViewById(R.id.buttonNext).setVisibility(View.INVISIBLE); mobile = editTextMobile.getText().toString().trim();
-                if(mobile.isEmpty() || mobile.length() < 10){
+                findViewById(R.id.buttonNext).setVisibility(View.INVISIBLE);
+                mobile = editTextMobile.getText().toString().trim();
+                if(mobile.isEmpty() ){
                     editTextMobile.setError("Enter a valid mobile");
                     editTextMobile.requestFocus();
                     return;
 
                 }
-                mobile="+91"+mobile;
+                mobile=countryCode+mobile;
                 final String userName =mobile;
                 DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
                 DatabaseReference usersdRef = rootRef.child("Employees");
@@ -156,7 +161,7 @@ public class GetnumberActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if( s.length() == 10)
+                if( s.length() > 1)
                     findViewById(R.id.buttonNext).setVisibility(View.VISIBLE);
             }
 
@@ -173,13 +178,13 @@ public class GetnumberActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 findViewById(R.id.buttonNext).setVisibility(View.INVISIBLE);
                 mobile = editTextMobile.getText().toString().trim();
-                if (mobile.isEmpty() || mobile.length() < 10) {
+                if (mobile.isEmpty() ) {
                     editTextMobile.setError("Enter a valid mobile");
                     editTextMobile.requestFocus();
                     return;
                     //
                 }
-                    mobile="+91"+mobile;
+                    mobile=countryCode+mobile;
                     final String userName =mobile;
                     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
                     DatabaseReference usersdRef = rootRef.child("Employees");
@@ -240,20 +245,26 @@ public class GetnumberActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_getnumber);
-        Intent i=getIntent();
-        String person=i.getStringExtra("login");
+        String person=getIntent().getStringExtra("login");
         //Toast.makeText(this, person, Toast.LENGTH_SHORT).show();
         editTextMobile = findViewById(R.id.editTextPhone);
         progressBar=findViewById(R.id.progressBar1);
         progressBar.setVisibility(View.INVISIBLE);
         findViewById(R.id.buttonNext).setVisibility(View.INVISIBLE);
+        countryCodePicker = findViewById(R.id.ccp);
+        countryCodePicker.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
+            @Override
+            public void onCountrySelected() {
+                //Alert.showMessage(RegistrationActivity.this, ccp.getSelectedCountryCodeWithPlus());
+                countryCode = countryCodePicker.getSelectedCountryCode();
+                Toast.makeText(GetnumberActivity.this, countryCode, Toast.LENGTH_SHORT).show();
+            }
+        });
         if(person.equals("HR"))
             numberHR();
         else
             numberEmployee();
-    }
-
-    public void onCountryPickerClick(View view) {
 
     }
+
 }
