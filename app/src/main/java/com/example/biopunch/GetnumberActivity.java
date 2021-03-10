@@ -252,4 +252,8 @@ public class GetnumberActivity extends AppCompatActivity {
         else
             numberEmployee();
     }
+
+    public void onCountryPickerClick(View view) {
+
+    }
 }
