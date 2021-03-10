@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:outlineAmbientShadowColor="@color/colorBackground"
-    android:outlineSpotShadowColor="@color/colorBackground"
     tools:context=".GetnumberActivity">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:outlineAmbientShadowColor="@color/colorBackground"
+            android:outlineSpotShadowColor="@color/colorBackground"
+                >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -16,6 +24,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:background="@color/colorBackground"
                     android:orientation="vertical"
                     android:layout_weight="1" >
                         <RelativeLayout
@@ -68,7 +77,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentTop="true"
                                     android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="40dp"
+                                    android:layout_marginTop="60dp"
                                     android:orientation="horizontal">
                                         <com.hbb20.CountryCodePicker
                                             android:id="@+id/ccp"
@@ -80,16 +89,22 @@
                                             android:onClick="onCountryPickerClick"
                                             >
                                         </com.hbb20.CountryCodePicker>
+
                                         <EditText
                                             android:id="@+id/editTextPhone"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
+                                            android:layout_weight="1"
                                             android:drawableTint="@color/colorPrimary"
                                             android:ems="10"
+                                            android:textCursorDrawable="@null"
+                                            android:textColor="@color/colorBackground"
                                             android:inputType="phone"
-                                            android:shadowColor="#FFFFFF"
+                                            android:singleLine="true"
+                                            android:textFontWeight="3"
+                                            android:textColorHint="@color/colorBackground"
                                             android:textColorHighlight="@color/colorBackground"
-                                            android:textColorLink="@color/colorBackground" />
+                                            android:backgroundTint="@color/colorBackground" />
 
                                 </LinearLayout>
                                 <Button
@@ -99,13 +114,14 @@
                                     android:layout_below="@+id/editTextPhone"
                                     android:layout_alignParentEnd="false"
                                     android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="100dp"
+                                    android:layout_marginTop="130dp"
                                     android:layout_marginEnd="171dp"
                                     android:background="@drawable/custom_dialog"
                                     android:backgroundTint="@color/colorBackground"
                                     android:text="GENERATE OTP"
                                     android:textColor="#FDF2F2"
-                                    android:textSize="24sp" />
+                                    android:textSize="24sp"
+                                    tools:ignore="NotSibling" />
                                 <ProgressBar
                                     android:id="@+id/progressBar1"
                                     style="?android:attr/progressBarStyle"
@@ -114,21 +130,37 @@
                                     android:layout_below="@+id/buttonNext"
                                     android:layout_alignParentEnd="false"
                                     android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="54dp" />
+                                    android:layout_marginTop="40dp" />
                         </RelativeLayout>
                 </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:orientation="vertical"
-            android:backgroundTintMode="multiply"
-            android:background="@drawable/fingernew"
-            android:backgroundTint="@color/quantum_white_100"
             android:layout_gravity="center" >
-
-        </LinearLayout>
-
-</FrameLayout>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:elevation="12dp"
+                    android:id="@+id/view2"
+                    app:cardCornerRadius="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:innerRadius="0dp"
+                    android:shape="ring"
+                    android:thicknessRatio="2.9">
+                        <ImageView
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:id="@+id/imageView1"
+                            android:backgroundTint="@color/colorBackground"
+                            android:background="@drawable/fingernew"
+                            android:layout_centerHorizontal="true">
+                        </ImageView>
+                </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+        </FrameLayout>
+        </RelativeLayout>
+</ScrollView>

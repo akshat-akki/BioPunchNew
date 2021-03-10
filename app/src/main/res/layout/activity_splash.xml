@@ -4,5 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back"
-    tools:context=".SplashScreen"/>
+    android:gravity="center"
+    android:background="@color/colorBackground"
+    tools:context=".SplashScreen">
+
+   <ImageView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+        android:background="@color/colorBackground"
+       android:foregroundGravity="center"
+       android:src="@drawable/back"
+       ></ImageView>
+</RelativeLayout>
+
