@@ -106,6 +106,7 @@
                                             android:backgroundTint="@color/colorBackground" />
 
                                 </LinearLayout>
+
                                 <Button
                                     android:id="@+id/buttonNext"
                                     android:layout_width="290dp"
@@ -117,7 +118,7 @@
                                     android:layout_marginEnd="171dp"
                                     android:background="@drawable/custom_dialog"
                                     android:backgroundTint="@color/colorBackground"
-                                    android:text="GENERATE OTP"
+                                    android:text="Verify"
                                     android:textColor="#FDF2F2"
                                     android:textSize="24sp"
                                     tools:ignore="NotSibling" />
@@ -129,7 +130,11 @@
                                     android:layout_below="@+id/buttonNext"
                                     android:layout_alignParentEnd="false"
                                     android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="40dp" />
+                                    android:layout_marginTop="40dp"
+                                    android:indeterminate="true"
+                                    android:indeterminateTintMode="src_atop"
+                                    android:indeterminateTint="@color/colorBackground"
+                                    />
                         </RelativeLayout>
                 </LinearLayout>
 

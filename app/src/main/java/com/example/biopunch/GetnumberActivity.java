@@ -26,6 +26,7 @@ public class GetnumberActivity extends AppCompatActivity {
     private EditText editTextMobile;
     ProgressBar progressBar;
     int empflag=0;
+    int intentflag=0;
     String countryCode="+91";
     CountryCodePicker countryCodePicker;
     @Override
@@ -56,7 +57,10 @@ public class GetnumberActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if( s.length() > 1 )
+                {
+
                     findViewById(R.id.buttonNext).setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -119,7 +123,7 @@ public class GetnumberActivity extends AppCompatActivity {
                     return;
                 else
                 {
-                    FirebaseDatabase.getInstance().getReference().child("users").orderByChild("phone").equalTo(userName).addListenerForSingleValueEvent(
+                    FirebaseDatabase.getInstance().getReference().child("users").orderByChild("phone").equalTo(mobile).addListenerForSingleValueEvent(
                             new ValueEventListener() {
 
                                 @Override
@@ -127,6 +131,7 @@ public class GetnumberActivity extends AppCompatActivity {
 
 
                                     if (dataSnapshot.exists()) {
+                                        intentflag=1;
                                         Intent intent = new Intent(getApplicationContext(),PasswordActivity.class);
                                         intent.putExtra("phone",mobile);
                                         intent.putExtra("role","HR");
